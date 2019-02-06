@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Le Musée - {% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        {% block stylesheets %}<link rel="stylesheet" href="/css/bootstrap.min.css">{% endblock %}
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="{{ path('homepage') }}"><img class="img-fluid" alt="Responsive image" src="/images/LeMusee.png" alt="accueil"/></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Nos Véhicules <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Nos Services
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="#">Atelier Carrosserie & Peinture </a>
+                              <a class="dropdown-item" href="#">Atelier Mécanique</a>
+                              <a class="dropdown-item" href="#">Restauration de Véhicules</a>                           
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="#">Conciergerie</a>
+                              <a class="dropdown-item" href="#">Expertise</a>
+                            </div>
+                          </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Actualités</a>
+                    </li>
+                    <li class="nav-item">
+                            <a class="nav-link" href="#">Newsletter</a>
+                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">À Propos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Prendre RDV</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+                </div>
+            </nav>
+        {% block body %}{% endblock %}
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/popper.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
