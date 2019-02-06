@@ -4,9 +4,11 @@ namespace App\Entity;
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Cocur\Slugify\Slugify;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\VoitureRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Voiture
 {
@@ -16,6 +18,11 @@ class Voiture
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -30,7 +37,7 @@ class Voiture
     /**
      * @ORM\Column(type="text")
      */
-    private $contenu;
+    private $content;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -146,6 +153,23 @@ class Voiture
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $état;
+
+    /**
+     * Permet d'initialiser le slug
+     * 
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     *
+     * @return void
+     */
+    public function initializeSlug()
+    {
+        if(empty($this->slug))
+        {
+            $slugify = new Slugify();
+            $this->slug = $slugify->slugify($this->marque." ".$this->modèle." ".$this->type." ".$this->carburant." ".$this->année);
+        }
+    }
 
     public function getId(): ?int
     {
@@ -433,7 +457,7 @@ class Voiture
         return $this->introduction;
     }
 
-    public function setIntroduction(?string $carrosserie): self
+    public function setIntroduction(?string $introduction): self
     {
         $this->introduction = $introduction;
 
@@ -460,6 +484,18 @@ class Voiture
     public function setCoverImage(?string $coverImage): self
     {
         $this->coverImage = $coverImage;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(?string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }
