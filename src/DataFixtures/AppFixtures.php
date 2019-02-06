@@ -6,6 +6,7 @@ use App\Entity\Voiture;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Validator\Constraints\DateTime;
+use App\Entity\Image;
 
 class AppFixtures extends Fixture
 {
@@ -48,7 +49,17 @@ class AppFixtures extends Fixture
                     ->setContent($faker->text)
                     ->setCoverImage('http://lorempixel.com/512/384/transport/');
 
+            //les annonces ont aléatoirement un nombre d'image entre deux et 5
+            for($j = 1; $j <= mt_rand(2,5); $j++)
+            {
+                $image = new Image();
 
+                $image->setUrl('http://lorempixel.com/512/384/transport/')
+                        ->setCaption($faker->sentence())
+                        ->setVoiture($voiture);
+                        
+                $manager->persist($image);
+            }
             $manager->persist($voiture);
         }
 
