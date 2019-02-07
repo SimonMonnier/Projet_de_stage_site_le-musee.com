@@ -1,5 +1,4 @@
 <?php
-namespace App\Entity;
 
 namespace App\Entity;
 
@@ -159,6 +158,11 @@ class Voiture
      * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="voiture", orphanRemoval=true)
      */
     private $images;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $prix;
 
     public function __construct()
     {
@@ -538,6 +542,18 @@ class Voiture
                 $image->setVoiture(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPrix(): ?int
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(int $prix): self
+    {
+        $this->prix = $prix;
 
         return $this;
     }

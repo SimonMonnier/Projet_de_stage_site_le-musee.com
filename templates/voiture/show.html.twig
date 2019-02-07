@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ voiture.marque }} {{ voiture.modèle }} {{ voiture.type }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>{{ voiture.marque }} {{ voiture.modèle }} {{ voiture.type }}</h1>
+    </div>
+{% endblock %}

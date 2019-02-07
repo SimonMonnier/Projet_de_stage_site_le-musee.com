@@ -19,46 +19,25 @@
         </h5>
     </div>
     <div class="row">
-        {% for i in 0..20 %}
+        {% for voiture in voitures %}
             <div class="col-md-4 my-2">
                 <div class="card border-secondary mb-3">
                     <div class="card-header text-center">
-                        1988 Ferrari 328 GTS, <span>106 500 &euro;</span><br><small>Très bon état</small>
+                        {{ voiture.marque }} {{ voiture.modèle }} {{ voiture.type }}, <span>{{ voiture.prix }}&euro;</span><br><small>{{ voiture.état }}</small>
                     </div>
-                    <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade" data-interval="3500" data-ride="carousel">
+                    {# <img src="{{ voiture.coverImage }}" class="d-block w-100" style="height: 180px; width: auto; display: block" alt="Responsive image" alt="..."> #}
+                    <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade" data-interval="3500" data-ride="false">
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="/images/voiture1.jpg" class="d-block w-100" style="height: 180px; width: auto; display: block" alt="Responsive image" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="/images/voiture2.jpg" class="d-block w-100" style="height: 180px; width: auto; display: block" alt="Responsive image" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="/images/voiture3.jpg" class="d-block w-100" style="height: 180px; width: auto; display: block" alt="Responsive image" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="/images/voiture4.jpg" class="d-block w-100" style="height: 180px; width: auto; display: block" alt="Responsive image" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="/images/voiture5.jpg" class="d-block w-100" style="height: 180px; width: auto; display: block" alt="Responsive image" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="/images/voiture6.jpg" class="d-block w-100" style="height: 180px; width: auto; display: block" alt="Responsive image" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="/images/voiture7.jpg" class="d-block w-100" style="height: 180px; width: auto; display: block" alt="Responsive image" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="/images/voiture8.jpg" class="d-block w-100" style="height: 180px; width: auto; display: block" alt="Responsive image" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="/images/voiture9.jpg" class="d-block w-100" style="height: 180px; width: auto; display: block" alt="Responsive image" alt="...">
-                            </div>
+                            {% for image in images %}
+                                <div class="carousel-item active">
+                                    <img src="{{ image.url }}" class="d-block w-100" style="height: 180px; width: auto; display: block" alt="Responsive image" alt="...">
+                                </div>
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">Voiture d'exception</h4>
-                        <p class="card-text">270 chevaux à 7000 tr/min </p>
+                        <p class="card-text">{{ voiture.Introduction }}</p>
                         <a href="#" class="btn btn-primary">En savoir plus !</a>
                     </div>
                 </div>
