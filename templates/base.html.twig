@@ -4,7 +4,10 @@
         <meta charset="UTF-8">
         <title>Le Musée - {% block title %}{% endblock %}</title>
         <link rel="stylesheet" href="/css/bootstrap.min.css">
-        {% block stylesheets %}<link rel="stylesheet" href="/css/bootstrap.min.css">{% endblock %}
+        {% block stylesheets %}
+            <link rel="stylesheet" href="/css/bootstrap.min.css">
+            <link rel="stylesheet" href="/css/app.css">
+        {% endblock %}
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -15,8 +18,8 @@
             
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Nos Véhicules <span class="sr-only">(current)</span></a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('voitures_index') }}">Nos Véhicules<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -50,9 +53,9 @@
                 </div>
             </nav>
         {% block body %}{% endblock %}
-        <script src="/js/jquery.min.js"></script>
-        <script src="/js/popper.min.js"></script>
-        <script src="/js/bootstrap.min.js"></script>
+            <script src="/js/jquery.min.js"></script>
+            <script src="/js/popper.min.js"></script>
+            <script src="/js/bootstrap.min.js"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

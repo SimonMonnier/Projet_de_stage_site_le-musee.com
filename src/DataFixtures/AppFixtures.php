@@ -31,7 +31,8 @@ class AppFixtures extends Fixture
             $voiture->setAnnée($faker->year($max = 'now'))
                     ->setType($fakercar->vehicleType)
                     ->setCreateAt(new \DateTime())
-                    ->setMarque($marque)                    ->setModèle($fakercar->vehicleModel)
+                    ->setMarque($marque)                    
+                    ->setModèle($fakercar->vehicleModel)
                     ->setNuméroSérie($fakercar->vehicleRegistration)
                     ->setLongueur($faker->latitude($min = 2, $max = 5))
                     ->setLargeur($faker->latitude($min = 2, $max = 3))
@@ -52,7 +53,7 @@ class AppFixtures extends Fixture
                     ->setétat($faker->word)
                     ->setPrix($faker->latitude($min = 20000, $max = 200000))
                     ->setIntroduction($faker->text)
-                    ->setContent($faker->text)
+                    ->setContent($faker->text.$faker->text.$faker->text.$faker->text)
                     ->setCoverImage($faker->imageUrl(512, 384, 'transport'));
 
             //les annonces ont aléatoirement un nombre d'image entre deux et 5
@@ -60,7 +61,7 @@ class AppFixtures extends Fixture
             {
                 $image = new Image();
 
-                $image->setUrl('http://lorempixel.com/512/384/')
+                $image->setUrl($faker->imageUrl(512, 384, 'transport'))
                         ->setCaption($faker->sentence())
                         ->setVoiture($voiture);
                         

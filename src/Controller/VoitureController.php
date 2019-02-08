@@ -14,14 +14,12 @@ class VoitureController extends AbstractController
      * Liste des voitures
      * @Route("/voitures", name="voitures_index")
      */
-    public function index(VoitureRepository $repoVoiture, ImageRepository $repoImage)
+    public function index(VoitureRepository $repoVoiture)
     {
         $voitures = $repoVoiture->findAll();
-        $images = $repoImage->findAll();
 
         return $this->render('voiture/index.html.twig', [
-            'voitures' => $voitures,
-            'images' => $images
+            'voitures' => $voitures
         ]);
     }
 
@@ -37,7 +35,6 @@ class VoitureController extends AbstractController
         //on récupère ici la voiture correspondant au slug
         $voiture = $repoVoiture->findOneBySlug($slug);
 
-        dump($voiture);
         return $this->render('voiture/show.html.twig', [
             'voiture' => $voiture
         ]);

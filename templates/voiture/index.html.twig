@@ -3,7 +3,7 @@
 {% block title %}Notre Parc{% endblock %}
 
 {% block body %}
-<div class="container mt-4">
+<div class="container">
     <div class="shadow-lg p-3 mb-5 bg-white rounded">
         <h1 class="text-center my-5">Bienvenue dans notre Parc</h1>
         
@@ -20,25 +20,30 @@
     </div>
     <div class="row">
         {% for voiture in voitures %}
+            {% set url = path('voitures_show',{'slug': voiture.slug}) %}
+
             <div class="col-md-4 my-2">
                 <div class="card border-secondary mb-3">
                     <div class="card-header text-center">
-                        {{ voiture.marque }} {{ voiture.modèle }} {{ voiture.type }}, <span>{{ voiture.prix }}&euro;</span><br><small>{{ voiture.état }}</small>
+                        Prix <span>{{ voiture.prix }}&euro;</span>/TTC<br><small>En {{ voiture.état }}</small>
                     </div>
-                    {# <img src="{{ voiture.coverImage }}" class="d-block w-100" style="height: 180px; width: auto; display: block" alt="Responsive image" alt="..."> #}
-                    <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade" data-interval="3500" data-ride="false">
+                    <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade" data-interval="3000" data-ride="carousel">
                         <div class="carousel-inner">
-                            {% for image in images %}
-                                <div class="carousel-item active">
-                                    <img src="{{ image.url }}" class="d-block w-100" style="height: 180px; width: auto; display: block" alt="Responsive image" alt="...">
+                            {% for image in voiture.images %}
+                                <div class="carousel-item {% if loop.first %} active {% endif %}">
+                                    <a href="{{ url }}" target="_blank">
+                                        <img src="{{ image.url }}" class="d-block w-100" style="height: 180px; width: auto; display: block" alt="Responsive image" alt="...">
+                                    </a>
                                 </div>
                             {% endfor %}
                         </div>
                     </div>
                     <div class="card-body">
-                        <h4 class="card-title">Voiture d'exception</h4>
+                        <a href="{{ url }}" target="_blank">
+                            <h4 class="card-title">{{ voiture.marque }} {{ voiture.modèle }} {{ voiture.type }}</h4>
+                        </a>
                         <p class="card-text">{{ voiture.Introduction }}</p>
-                        <a href="#" class="btn btn-primary">En savoir plus !</a>
+                        <a href="{{ url }}" class="btn btn-primary" target="_blank">En savoir plus !</a>
                     </div>
                 </div>
             </div>

@@ -2,16 +2,21 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\VoitureRepository;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
     /**
      * @Route("/", name="homepage")
      */
-    public function index()
+    public function index(VoitureRepository $repoVoiture)
     {
-        return $this->render('home/home.html.twig');
+        $voitures = $repoVoiture->findAll();
+
+        return $this->render('home/home.html.twig', [
+            'voitures' => $voitures
+        ]);
     }
 }

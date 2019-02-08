@@ -2,47 +2,31 @@
 
 {% block title %}Bienvenue{% endblock %}
 
-{% block stylesheets %}<link rel="stylesheet" href="/css/bootstrap.min.css">{% endblock %}
-
 {% block body %}
 
 {# <img src="/images/voiture1.jpg" class="img-fluid" alt="Responsive image" style="height: 198px; width: 100%"> #}
 
 <div class="container mt-3 shadow-lg p-0 mb-5 bg-white rounded">
-    <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade" data-interval="4000" data-pause="false" data-ride="carousel">
+    <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade" data-interval="3000" data-pause="false" data-ride="carousel">
         <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="/images/voiture1.jpg" class="img-fluid" style="height: 500px; width: 100%" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="/images/voiture2.jpg" class="img-fluid" style="height: 500px; width: 100%" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="/images/voiture3.jpg" class="img-fluid" style="height: 500px; width: 100%" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="/images/voiture4.jpg" class="d-block w-100" style="height: 500px; width: 100%" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="/images/voiture5.jpg" class="img-fluid" style="height: 500px; width: 100%" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="/images/voiture6.jpg" class="img-fluid" style="height: 500px; width: 100%" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="/images/voiture7.jpg" class="img-fluid" style="height: 500px; width: 100%" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="/images/voiture8.jpg" class="img-fluid" style="height: 500px; width: 100%" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="/images/voiture9.jpg" class="img-fluid" style="height: 500px; width: 100%" alt="...">
-            </div>
+        {% for voiture in voitures %}
+            {% set url = path('voitures_show',{'slug': voiture.slug}) %}
+                <div class="carousel-item {% if loop.first %} active {% endif %}">
+                    <a href="{{ url }}" target="_blank">
+                        <img src="{{ voiture.coverImage }}" class="img-fluid" style="height: 500px; width: 100%; display: block" alt="Responsive image" alt="...">
+                    </a>
+                    <div class="carousel-caption d-none d-md-block">
+                        <a href="{{ url }}" target="_blank">
+                            <h1 class="voiture-title">{{ voiture.marque }} {{ voiture.modèle }} {{ voiture.type }}</h1>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
 </div>
 <div class="container">
-    <div class="jumbotron mt-3">
+    <div class="jumbotron">
         <h1 class="display-3">Le plaisir de l’exception avec le Musée</h1>
         <p class="lead">Vous rêvez d’une voiture d’exception, de revivre vos séries télévisées à travers les voitures qui ont marqué le siècle dernier ?</p>
         <hr class="my-4">
@@ -54,10 +38,10 @@
 </div>
 <div class="container">
         <div class="jumbotron">
-        <h2 class="h1 mt-3 mb-4">Nos Véhicules Stars</h2>
+        <h2 class="h1 mb-4">Nos Véhicules Stars</h2>
 
         <div class="row">
-            <div class="col-md-4 mt-3">
+            <div class="col-md-4">
                 <div class="card border-secondary mb-3">
                     <div class="card-header text-center">
                         1988 Ferrari 328 GTS, <span>106 500 &euro;</span><br><small>Très bon état</small>
@@ -96,11 +80,11 @@
                     <div class="card-body">
                         <h4 class="card-title">Voiture d'exception</h4>
                          <p class="card-text">270 chevaux à 7000 tr/min </p>
-                        <a href="#" class="btn btn-primary">En savoir plus !</a>
+                        <a href="#" class="btn btn-primary" target="_blank">En savoir plus !</a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mt-3">
+            <div class="col-md-4">
                 <div class="card border-secondary mb-3">
                     <div class="card-header text-center">
                         1988 Ferrari 328 GTS, <strong>106 500&euro;</strong><br><small>Très bon état</small>
@@ -139,11 +123,11 @@
                     <div class="card-body">
                         <h4 class="card-title">Voiture d'exception</h4>
                             <p class="card-text">270 chevaux à 7000 tr/min </p>
-                            <a href="#" class="btn btn-primary">En savoir plus !</a>
+                            <a href="#" class="btn btn-primary" target="_blank">En savoir plus !</a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mt-3">
+            <div class="col-md-4">
                 <div class="card border-secondary mb-3">
                     <div class="card-header text-center">
                         1988 Ferrari 328 GTS, <span>106 500 &euro;</span><br><small>Très bon état</small>
@@ -182,7 +166,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Voiture d'exception</h4>
                         <p class="card-text">270 chevaux à 7000 tr/min </p>
-                        <a href="#" class="btn btn-primary">En savoir plus !</a>
+                        <a href="#" class="btn btn-primary" target="_blank">En savoir plus !</a>
                     </div>
                 </div>
             </div>

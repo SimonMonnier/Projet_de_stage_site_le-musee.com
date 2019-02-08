@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -523,7 +524,7 @@ class Voiture
         return $this->images;
     }
 
-    public function addImage(Image $image): self
+    public function addImages(Image $image): self
     {
         if (!$this->images->contains($image)) {
             $this->images[] = $image;
