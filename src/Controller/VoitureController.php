@@ -7,6 +7,7 @@ use App\Repository\VoitureRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Voiture;
 
 class VoitureController extends AbstractController
 {
@@ -30,11 +31,8 @@ class VoitureController extends AbstractController
      * 
      * @return Response
      */
-    public function show($slug, VoitureRepository $repoVoiture)
+    public function show(Voiture $voiture)
     {   
-        //on récupère ici la voiture correspondant au slug
-        $voiture = $repoVoiture->findOneBySlug($slug);
-
         return $this->render('voiture/show.html.twig', [
             'voiture' => $voiture
         ]);
