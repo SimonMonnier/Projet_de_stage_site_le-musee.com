@@ -17,7 +17,7 @@
                     </a>
                     <div class="carousel-caption d-none d-md-block">
                         <a href="{{ url }}" target="_blank">
-                            <h1 class="voiture-title">{{ voiture.marque }} {{ voiture.modèle }} {{ voiture.type }}</h1>
+                            <h1 class="voiture-title">{{ voiture.marque }} {{ voiture.modèle }} {% if voiture.type %} {{ voiture.type }} {% endif %}</h1>
                         </a>
                     </div>
                 </div>
@@ -27,11 +27,11 @@
 </div>
 <div class="container">
     <div class="jumbotron">
-        <h1 class="display-3">Le plaisir de l’exception avec le Musée</h1>
+        <h1 class="home-caption">Le plaisir de l’exception avec le Musée</h1>
         <p class="lead">Vous rêvez d’une voiture d’exception, de revivre vos séries télévisées à travers les voitures qui ont marqué le siècle dernier ?</p>
         <hr class="my-4">
         <p>Venez rencontrer notre équipe de passionnés qui vous aideront à trouver ou à restaurer votre véhicule...</p>
-        <p class="lead">
+        <p class="lead my-4">
         <a class="btn btn-primary btn-lg" href="#" role="button">Lire la suite</a>
         </p>
     </div>

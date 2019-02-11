@@ -3,7 +3,6 @@
     <head>
         <meta charset="UTF-8">
         <title>Le Musée - {% block title %}{% endblock %}</title>
-        <link rel="stylesheet" href="/css/bootstrap.min.css">
         {% block stylesheets %}
             <link rel="stylesheet" href="/css/bootstrap.min.css">
             <link rel="stylesheet" href="/css/app.css">
@@ -26,28 +25,28 @@
                               Nos Services
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item" href="#">Atelier Carrosserie & Peinture </a>
-                              <a class="dropdown-item" href="#">Atelier Mécanique</a>
-                              <a class="dropdown-item" href="#">Restauration de Véhicules</a>                           
+                              <a class="dropdown-item" href="{{ path('atelier_peinture_et_carrosserie') }}">Atelier Carrosserie & Peinture </a>
+                              <a class="dropdown-item" href="{{ path('atelier_mecanique') }}">Atelier Mécanique</a>
+                              <a class="dropdown-item" href="{{ path('restauration_vehicule') }}">Restauration de Véhicules</a>                           
                               <div class="dropdown-divider"></div>
-                              <a class="dropdown-item" href="#">Conciergerie</a>
-                              <a class="dropdown-item" href="#">Expertise</a>
+                              <a class="dropdown-item" href="{{ path('conciergerie') }}">Conciergerie</a>
+                              <a class="dropdown-item" href="{{ path('expertise') }}">Expertise</a>
                             </div>
                           </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Actualités</a>
+                        <a class="nav-link" href="{{ path('actualites') }}">Actualités</a>
                     </li>
                     <li class="nav-item">
-                            <a class="nav-link" href="#">Newsletter</a>
+                            <a class="nav-link" href="{{ path('newsletter') }}">Newsletter</a>
                         </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">À Propos</a>
+                        <a class="nav-link" href="{{ path('a_propos') }}">À Propos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Prendre RDV</a>
+                        <a class="nav-link" href="{{ path('rendez_vous') }}">Prendre RDV</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
+                        <a class="nav-link" href="{{ path('contact') }}">Contact</a>
                     </li>
                 </ul>
                 </div>

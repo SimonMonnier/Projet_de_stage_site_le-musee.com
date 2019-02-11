@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ voiture.marque }} {{ voiture.modèle }} {{ voiture.type }}{% endblock %}
+{% block title %}{{ voiture.marque }} {{ voiture.modèle }}{% if voiture.type %} {{ voiture.type }} {% endif %}{% endblock %}
 
 {% block body %}
 
     <div class="voiture-title" style="background-image: url('{{ voiture.coverImage }}')">
         <div class="container">
-            <h1 class="my-3">{{ voiture.marque }} {{ voiture.modèle }} {{ voiture.type }}</h1>
+            <h1 class="my-3">{{ voiture.marque }} {{ voiture.modèle }} {% if voiture.type %} {{ voiture.type }} {% endif %}</h1>
             <p>{{ voiture.introduction }}</p>
             <p class="h2">
                 <strong>
-                    En <small>{{ voiture.état }}</small>
+                    <small>En {{ voiture.état }}</small>
                 </strong>
             </p>
             <a href="#" class="btn btn-primary">Demandez plus d'info</a>
@@ -21,7 +21,7 @@
         <div class="row">
             <div class="col-md-8 mb-3">
                 {{ voiture.content }}
-                <div id="carouselExampleIndicators" class="carousel slide my-3" data-ride="carousel">
+                <div id="carouselExampleIndicators" class="carousel slide carousel-fade my-3" data-ride="carousel">
                     <ol class="carousel-indicators">
                         {% for image in voiture.images %}
                         <li data-target="#carouselExampleIndicators" data-slide-to=" {{loop.index0 }} " class="{% if loop.first %} active {% endif %}"></li>
@@ -30,15 +30,15 @@
                     <div class="carousel-inner">
                         {% for image in voiture.images %}
                         <div class="carousel-item {% if loop.first %} active {% endif %}">
-                            <img src="{{ image.url }}" class="d-block w-100" alt="...">
+                            <img src="{{ image.url }}" class="d-block w-100" alt="{{ voiture.slug }}">
                             <div class="carousel-caption d-none d-md-block">
-                                <h5>{{ voiture.marque }} {{ voiture.modèle }} {{ voiture.type }}</h5>
+                                <h5>{{ voiture.marque }} {{ voiture.modèle }} {% if voiture.type %} {{ voiture.type }} {% endif %}</h5>
                                 <p> {{ image.caption }}</p>
                             </div>
                         </div>
                         {% endfor %}
                     </div>
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="sr-only">Previous</span>
                     </a>

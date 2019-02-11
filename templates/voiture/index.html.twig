@@ -9,7 +9,7 @@
         
         <h5 class="text-center my-5 ">
             Toute fois, si vous ne trouvez pas le véhicule de vos rêves dans ce listing,<br><br>
-            n’hésitez surtout pas à nous <a href="..." style="color: rgb(214, 0, 0)"> contacter</a>. <br><br><br>
+            n’hésitez surtout pas à nous <a href="{{ path('contact') }}" style="color: rgb(214, 0, 0)"> contacter</a>. <br><br><br>
             
             Grace à nos collaborateurs à l’international et nos déplacements trimestriels,<br><br>
             nous pouvons trouver votre véhicule de collection restauré, ou à restaurer.<br><br><br>
@@ -32,7 +32,7 @@
                             {% for image in voiture.images %}
                                 <div class="carousel-item {% if loop.first %} active {% endif %}">
                                     <a href="{{ url }}" target="_blank">
-                                        <img src="{{ image.url }}" class="d-block w-100" style="height: 180px; width: auto; display: block" alt="Responsive image" alt="...">
+                                        <img src="{{ image.url }}" class="d-block w-100" style="height: 180px; width: auto; display: block" alt="{{ voiture.slug }}">
                                     </a>
                                 </div>
                             {% endfor %}
@@ -40,7 +40,7 @@
                     </div>
                     <div class="card-body">
                         <a href="{{ url }}" target="_blank">
-                            <h4 class="card-title">{{ voiture.marque }} {{ voiture.modèle }} {{ voiture.type }}</h4>
+                            <h4 class="card-title">{{ voiture.marque }} {{ voiture.modèle }} {% if voiture.type %} {{ voiture.type }} {% endif %}</h4>
                         </a>
                         <p class="card-text">{{ voiture.Introduction }}</p>
                         <a href="{{ url }}" class="btn btn-primary" target="_blank">En savoir plus !</a>

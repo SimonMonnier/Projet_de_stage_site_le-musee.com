@@ -183,7 +183,7 @@ class Voiture
         if(empty($this->slug))
         {
             $slugify = new Slugify();
-            $this->slug = $slugify->slugify($this->marque." ".$this->modèle." ".$this->type." ".$this->carburant." ".$this->année);
+            $this->slug = $slugify->slugify($this->marque." ".$this->modèle." ".$this->carburant." ".$this->année);
         }
     }
 
