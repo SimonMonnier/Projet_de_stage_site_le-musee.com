@@ -21,8 +21,7 @@
                         <a class="nav-link" href="{{ path('voitures_index') }}">Nos Véhicules<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Nos Services
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Nos Services
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                               <a class="dropdown-item" href="{{ path('atelier_peinture_et_carrosserie') }}">Atelier Carrosserie & Peinture </a>
@@ -52,9 +51,10 @@
                 </div>
             </nav>
         {% block body %}{% endblock %}
+        {% block javascripts %}
             <script src="/js/jquery.min.js"></script>
             <script src="/js/popper.min.js"></script>
             <script src="/js/bootstrap.min.js"></script>
-        {% block javascripts %}{% endblock %}
+        {% endblock %}
     </body>
 </html>
