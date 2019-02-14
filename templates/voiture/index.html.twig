@@ -8,14 +8,14 @@
         <h1 class="text-center my-5">Bienvenue dans notre Parc</h1>
         
         <h5 class="text-center my-5 ">
-            Toute fois, si vous ne trouvez pas le véhicule de vos rêves dans ce listing,<br><br>
-            n’hésitez surtout pas à nous <a href="{{ path('contact') }}" style="color: rgb(214, 0, 0)"> contacter</a>. <br><br><br>
+            Toute fois, si vous ne trouvez pas le vehicule de vos rêves dans ce listing,<br><br>
+            n’hesitez surtout pas à nous <a href="{{ path('contact') }}" style="color: rgb(214, 0, 0)"> contacter</a>. <br><br><br>
             
-            Grace à nos collaborateurs à l’international et nos déplacements trimestriels,<br><br>
-            nous pouvons trouver votre véhicule de collection restauré, ou à restaurer.<br><br><br>
+            Grace à nos collaborateurs à l’international et nos deplacements trimestriels,<br><br>
+            nous pouvons trouver votre vehicule de collection restaure, ou à restaurer.<br><br><br>
 
-            Nous sélectionnons pour vous, selon vos désirs et votre budget,<br><br>
-            les véhicules correspondant à vos attentes.<br><br>
+            Nous selectionnons pour vous, selon vos desirs et votre budget,<br><br>
+            les vehicules correspondant à vos attentes.<br><br>
         </h5>
     </div>
     <div class="row">
@@ -25,7 +25,7 @@
             <div class="col-md-4 my-2">
                 <div class="card border-secondary mb-3">
                     <div class="card-header text-center">
-                        Prix <span>{{ voiture.prix }}&euro;</span>/TTC<br><small>En {{ voiture.état }}</small>
+                        Prix <span>{{ voiture.prix }}&euro;</span>/TTC<br><small>En {{ voiture.etat }}</small>
                     </div>
                     <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade" data-interval="3000" data-ride="carousel">
                         <div class="carousel-inner">
@@ -40,7 +40,7 @@
                     </div>
                     <div class="card-body">
                         <a href="{{ url }}" target="_blank">
-                            <h4 class="card-title">{{ voiture.marque }} {{ voiture.modèle }} {% if voiture.type %} {{ voiture.type }} {% endif %}</h4>
+                            <h4 class="card-title">{{ voiture.marque }} {{ voiture.modele }} {% if voiture.type %} {{ voiture.type }} {% endif %}</h4>
                         </a>
                         <p class="card-text">{{ voiture.Introduction }}</p>
                         <a href="{{ url }}" class="btn btn-primary" target="_blank">En savoir plus !</a>

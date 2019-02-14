@@ -48,12 +48,12 @@ class Voiture
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $modèle;
+    private $modele;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $année;
+    private $annee;
 
     /**
      * @ORM\Column(type="datetime")
@@ -68,7 +68,7 @@ class Voiture
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $numéroSérie;
+    private $numeroSerie;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -98,7 +98,7 @@ class Voiture
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $kilomètrage;
+    private $kilometrage;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -108,7 +108,7 @@ class Voiture
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $couleurIntérieur;
+    private $couleurInterieur;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -128,7 +128,7 @@ class Voiture
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $moteurEtCylindrée;
+    private $moteurEtCylindree;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -153,7 +153,7 @@ class Voiture
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $état;
+    private $etat;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="voiture", orphanRemoval=true)
@@ -183,7 +183,7 @@ class Voiture
         if(empty($this->slug))
         {
             $slugify = new Slugify();
-            $this->slug = $slugify->slugify($this->marque." ".$this->modèle." ".$this->carburant." ".$this->année);
+            $this->slug = $slugify->slugify($this->marque." ".$this->modele." ".$this->carburant." ".$this->annee);
         }
     }
 
@@ -204,26 +204,26 @@ class Voiture
         return $this;
     }
 
-    public function getModèle(): ?string
+    public function getModele(): ?string
     {
-        return $this->modèle;
+        return $this->modele;
     }
 
-    public function setModèle(string $modèle): self
+    public function setModele(string $modele): self
     {
-        $this->modèle = $modèle;
+        $this->modele = $modele;
 
         return $this;
     }
 
-    public function getAnnée(): ?int
+    public function getAnnee(): ?int
     {
-        return $this->année;
+        return $this->annee;
     }
 
-    public function setAnnée(int $année): self
+    public function setAnnee(int $annee): self
     {
-        $this->année = $année;
+        $this->annee = $annee;
 
         return $this;
     }
@@ -252,14 +252,14 @@ class Voiture
         return $this;
     }
 
-    public function getNuméroSérie(): ?string
+    public function getNumeroSerie(): ?string
     {
-        return $this->numéroSérie;
+        return $this->numeroSerie;
     }
 
-    public function setNuméroSérie(?string $numéroSérie): self
+    public function setNumeroSerie(?string $numeroSerie): self
     {
-        $this->numéroSérie = $numéroSérie;
+        $this->numeroSerie = $numeroSerie;
 
         return $this;
     }
@@ -324,14 +324,14 @@ class Voiture
         return $this;
     }
 
-    public function getKilomètrage(): ?string
+    public function getKilometrage(): ?string
     {
-        return $this->kilomètrage;
+        return $this->kilometrage;
     }
 
-    public function setKilomètrage(?string $kilomètrage): self
+    public function setKilometrage(?string $kilometrage): self
     {
-        $this->kilomètrage = $kilomètrage;
+        $this->kilometrage = $kilometrage;
 
         return $this;
     }
@@ -348,14 +348,14 @@ class Voiture
         return $this;
     }
 
-    public function getCouleurIntérieur(): ?string
+    public function getCouleurInterieur(): ?string
     {
-        return $this->couleurIntérieur;
+        return $this->couleurInterieur;
     }
 
-    public function setCouleurIntérieur(?string $couleurIntérieur): self
+    public function setCouleurInterieur(?string $couleurInterieur): self
     {
-        $this->couleurIntérieur = $couleurIntérieur;
+        $this->couleurInterieur = $couleurInterieur;
 
         return $this;
     }
@@ -396,14 +396,14 @@ class Voiture
         return $this;
     }
 
-    public function getMoteurEtCylindrée(): ?string
+    public function getMoteurEtCylindree(): ?string
     {
-        return $this->moteurEtCylindrée;
+        return $this->moteurEtCylindree;
     }
 
-    public function setMoteurEtCylindrée(?string $moteurEtCylindrée): self
+    public function setMoteurEtCylindree(?string $moteurEtCylindree): self
     {
-        $this->moteurEtCylindrée = $moteurEtCylindrée;
+        $this->moteurEtCylindree = $moteurEtCylindree;
 
         return $this;
     }
@@ -456,14 +456,14 @@ class Voiture
         return $this;
     }
 
-    public function getétat(): ?string
+    public function getetat(): ?string
     {
-        return $this->état;
+        return $this->etat;
     }
 
-    public function setétat(?string $état): self
+    public function setetat(?string $etat): self
     {
-        $this->état = $état;
+        $this->etat = $etat;
 
         return $this;
     }
@@ -492,12 +492,12 @@ class Voiture
         return $this;
     }
 
-    public function getCoverImage(): ?string
+    public function getCoverImage()
     {
         return $this->coverImage;
     }
 
-    public function setCoverImage(?string $coverImage): self
+    public function setCoverImage($coverImage): self
     {
         $this->coverImage = $coverImage;
 

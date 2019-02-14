@@ -28,35 +28,35 @@ class AppFixtures extends Fixture
             $marque = $fakercar->vehicleBrand;
             $model = $fakercar->vehicleModel;
 
-            $voiture->setAnnée($faker->year($max = 'now'))
+            $voiture->setAnnee($faker->year($max = 'now'))
                     ->setType($fakercar->vehicleType)
                     ->setCreateAt(new \DateTime())
                     ->setMarque($marque)                    
-                    ->setModèle($fakercar->vehicleModel)
-                    ->setNuméroSérie($fakercar->vehicleRegistration)
+                    ->setModele($fakercar->vehicleModel)
+                    ->setNumeroSerie($fakercar->vehicleRegistration)
                     ->setLongueur($faker->latitude($min = 2, $max = 5))
                     ->setLargeur($faker->latitude($min = 2, $max = 3))
                     ->setHauteur($faker->latitude($min = 1, $max = 2))
                     ->setPoidsAVide($faker->latitude($min = 800, $max = 2000))
                     ->setCarburant($fakercar->vehicleFuelType)
-                    ->setKilomètrage($faker->latitude($min = 100000, $max = 350000))
+                    ->setKilometrage($faker->latitude($min = 100000, $max = 350000))
                     ->setCouleurCarrosserie($faker->colorName)
-                    ->setCouleurIntérieur($faker->colorName)
+                    ->setCouleurInterieur($faker->colorName)
                     ->setPuissance($faker->latitude($min = 20, $max = 200))
                     ->setOrigine($faker->country)
                     ->setBoiteDeVitesse($faker->word)
-                    ->setMoteurEtCylindrée($faker->latitude($min = 100, $max = 500))
+                    ->setMoteurEtCylindree($faker->latitude($min = 100, $max = 500))
                     ->setCvFiscaux($faker->latitude($min = 6, $max = 150))
                     ->setConduite($faker->word)
                     ->setNombreDePlace($faker->latitude($min = 2, $max = 8))
                     ->setCarrosserie($faker->word)
-                    ->setétat($faker->word)
+                    ->setetat($faker->word)
                     ->setPrix($faker->latitude($min = 20000, $max = 200000))
                     ->setIntroduction($faker->text)
                     ->setContent($faker->text.$faker->text.$faker->text.$faker->text)
                     ->setCoverImage($faker->imageUrl(512, 384, 'transport'));
 
-            //les annonces ont aléatoirement un nombre d'image entre deux et 5
+            //les annonces ont aleatoirement un nombre d'image entre deux et 5
             for($j = 1; $j <= mt_rand(2,5); $j++)
             {
                 $image = new Image();
