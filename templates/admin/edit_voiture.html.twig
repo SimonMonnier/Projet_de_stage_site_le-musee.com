@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification d'une voiture{% endblock %}
+
+{% block body %}
+<div class="container">
+
+    <h1>Modification la voiture {{ voiture.marque }} {{ voiture.modele }}{% if voiture.type %} {{ voiture.type }} {% endif %} {{ voiture.annee }} {{ voiture.carburant }}</h1>
+    
+    {{ form_start(form) }}
+
+    {{ form_widget(form) }}
+
+    {{ form_end(form) }}
+
+</div>
+{% endblock %}
