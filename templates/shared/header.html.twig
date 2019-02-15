@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="{{ path('homepage') }}">
+        <img class="img-fluid" alt="Responsive image" src="/uploads/LeMusee.png" alt="accueil"/>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('voitures_index') }}">Nos Vehicules<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Nos Services
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ path('atelier_peinture_et_carrosserie') }}">Atelier Carrosserie & Peinture </a>
+                    <a class="dropdown-item" href="{{ path('atelier_mecanique') }}">Atelier Mecanique</a>
+                    <a class="dropdown-item" href="{{ path('restauration_vehicule') }}">Restauration de Vehicules</a>                           
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ path('conciergerie') }}">Conciergerie</a>
+                    <a class="dropdown-item" href="{{ path('expertise') }}">Expertise</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('actualites') }}">Actualites</a>
+            </li>
+            <li class="nav-item">
+                    <a class="nav-link" href="{{ path('newsletter') }}">Newsletter</a>
+                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('a_propos') }}">À Propos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('rendez_vous') }}">Prendre RDV</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('contact') }}">Contact</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+{% for label, messages in app.flashes %}
+    <div class="container">
+        <div class="alert alert-{{ label }}">
+            {% for message in messages %}
+                <p>{{ message | raw }}</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endfor %}
