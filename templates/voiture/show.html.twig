@@ -10,7 +10,7 @@
         <p>{{ voiture.introduction }}</p>
         <p class="h2">
             <strong>
-                <small>En {{ voiture.etat }}</small>
+                <small>{{ voiture.etat }}</small>
             </strong>
         </p>
         <a href="#" class="btn btn-primary">Demandez plus d'info</a>
@@ -20,7 +20,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 mb-3">
-            {{ voiture.content }}
+            {{ voiture.content}}
             <div id="carouselExampleIndicators" class="carousel slide carousel-fade my-3" data-ride="carousel">
                 <ol class="carousel-indicators">
                     {% for image in voiture.images %}
@@ -48,16 +48,7 @@
             </div>
         </div>
         <div class="col mb-3">
-            <div class="row">
-                <div class="col-4">
-                    <img src="http://placehold.it/64x64" alt="A definir">
-                </div>
-                <div class="col">
-                    <h3>A definir</h3>
-                    <span class="badge badge-primary">a definir</span>
-                </div>
-            </div>
-            <h3 class="text-center my-3">Prix TTC <span>{{ voiture.prix }}&euro;</span></h3>
+            <h3 class="text-center  my-1">Prix TTC <span>{{ voiture.prix }}&euro;</span></h3>
             <h5 class="text-center">Caracteristiques :</h5>
             <div class="row mt-3">
                 <table class="table table-sm table-striped table-hover table-dark">

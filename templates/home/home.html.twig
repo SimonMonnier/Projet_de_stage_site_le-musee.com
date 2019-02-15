@@ -13,7 +13,7 @@
             {% set url = path('voitures_show',{'slug': voiture.slug}) %}
                 <div class="carousel-item {% if loop.first %} active {% endif %}">
                     <a href="{{ url }}" target="_blank">
-                        <img src="{{ voiture.coverImage }}" class="img-fluid" style="height: 500px; width: 100%; display: block" alt="Responsive image" alt="...">
+                        <img src="/uploads/{{voiture.coverImage}}" class="img-fluid" style="height: 500px; width: 100%; display: block" alt="Responsive image" alt="...">
                     </a>
                     <div class="carousel-caption d-none d-md-block">
                         <a href="{{ url }}" target="_blank">

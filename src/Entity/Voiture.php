@@ -6,10 +6,16 @@ use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\VoitureRepository")
  * @ORM\HasLifecycleCallbacks
+ * @UniqueEntity(
+ * fields={"marque","modele","annee","carburant","etat","prix"},
+ * message="Une autre voiture possède déjà exactement les mẽmes attributs marque,modele,annee,
+ * carburant,etat,prix. Vérifiez si la voiture n'est pas déjà entrée en base de donnée")
  */
 class Voiture
 {
@@ -27,31 +33,38 @@ class Voiture
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\NotNull
      */
     private $marque;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank
      */
     private $introduction;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank
      */
     private $content;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $coverImage;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $modele;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank
      */
     private $annee;
 
@@ -92,6 +105,7 @@ class Voiture
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $carburant;
 
@@ -152,6 +166,7 @@ class Voiture
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank
      */
     private $etat;
 
@@ -162,6 +177,7 @@ class Voiture
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank
      */
     private $prix;
 

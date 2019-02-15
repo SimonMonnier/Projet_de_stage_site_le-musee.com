@@ -32,7 +32,7 @@
                             {% for image in voiture.images %}
                                 <div class="carousel-item {% if loop.first %} active {% endif %}">
                                     <a href="{{ url }}" target="_blank">
-                                        <img src="{{ image.url }}" class="d-block w-100" style="height: 180px; width: auto; display: block" alt="{{ voiture.slug }}">
+                                        <img src="/uploads/{{image.url}}" class="d-block w-100" style="height: 180px; width: auto; display: block" alt="{{ voiture.slug }}">
                                     </a>
                                 </div>
                             {% endfor %}
