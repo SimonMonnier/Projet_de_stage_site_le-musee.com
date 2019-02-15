@@ -1,4 +1,4 @@
-1) git config --global user.emaile "vôtre email içi"
+1) git config --global user.email "vôtre email içi"
 
 2) git config --global user.name "Votre nom d'utilisateur içi"
 
