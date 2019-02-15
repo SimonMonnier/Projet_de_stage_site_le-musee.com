@@ -1,0 +1,31 @@
+div.container {
+    margin-top: 20px;
+}
+
+div.voiture-title {
+    padding: 2em;
+    background-size: cover;
+    background-position: center center;
+}
+
+div.voiture-title h1, div.voiture-title p {
+    color: rgb(255, 255, 255);
+    text-shadow: 3px 3px 3px rgb(0, 0, 0);
+    
+}
+
+div.carousel-caption h5, div.carousel-caption p{
+    color: rgb(255, 255, 255);
+    text-shadow: 3px 3px 3px rgb(0, 0, 0);
+    
+}
+
+h1.voiture-title {
+    color: rgb(255, 255, 255);
+    text-shadow: 3px 3px 3px rgb(0, 0, 0);
+}
+
+h1.home-caption {
+    font-size: 74px;
+    text-shadow: 3px 3px 3px rgb(255, 255, 255);
+}
