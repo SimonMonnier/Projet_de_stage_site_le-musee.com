@@ -196,11 +196,8 @@ class Voiture
      */
     public function initializeSlug()
     {
-        if(empty($this->slug))
-        {
-            $slugify = new Slugify();
-            $this->slug = $slugify->slugify($this->marque." ".$this->modele." ".$this->carburant." ".$this->annee);
-        }
+        $slugify = new Slugify();
+        $this->slug = $slugify->slugify("id".$this->id." "."le"."musée"." ".$this->marque." ".$this->modele." ".$this->carburant." "."année"." ".$this->annee." "."prix"." ".$this->prix."euros"." "."ttc");
     }
 
     public function getId(): ?int
