@@ -17,7 +17,7 @@ class VoitureController extends AbstractController
      */
     public function index(VoitureRepository $repoVoiture)
     {
-        $voitures = $repoVoiture->findAll();
+        $voitures = $repoVoiture->findAll(); 
 
         return $this->render('voiture/index.html.twig', [
             'voitures' => $voitures
