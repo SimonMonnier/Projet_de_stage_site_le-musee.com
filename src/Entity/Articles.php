@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\PreUpdate;
+use Doctrine\ORM\Mapping\PrePersist;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticlesRepository")
@@ -130,6 +132,11 @@ class Articles
      * @ORM\Column(type="text", nullable=true)
      */
     private $paragraphe10;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
 
     public function getId(): ?int
     {
@@ -408,6 +415,32 @@ class Articles
     public function setParagraphe10(?string $paragraphe10): self
     {
         $this->paragraphe10 = $paragraphe10;
+
+        return $this;
+    }
+
+    /**
+     * Permet d'initialiser le slug
+     * 
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     *
+     * @return void
+     */
+    public function initializeSlug()
+    {
+        $slugify = new Slugify();
+        $this->slug = $slugify->slugify("id" . " ". $this->id . " " . "le" . "musée" . " " . $this->marque . " " . $this->modele . " " . $this->carburant . " " . "année" . " " . $this->annee . " " . "prix" . " " . $this->prix . "euros" . " " . "ttc");
+    }
+    
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }
