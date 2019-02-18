@@ -1,0 +1,27 @@
+.fa {
+    padding: 20px;
+    width: 20px;
+    text-align: center;
+    margin: 5px 2px;
+    border-radius: 50%;
+  }
+  
+  
+  .fa-facebook:hover {
+  
+    color: rgb(255, 255, 255);
+  }
+
+  .fa-instagram:hover {
+    color:rgb(255, 255, 255);
+  }
+  
+  .fa-facebook {
+
+    color: rgb(136, 136, 136);
+  }
+  
+  .fa-instagram {
+     
+    color: rgb(136, 136, 136);
+  }
