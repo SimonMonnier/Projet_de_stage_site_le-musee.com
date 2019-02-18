@@ -12,6 +12,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\is_granted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface ;
 
@@ -30,6 +32,7 @@ class AdminController extends AbstractController
     /**
      * Permet à l'administrateur de se déconnecter
      * @Route("/admin/logout", name="admin_logout")
+     *
      */
     public function logout()
     {
@@ -39,6 +42,7 @@ class AdminController extends AbstractController
     /**
      * afffiche la totalité des voitures
      *@Route("/admin/voitures", name="admin_voitures_index")
+     *@Security("is_granted('ROLE_ADMIN')")
      * @param VoitureRepository $repoVoiture
      * @return Response
      */
@@ -56,6 +60,7 @@ class AdminController extends AbstractController
     /**
      * Permet d'ajouter une voiture
      * @Route("/admin/voiture/new", name="voiture_add")
+     * @Security("is_granted('ROLE_ADMIN')")
      * @return Response
      */
     public function add_voiture(Request $request, ObjectManager $manager)
@@ -111,7 +116,7 @@ class AdminController extends AbstractController
      * et d'effacer les Photos dans la base de donnée et le dossier uploads
      *
      * @Route("/admin/voiture/edit/{slug}", name="voiture_edit")
-     * 
+     * @Security("is_granted('ROLE_ADMIN')")
      * @return Response
      */
     public function edit_voiture(Voiture $voiture, Request $request, ObjectManager $manager)
@@ -184,7 +189,7 @@ class AdminController extends AbstractController
      * Permet d'éffacer une voiture et ses Photos dans la base de donnée et le dossier uploads
      *
      * @Route("/admin/voiture/delete/{slug}", name="voiture_delete")
-     * 
+     * @Security("is_granted('ROLE_ADMIN')")
      * @return Response
      */
     public function delete_voiture(Voiture $voiture, ObjectManager $manager, VoitureRepository $repoVoiture)
@@ -219,7 +224,7 @@ class AdminController extends AbstractController
      * Permet d'afficher la voiture ajoutée
      *
      * @Route("/admin/voiture/edited/{slug}", name="voiture_edited_show")
-     * 
+     * @Security("is_granted('ROLE_ADMIN')")
      * @return Response
      */
     public function show_voiture_added(Voiture $voiture)
