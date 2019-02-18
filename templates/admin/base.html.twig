@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Le Musee - {% block title %}{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="/css/bootstrap.min.css">
+            <link rel="stylesheet" href="/css/app.css">
+            <link rel="stylesheet" href="/css/social_button.css">
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        {% endblock %}
+    </head>
+    <body>
+        {% include 'admin/shared/header.html.twig' %}
+        {% block body %}{% endblock %}
+        {% include 'admin/shared/footer.html.twig' %}
+        {% block javascripts %}
+            <script src="/js/jquery.min.js"></script>
+            <script src="/js/popper.min.js"></script>
+            <script src="/js/bootstrap.min.js"></script>
+            <div id="fb-root"></div>
+            <script async defer src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v3.2"></script>
+        {% endblock %}
+    </body>
+</html>

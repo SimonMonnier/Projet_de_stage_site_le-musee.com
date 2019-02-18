@@ -29,3 +29,8 @@ h1.home-caption {
     font-size: 74px;
     text-shadow: 3px 3px 3px rgb(255, 255, 255);
 }
+
+.avatar-micro {
+   max-width: 50px;
+   max-height: 50px;
+}
