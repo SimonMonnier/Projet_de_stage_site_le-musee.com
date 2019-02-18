@@ -21,6 +21,10 @@ security:
             form_login:
                 login_path: admin_login
                 check_path: admin_login
+
+            logout:
+                path: admin_logout
+                target: admin_login
             # activate different ways to authenticate
 
             # http_basic: true
