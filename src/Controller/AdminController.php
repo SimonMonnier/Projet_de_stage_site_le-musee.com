@@ -20,10 +20,20 @@ class AdminController extends AbstractController
     /**
      * Permet à l'administrateur de se connecter
      * @Route("/admin/login", name="admin_login")
+     * @return Response
      */
     public function login()
     {
         return $this->render('admin/login.html.twig');
+    }
+
+    /**
+     * Permet à l'administrateur de se déconnecter
+     * @Route("/admin/logout", name="admin_logout")
+     */
+    public function logout()
+    {
+        // Symfony gère la déconnexion tous seul
     }
 
     /**
