@@ -1,17 +1,15 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %}Ajout d'une voiture{% endblock %}
+{% block title %}Ajout d'un administrateur{% endblock %}
 
 {% block body %}
 <div class="container">
+    <h4>Ajout d'un nouvel administrateur</h4>
 
-    <h1>Ajout d'une nouvelle voiture</h1>
-    
     {{ form_start(form) }}
 
     {{ form_widget(form) }}
 
     {{ form_end(form) }}
-
 </div>
 {% endblock %}

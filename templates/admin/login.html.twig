@@ -30,16 +30,21 @@
                     <i class="fas fa-lock"></i>
                     Connexion Admin
                 </h4>
+                {% if hasError %}
+                <div class="alert alert-danger">
+                    Une erreur est survenue, l'email ou le mot de passe est invalid !
+                </div>
+                {% endif %}
             </div>
             <div class="card-body">
                 <form method="POST">
                     <div class="form-group">
                         <label for="_username">Email</label>
-                        <input type="text" class="form-control" placeholder="Entrez votre adresse email" name="_username">
+                        <input type="text" class="form-control" placeholder="Entrez votre adresse email" name="_username" required value="{{username}}">
                     </div>
                     <div class="form-group">
                         <label for="_password">Mot de passe</label>
-                        <input type="password" class="form-control" placeholder="Entrez votre mot de passe" name="_password">
+                        <input type="password" class="form-control" placeholder="Entrez votre mot de passe" name="_password" required>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">
@@ -55,9 +60,4 @@
             </div>
         </div>
     </div>
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/popper.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <div id="fb-root"></div>
-    <script async defer src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v3.2"></script>
 </body>
