@@ -8,6 +8,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Doctrine\ORM\Mapping\PreUpdate;
+use Doctrine\ORM\Mapping\PrePersist;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\VoitureRepository")
@@ -197,7 +199,7 @@ class Voiture
     public function initializeSlug()
     {
         $slugify = new Slugify();
-        $this->slug = $slugify->slugify("id"." ".$this->id." "."le"."musée"." ".$this->marque." ".$this->modele." ".$this->carburant." "."année"." ".$this->annee." "."prix"." ".$this->prix."euros"." "."ttc");
+        $this->slug = $slugify->slugify(" ".$this->id." "."le"."musée"." ".$this->marque." ".$this->modele." ".$this->carburant." "."année"." ".$this->annee." "."prix"." ".$this->prix."euros"." "."ttc");
     }
 
     public function getId(): ?int

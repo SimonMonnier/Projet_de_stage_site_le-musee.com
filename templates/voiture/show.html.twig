@@ -16,7 +16,7 @@
         <a href="#" class="btn btn-primary">Demandez plus d'info</a>
     </div>
 </div>
-
+ 
 <div class="container">
     <div class="row">
         <div class="col-md-8 mb-3">
@@ -30,7 +30,7 @@
                 <div class="carousel-inner">
                     {% for image in voiture.images %}
                     <div class="carousel-item {% if loop.first %} active {% endif %}">
-                        <img src="/uploads/{{image.url}}" class="d-block w-100" alt="{{ voiture.slug }}">
+                        <img src="/uploads/{{image.url}}" class="d-block w-100" alt="{{ voiture.slug }}"> 
                         <div class="carousel-caption d-none d-md-block">
                             <h5>{{ voiture.marque }} {{ voiture.modele }} {% if voiture.type %} {{ voiture.type }} {% endif %}</h5>
                         </div>
