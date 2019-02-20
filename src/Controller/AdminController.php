@@ -105,7 +105,6 @@ class AdminController extends AbstractController
      */
     public function index_admins(UserRepository $repoUser)
     {
-        
         return $this->render('admin/index_admins.html.twig', [
             'users' => $repoUser->findAll()
         ]);
@@ -264,7 +263,9 @@ class AdminController extends AbstractController
      * @return Response
      */
     public function edit_voiture(Voiture $voiture, Request $request, ObjectManager $manager)
-    {
+    {   
+        $fileinfo = $voiture->getCoverImage();
+
         $form = $this->createForm(VoitureType::class, $voiture);
 
         $form->handleRequest($request);
@@ -277,7 +278,8 @@ class AdminController extends AbstractController
             );
         }
         if ($form->isSubmitted() && $form->isValid())
-        {
+        {   
+            unlink( "uploads/".$fileinfo );
             $file = $voiture->getCoverImage();
             $filename = md5(uniqid()).'.'.$file->guessExtension();
             $file->move($this->getParameter('upload_directory'), $filename);
@@ -339,10 +341,12 @@ class AdminController extends AbstractController
      */
     public function delete_voiture(Voiture $voiture, ObjectManager $manager, VoitureRepository $repoVoiture)
     {
+        $fileinfo = $voiture->getCoverImage();
         $info = $voiture->getSlug();
         //ici on efface toutes les images de la voiture 
         //dans la base de donnée et dans le dossier upload
         $images = $voiture->getImages();
+        unlink( "uploads/".$fileinfo );
         foreach ($images as $image)
         {
             //unlink sert à effacer le fichier dans uploads
