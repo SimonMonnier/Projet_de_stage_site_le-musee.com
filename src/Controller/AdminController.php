@@ -120,16 +120,12 @@ class AdminController extends AbstractController
     {
         $form = $this->createForm(RegistrationType::class, $user);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid())
         {
-            $adminRole->setTitle('ROLE_ADMIN');
-            $manager->persist($adminRole);
-            
-            $hash = $this->encoder->encodePassword($user, $request->files->get('user')['hash']);
-
-            $user->addUserRole($adminRole)
-                ->setHash($hash);
+            $password = $form["hash"]->getData();
+            $hash = $this->encoder->encodePassword($user, $password);
+            $user->setHash($hash);
 
             $manager->persist($user);
             $manager->flush();
@@ -138,7 +134,7 @@ class AdminController extends AbstractController
                 'success',
                 "L'administrateur {$user->getUsername()} a bien été modifié !"
             );
-
+            
             return $this->redirectToRoute('admin_admins_index');
         }
 
