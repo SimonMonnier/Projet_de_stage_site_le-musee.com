@@ -62,14 +62,14 @@ class AdminController extends AbstractController
      */
     public function register(Request $request, ObjectManager $manager)
     {
+        $user = new User();
+        $adminRole = new Role();
+
+        $form = $this->createForm(RegistrationType::class, $user);
+        $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid())
         {
-            $user = new User();
-            $adminRole = new Role();
-
-            $form = $this->createForm(RegistrationType::class, $user);
-            $form->handleRequest($request);
-
             $adminRole->setTitle('ROLE_ADMIN');
             $manager->persist($adminRole);
             
@@ -86,9 +86,7 @@ class AdminController extends AbstractController
                 "L'administrateur {$user->getUsername()} a bien été enregistrée !"
             );
 
-            return $this->redirectToRoute('admin_admins_index', [
-                'slug' => $voiture->getSlug()
-            ]);
+            return $this->redirectToRoute('admin_admins_index');
         }
 
         return $this->render('admin/registration.html.twig', [
@@ -122,16 +120,12 @@ class AdminController extends AbstractController
     {
         $form = $this->createForm(RegistrationType::class, $user);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid())
         {
-            $adminRole->setTitle('ROLE_ADMIN');
-            $manager->persist($adminRole);
-            
-            $hash = $this->encoder->encodePassword($user, $request->files->get('user')['hash']);
-
-            $user->addUserRole($adminRole)
-                ->setHash($hash);
+            $password = $form["hash"]->getData();
+            $hash = $this->encoder->encodePassword($user, $password);
+            $user->setHash($hash);
 
             $manager->persist($user);
             $manager->flush();
@@ -140,7 +134,7 @@ class AdminController extends AbstractController
                 'success',
                 "L'administrateur {$user->getUsername()} a bien été modifié !"
             );
-
+            
             return $this->redirectToRoute('admin_admins_index');
         }
 
@@ -167,8 +161,8 @@ class AdminController extends AbstractController
             "L'administrateur' a bien été supprimée !"
         );
 
-        return $this->render('admin/voiture/index.html.twig', [
-            'users' => $repouser->findAll()
+        return $this->render('admin/index_admins.html.twig', [
+            'users' => $repoUser->findAll()
         ]);
     }
 
@@ -403,6 +397,7 @@ class AdminController extends AbstractController
     /**
      * Permet d'ajouter un article
      * @Route("/admin/article/new", name="article_add")
+     * @Security("is_granted('ROLE_ADMIN')")
      * @return Response
      */
     public function add_article(Request $request, ObjectManager $manager)
@@ -516,7 +511,7 @@ class AdminController extends AbstractController
      * et d'effacer les Photos dans la base de donnée et le dossier uploads
      *
      * @Route("/admin/article/edit/{slug}", name="article_edit")
-     * 
+     * @Security("is_granted('ROLE_ADMIN')")
      * @return Response
      */
     public function edit_article(Articles $article, Request $request, ObjectManager $manager)
@@ -676,7 +671,7 @@ class AdminController extends AbstractController
      * Permet d'effacer un article et ses Photos dans la base de donnée et le dossier uploads
      *
      * @Route("/admin/article/delete/{slug}", name="article_delete")
-     * 
+     * @Security("is_granted('ROLE_ADMIN')")
      * @return Response
      */
     public function delete_article(Articles $article, ObjectManager $manager, ArticlesRepository $repoArticle)
@@ -751,7 +746,7 @@ class AdminController extends AbstractController
      * Permet d'afficher l'article ajouté
      *
      * @Route("/admin/article/edited/{slug}", name="article_edited_show")
-     * 
+     * @Security("is_granted('ROLE_ADMIN')")
      * @return Response
      */
     public function show_article_added(Articles $article)
