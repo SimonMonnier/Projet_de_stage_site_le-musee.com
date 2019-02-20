@@ -1,0 +1,69 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Administration des articles{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <h1 class="my-3 float-left">Gestion des articles</h1>
+
+    <a href="{{ path('article_add') }}"><button type="button" class="btn btn-primary my-3  float-right">Ajouter un article</button></a>
+
+    <table class="table table-hover">
+        <thead class="bg-primary ">
+            <tr>
+                <th>Photo</th>
+                <th>Titre</th>
+                <th>Contenu</th>
+                <th>Date d'ajout</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+ 
+        <tbody>
+            {% for article in articles %}
+            {% set editArticle = path('article_edit',{'slug': article.slug}) %}
+            {% set removeArticle = path('article_delete',{'slug': article.slug}) %}
+            <tr>
+                <td>
+                    <img src="/uploads/{{article.coverImage}}" alt="{{article.slug}}" class="avatar-micro mr-2">
+                </td>
+                <td>{{article.titre}}</td>
+                <td>{{article.introduction}}</td>
+                <td>
+                    Le {{article.createdAt | date('d/m/y')}} à {{article.createdAt | date('H:i')}}
+                </td>
+                <td>
+                    <a href="{{editArticle}}" class="btn btn-success">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#myModal">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Voulez-vous supprimer cet article ?</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <img src="/uploads/{{article.coverImage}}" alt="{{article.slug}}"
+                            class="avatar-micro text-center"> {{article.slug}}.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Annuler</button>
+                    <a href="{{removeArticle}}"><button type="button" class="btn btn-danger my-3  float-right">Supprimer
+                            l'article</button></a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock body %}
