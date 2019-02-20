@@ -2,73 +2,61 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Role;
+use App\Entity\User;
+use App\Entity\Image;
 use App\Entity\Voiture;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Validator\Constraints\DateTime;
-use App\Entity\Image;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
 {
+    public function __construct(UserPasswordEncoderInterface $encoder)
+    {
+        $this->encoder = $encoder;
+    }
+
     public function load(ObjectManager $manager)
     {
-        $fakercar = \Faker\Factory::create();
-        $fakercar->addProvider(new \Faker\Provider\Fakecar($fakercar));
-        $faker = \Faker\Factory::create();
+        $adminRole = new Role();
+        $adminRole->setTitle('ROLE_ADMIN');
+        $manager->persist($adminRole);
 
-        for($i = 1; $i <= 30; $i++)
-        {
+        
+       $simon = new User();
+       $john = new User();
+       $joachim = new User();
+        
+       $hashsimon = $this->encoder->encodePassword($simon, 'password');
+       $hashjohn = $this->encoder->encodePassword($john, 'password');
+       $hashjoachim = $this->encoder->encodePassword($joachim, 'password');
 
-            $fakercar = \Faker\Factory::create();
-            $fakercar->addProvider(new \Faker\Provider\Fakecar($fakercar));
-            $faker = \Faker\Factory::create();
-            
-            $voiture = new Voiture();
+       $simon->setFirstName("simon")
+             ->setLastName("monnier")
+             ->setHash($hashsimon)
+             ->setEmail("smonnier@lemusee.fr")
+             ->addUserRole($adminRole);
 
-            $marque = $fakercar->vehicleBrand;
-            $model = $fakercar->vehicleModel;
 
-            $voiture->setAnnee($faker->year($max = 'now'))
-                    ->setType($fakercar->vehicleType)
-                    ->setCreateAt(new \DateTime())
-                    ->setMarque($marque)                    
-                    ->setModele($fakercar->vehicleModel)
-                    ->setNumeroSerie($fakercar->vehicleRegistration)
-                    ->setLongueur($faker->latitude($min = 2, $max = 5))
-                    ->setLargeur($faker->latitude($min = 2, $max = 3))
-                    ->setHauteur($faker->latitude($min = 1, $max = 2))
-                    ->setPoidsAVide($faker->latitude($min = 800, $max = 2000))
-                    ->setCarburant($fakercar->vehicleFuelType)
-                    ->setKilometrage($faker->latitude($min = 100000, $max = 350000))
-                    ->setCouleurCarrosserie($faker->colorName)
-                    ->setCouleurInterieur($faker->colorName)
-                    ->setPuissance($faker->latitude($min = 20, $max = 200))
-                    ->setOrigine($faker->country)
-                    ->setBoiteDeVitesse($faker->word)
-                    ->setMoteurEtCylindree($faker->latitude($min = 100, $max = 500))
-                    ->setCvFiscaux($faker->latitude($min = 6, $max = 150))
-                    ->setConduite($faker->word)
-                    ->setNombreDePlace($faker->latitude($min = 2, $max = 8))
-                    ->setCarrosserie($faker->word)
-                    ->setetat($faker->word)
-                    ->setPrix($faker->latitude($min = 20000, $max = 200000))
-                    ->setIntroduction($faker->text)
-                    ->setContent($faker->text.$faker->text.$faker->text.$faker->text)
-                    ->setCoverImage($faker->imageUrl(512, 384, 'transport'));
+       $john->setFirstName("john")
+            ->setLastName("guerard")
+            ->setHash($hashjohn)
+            ->setEmail("jguerard@lemusee.fr")
+            ->addUserRole($adminRole);
 
-            //les annonces ont aleatoirement un nombre d'image entre deux et 5
-            for($j = 1; $j <= mt_rand(2,5); $j++)
-            {
-                $image = new Image();
 
-                $image->setUrl($faker->imageUrl(512, 384, 'transport'))
-                        ->setCaption($faker->sentence())
-                        ->setVoiture($voiture);
-                        
-                $manager->persist($image);
-            }
-            $manager->persist($voiture);
-        }
+       $joachim->setFirstName("joachim")
+                ->setLastName("sall")
+                ->setHash($hashjoachim)
+                ->setEmail("jsall@lemusee.fr")
+                ->addUserRole($adminRole);
+
+
+        $manager->persist($simon);
+        $manager->persist($john);
+        $manager->persist($joachim);
 
         $manager->flush();
     }

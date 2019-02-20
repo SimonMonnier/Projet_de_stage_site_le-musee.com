@@ -1,0 +1,119 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ article.titre }}{% endblock %}
+
+{% block body %}
+
+<div class="article-title" style="background-image: url('/uploads/{{ article.coverImage }}')">
+    <div class="container">
+        <h1 class="my-3">{{ article.titre }}</h1>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <p>{{ article.introduction }}</p>
+    </div>
+    {% if article.image1 %}
+    <div class="row">
+        <div class="col">
+            <img src="/uploads/{{ article.image1 }}">
+        </div>
+        <div class="col">
+            <p>{{ article.paragraphe1 }}</p>
+        </div>
+    </div>
+    {% endif %}
+    {% if article.image2 %}
+    <div class="row">
+        <div class="col">
+            <p>{{ article.paragraphe2 }}</p>
+        </div>
+        <div class="col">
+            <img src="/uploads/{{ article.image2 }}">
+        </div>
+    </div>
+    {% endif %}
+    {% if article.image3 %}
+    <div class="row">
+        <div class="col">
+            <img src="/uploads/{{ article.image3 }}">
+        </div>
+        <div class="col">
+            <p>{{ article.paragraphe3 }}</p>
+        </div>
+    </div>
+    {% endif %}
+    {% if article.image4 %}
+    <div class="row">
+        <div class="col">
+            <p>{{ article.paragraphe4 }}</p>
+        </div>
+        <div class="col">
+            <img src="/uploads/{{ article.image4 }}">
+        </div>
+    </div>
+    {% endif %}
+    {% if article.image5 %}
+    <div class="row">
+        <div class="col">
+            <img src="/uploads/{{ article.image5 }}">
+        </div>
+        <div class="col">
+            <p>{{ article.paragraphe5 }}</p>
+        </div>
+    </div>
+    {% endif %}
+    {% if article.image6 %}
+    <div class="row">
+        <div class="col">
+            <p>{{ article.paragraphe6 }}</p>
+        </div>
+        <div class="col">
+            <img src="/uploads/{{ article.image6 }}">
+        </div>
+    </div>
+    {% endif %}
+    {% if article.image7 %}
+    <div class="row">
+        <div class="col">
+            <img src="/uploads/{{ article.image7 }}">
+        </div>
+        <div class="col">
+            <p>{{ article.paragraphe7 }}</p>
+        </div>
+    </div>
+    {% endif %}
+    {% if article.image8 %}
+    <div class="row">
+        <div class="col">
+            <p>{{ article.paragraphe8 }}</p>
+        </div>
+        <div class="col">
+            <img src="/uploads/{{ article.image8 }}">
+        </div>
+    </div>
+    {% endif %}
+    {% if article.image9 %}
+    <div class="row">
+        <div class="col">
+            <img src="/uploads/{{ article.image9 }}">
+        </div>
+        <div class="col">
+            <p>{{ article.paragraphe9 }}</p>
+        </div>
+    </div>
+    {% endif %}
+    {% if article.image10 %}
+    <div class="row">
+        <div class="col">
+            <p>{{ article.paragraphe10 }}</p>
+        </div>
+        <div class="col">
+            <img src="/uploads/{{ article.image10 }}">
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

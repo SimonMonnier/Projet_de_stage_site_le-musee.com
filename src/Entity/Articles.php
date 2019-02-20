@@ -2,12 +2,18 @@
 
 namespace App\Entity;
 
+use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\PreUpdate;
 use Doctrine\ORM\Mapping\PrePersist;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticlesRepository")
+ * @ORM\HasLifecycleCallbacks
+ * @UniqueEntity(
+ * fields={"titre","introduction"},
+ * message="Un article possède déjà le même titre et le même contenu, vérifiez qu'il n'existe pas déjà dans votre base de données !")
  */
 class Articles
 {
@@ -138,6 +144,25 @@ class Articles
      */
     private $slug;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * Permet d'initialiser le slug
+     * 
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     *
+     * @return void
+     */
+    public function initializeSlug()
+    {
+        $slugify = new Slugify();
+        $this->slug = $slugify->slugify($this->id." ".$this->titre);
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -167,24 +192,24 @@ class Articles
         return $this;
     }
 
-    public function getCoverImage(): ?string
+    public function getCoverImage()
     {
         return $this->coverImage;
     }
 
-    public function setCoverImage(string $coverImage): self
+    public function setCoverImage($coverImage): self
     {
         $this->coverImage = $coverImage;
 
         return $this;
     }
 
-    public function getImage1(): ?string
+    public function getImage1()
     {
         return $this->image1;
     }
 
-    public function setImage1(?string $image1): self
+    public function setImage1($image1): self
     {
         $this->image1 = $image1;
 
@@ -203,12 +228,12 @@ class Articles
         return $this;
     }
 
-    public function getImage2(): ?string
+    public function getImage2()
     {
         return $this->image2;
     }
 
-    public function setImage2(?string $image2): self
+    public function setImage2($image2): self
     {
         $this->image2 = $image2;
 
@@ -227,12 +252,12 @@ class Articles
         return $this;
     }
 
-    public function getImage3(): ?string
+    public function getImage3()
     {
         return $this->image3;
     }
 
-    public function setImage3(?string $image3): self
+    public function setImage3($image3): self
     {
         $this->image3 = $image3;
 
@@ -251,12 +276,12 @@ class Articles
         return $this;
     }
 
-    public function getImage4(): ?string
+    public function getImage4()
     {
         return $this->image4;
     }
 
-    public function setImage4(?string $image4): self
+    public function setImage4($image4): self
     {
         $this->image4 = $image4;
 
@@ -275,12 +300,12 @@ class Articles
         return $this;
     }
 
-    public function getImage5(): ?string
+    public function getImage5()
     {
         return $this->image5;
     }
 
-    public function setImage5(?string $image5): self
+    public function setImage5($image5): self
     {
         $this->image5 = $image5;
 
@@ -299,12 +324,12 @@ class Articles
         return $this;
     }
 
-    public function getImage6(): ?string
+    public function getImage6()
     {
         return $this->image6;
     }
 
-    public function setImage6(?string $image6): self
+    public function setImage6($image6): self
     {
         $this->image6 = $image6;
 
@@ -323,12 +348,12 @@ class Articles
         return $this;
     }
 
-    public function getImage7(): ?string
+    public function getImage7()
     {
         return $this->image7;
     }
 
-    public function setImage7(?string $image7): self
+    public function setImage7($image7): self
     {
         $this->image7 = $image7;
 
@@ -347,12 +372,12 @@ class Articles
         return $this;
     }
 
-    public function getImage8(): ?string
+    public function getImage8()
     {
         return $this->image8;
     }
 
-    public function setImage8(?string $image8): self
+    public function setImage8($image8): self
     {
         $this->image8 = $image8;
 
@@ -371,12 +396,12 @@ class Articles
         return $this;
     }
 
-    public function getImage9(): ?string
+    public function getImage9()
     {
         return $this->image9;
     }
 
-    public function setImage9(?string $image9): self
+    public function setImage9($image9): self
     {
         $this->image9 = $image9;
 
@@ -395,12 +420,12 @@ class Articles
         return $this;
     }
 
-    public function getImage10(): ?string
+    public function getImage10()
     {
         return $this->image10;
     }
 
-    public function setImage10(?string $image10): self
+    public function setImage10($image10): self
     {
         $this->image10 = $image10;
 
@@ -418,20 +443,6 @@ class Articles
 
         return $this;
     }
-
-    /**
-     * Permet d'initialiser le slug
-     * 
-     * @ORM\PrePersist
-     * @ORM\PreUpdate
-     *
-     * @return void
-     */
-    public function initializeSlug()
-    {
-        $slugify = new Slugify();
-        $this->slug = $slugify->slugify("id" . " ". $this->id . " " . "le" . "musée" . " " . $this->marque . " " . $this->modele . " " . $this->carburant . " " . "année" . " " . $this->annee . " " . "prix" . " " . $this->prix . "euros" . " " . "ttc");
-    }
     
     public function getSlug(): ?string
     {
@@ -441,6 +452,18 @@ class Articles
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }
