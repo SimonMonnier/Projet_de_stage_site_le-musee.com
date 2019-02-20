@@ -1,0 +1,62 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Administration des voitures{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <h1 class="my-3 float-left">Gestion des voitures</h1>
+
+        <a href="{{ path('voiture_add') }}"><button type="button" class="btn btn-primary my-3  float-right">Ajouter une voiture</button></a>
+
+        <table class="table table-hover">
+            <thead class="bg-primary ">
+                <tr>
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for user in users %}
+                {% set editUser = path('admin_account_edit',{'email': user.email}) %}
+                {% set removeUser = path('admin_account_delete',{'id': user.id}) %}
+                <tr>
+                    <td>{{user.firstName}}</td>
+                    <td>{{user.lastName}}</td>
+                    <td>{{user.email}}</td>
+                    <td>
+                        <a href="{{editUser}}" class="btn btn-success">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#myModal">
+                                <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Voulez-vous supprimer cette voiture ?</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            {{user.firstName}} {{user.lastName}}
+                        </p>
+                        <p>{{user.email}}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Annuler</button>
+                        <a href="{{removeUser}}"><button type="button" class="btn btn-danger my-3  float-right">Supprimer la voiture</button></a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock body %}
