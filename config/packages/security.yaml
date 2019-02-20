@@ -13,7 +13,8 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        main:
+        admin:
+            pattern: ^/admin
             anonymous: true
 
             provider: in_database
@@ -21,10 +22,15 @@ security:
             form_login:
                 login_path: admin_login
                 check_path: admin_login
+                default_target_path: admin_voitures_index
 
             logout:
                 path: admin_logout
                 target: admin_login
+        main:
+            anonymous: true
+
+            
             # activate different ways to authenticate
 
             # http_basic: true
@@ -36,5 +42,6 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
+         - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+         - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
