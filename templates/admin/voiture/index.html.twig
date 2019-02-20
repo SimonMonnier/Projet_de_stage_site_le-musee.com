@@ -47,27 +47,27 @@
                         </button>
                     </td>
                 </tr>
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Voulez-vous supprimer cette voiture ?</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>
+                                    <img src="/uploads/{{voiture.coverImage}}" alt="{{voiture.slug}}" class="avatar-micro text-center"> {{voiture.slug}}.
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success" data-dismiss="modal">Annuler</button>
+                                <a href="{{removeVoiture}}"><button type="button" class="btn btn-danger my-3  float-right">Supprimer la voiture</button></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
             </tbody>
         </table>
-        <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Voulez-vous supprimer cette voiture ?</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>
-                            <img src="/uploads/{{voiture.coverImage}}" alt="{{voiture.slug}}" class="avatar-micro text-center"> {{voiture.slug}}.
-                        </p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-dismiss="modal">Annuler</button>
-                        <a href="{{removeVoiture}}"><button type="button" class="btn btn-danger my-3  float-right">Supprimer la voiture</button></a>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
         </div>
     </div>
 {% endblock body %}

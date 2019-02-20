@@ -1,12 +1,12 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %}Administration des voitures{% endblock %}
+{% block title %}Administration des administrateurs{% endblock %}
 
 {% block body %}
     <div class="container-fluid">
-        <h1 class="my-3 float-left">Gestion des voitures</h1>
+        <h1 class="my-3 float-left">Gestion des administrateurs</h1>
 
-        <a href="{{ path('voiture_add') }}"><button type="button" class="btn btn-primary my-3  float-right">Ajouter une voiture</button></a>
+        <a href="{{ path('voiture_add') }}"><button type="button" class="btn btn-primary my-3  float-right">Ajouter un administrateur</button></a>
 
         <table class="table table-hover">
             <thead class="bg-primary ">
@@ -35,28 +35,28 @@
                         </button>
                     </td>
                 </tr>
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Voulez-vous supprimer cette administrateur ?</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>
+                                    {{user.firstName}} {{user.lastName}}
+                                </p>
+                                <p>{{user.email}}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success" data-dismiss="modal">Annuler</button>
+                                <a href="{{removeUser}}"><button type="button" class="btn btn-danger my-3  float-right">Supprimer l'administrateur</button></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
             </tbody>
         </table>
-        <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Voulez-vous supprimer cette voiture ?</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>
-                            {{user.firstName}} {{user.lastName}}
-                        </p>
-                        <p>{{user.email}}</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-dismiss="modal">Annuler</button>
-                        <a href="{{removeUser}}"><button type="button" class="btn btn-danger my-3  float-right">Supprimer la voiture</button></a>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
         </div>
     </div>
 {% endblock body %}
