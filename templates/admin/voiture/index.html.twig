@@ -42,32 +42,37 @@
                         <a href="{{editVoiture}}" class="btn btn-success">
                             <i class="fas fa-edit"></i>
                         </a>
-                        <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#myModal">
+                        <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#mymodal{{loop.index0}}">
                                 <i class="fas fa-trash"></i>
                         </button>
                     </td>
                 </tr>
-                <div class="modal fade" id="myModal" role="dialog">
-                    <div class="modal-dialog">
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title">Voulez-vous supprimer cette voiture ?</h4>
-                            </div>
-                            <div class="modal-body">
-                                <p>
-                                    <img src="/uploads/{{voiture.coverImage}}" alt="{{voiture.slug}}" class="avatar-micro text-center"> {{voiture.slug}}.
-                                </p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-success" data-dismiss="modal">Annuler</button>
-                                <a href="{{removeVoiture}}"><button type="button" class="btn btn-danger my-3  float-right">Supprimer la voiture</button></a>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
+                {% endfor %}
             </tbody>
         </table>
+        {% for voiture in voitures %}
+        {% set editVoiture = path('voiture_edit',{'slug': voiture.slug}) %}
+        {% set removeVoiture = path('voiture_delete',{'slug': voiture.slug}) %}
+        <div class="modal fade" id="mymodal{{loop.index0}}" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Voulez-vous supprimer cette voiture ?</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            <img src="/uploads/{{voiture.coverImage}}" alt="{{voiture.slug}}" class="avatar-micro text-center"> {{voiture.slug}}.
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Annuler</button>
+                        <a href="{{removeVoiture}}"><button type="button" class="btn btn-danger my-3  float-right">Supprimer la voiture</button></a>
+                    </div>
+                </div>
+            </div>
         </div>
+        {% endfor %}
     </div>
+    
 {% endblock body %}
