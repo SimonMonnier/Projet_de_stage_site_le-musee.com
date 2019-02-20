@@ -36,34 +36,38 @@
                     <a href="{{editArticle}}" class="btn btn-success">
                         <i class="fas fa-edit"></i>
                     </a>
-                    <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#myModal">
+                    <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#myModal{{loop.index0}}">
                         <i class="fas fa-trash"></i>
                     </button>
                 </td>
             </tr>
-            <div class="modal fade" id="myModal" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Voulez-vous supprimer cet article ?</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>
-                                <img src="/uploads/{{article.coverImage}}" alt="{{article.slug}}"
-                                    class="avatar-micro text-center"> {{article.slug}}.
-                            </p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-success" data-dismiss="modal">Annuler</button>
-                            <a href="{{removeArticle}}"><button type="button" class="btn btn-danger my-3  float-right">Supprimer
-                                    l'article</button></a>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
+            {% endfor %}
         </tbody>
     </table>
+    {% for article in articles %}
+    {% set editArticle = path('article_edit',{'slug': article.slug}) %}
+    {% set removeArticle = path('article_delete',{'slug': article.slug}) %}
+    <div class="modal fade" id="myModal{{loop.index0}}" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Voulez-vous supprimer cet article ?</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <img src="/uploads/{{article.coverImage}}" alt="{{article.slug}}"
+                            class="avatar-micro text-center"> {{article.slug}}.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Annuler</button>
+                    <a href="{{removeArticle}}"><button type="button" class="btn btn-danger my-3  float-right">Supprimer
+                            l'article</button></a>
+                </div>
+            </div>
+        </div>
     </div>
+    {% endfor %}
 </div>
 {% endblock body %}
