@@ -10,6 +10,7 @@ use App\Entity\Articles;
 use App\Form\VoitureType;
 use App\Form\RegistrationType;
 use App\Repository\UserRepository;
+use App\Form\ArticlesType;
 use App\Repository\ImageRepository;
 use App\Repository\VoitureRepository;
 use App\Repository\ArticlesRepository;
