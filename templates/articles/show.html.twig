@@ -12,108 +12,130 @@
 
 <div class="container">
     <div class="row">
-        <p>{{ article.introduction }}</p>
+        <div class="col-md-12">
+            <p>{{ article.introduction }}</p>
+        </div>
     </div>
-    {% if article.image1 %}
     <div class="row">
-        <div class="col">
+        {% if article.image1 %}
+        <div class="col-md-6">
             <img src="/uploads/{{ article.image1 }}">
         </div>
-        <div class="col">
+        {% endif %}
+        {% if article.paragraphe1 %}
+        <div class="col-md-6">
             <p>{{ article.paragraphe1 }}</p>
         </div>
+        {% endif %}
     </div>
-    {% endif %}
-    {% if article.image2 %}
     <div class="row">
-        <div class="col">
+        {% if article.paragraphe2 %}
+        <div class="col-md-6">
             <p>{{ article.paragraphe2 }}</p>
         </div>
-        <div class="col">
+        {% endif %}
+        {% if article.image2 %}
+        <div class="col-md-6">
             <img src="/uploads/{{ article.image2 }}">
         </div>
+        {% endif %}
     </div>
-    {% endif %}
-    {% if article.image3 %}
     <div class="row">
-        <div class="col">
+        {% if article.image3 %}
+        <div class="col-md-6">
             <img src="/uploads/{{ article.image3 }}">
         </div>
-        <div class="col">
+        {% endif %}
+        {% if article.paragraphe3 %}
+        <div class="col-md-6">
             <p>{{ article.paragraphe3 }}</p>
         </div>
+        {% endif %}
     </div>
-    {% endif %}
-    {% if article.image4 %}
     <div class="row">
-        <div class="col">
+        {% if article.paragraphe4 %}
+        <div class="col-md-6">
             <p>{{ article.paragraphe4 }}</p>
         </div>
-        <div class="col">
+        {% endif %}
+        {% if article.image4 %}
+        <div class="col-md-6">
             <img src="/uploads/{{ article.image4 }}">
         </div>
+        {% endif %}
     </div>
-    {% endif %}
-    {% if article.image5 %}
     <div class="row">
-        <div class="col">
+        {% if article.image5 %}
+        <div class="col-md-6">
             <img src="/uploads/{{ article.image5 }}">
         </div>
-        <div class="col">
+        {% endif %}
+        {% if article.paragraphe5 %}
+        <div class="col-md-6">
             <p>{{ article.paragraphe5 }}</p>
         </div>
+        {% endif %}
     </div>
-    {% endif %}
-    {% if article.image6 %}
     <div class="row">
-        <div class="col">
+        {% if article.paragraphe6 %}
+        <div class="col-md-6">
             <p>{{ article.paragraphe6 }}</p>
         </div>
-        <div class="col">
+        {% endif %}
+        {% if article.image6 %}
+        <div class="col-md-6">
             <img src="/uploads/{{ article.image6 }}">
         </div>
+        {% endif %}
     </div>
-    {% endif %}
-    {% if article.image7 %}
     <div class="row">
-        <div class="col">
+        {% if article.image7 %}
+        <div class="col-md-6">
             <img src="/uploads/{{ article.image7 }}">
         </div>
-        <div class="col">
+        {% endif %}
+        {% if article.paragraphe7 %}
+        <div class="col-md-6">
             <p>{{ article.paragraphe7 }}</p>
         </div>
+        {% endif %}
     </div>
-    {% endif %}
-    {% if article.image8 %}
     <div class="row">
-        <div class="col">
+        {% if article.paragraphe8 %}
+        <div class="col-md-6">
             <p>{{ article.paragraphe8 }}</p>
         </div>
-        <div class="col">
+        {% endif %}
+        {% if article.image8 %}
+        <div class="col-md-6">
             <img src="/uploads/{{ article.image8 }}">
         </div>
+        {% endif %}
     </div>
-    {% endif %}
-    {% if article.image9 %}
     <div class="row">
-        <div class="col">
+        {% if article.image9 %}
+        <div class="col-md-6">
             <img src="/uploads/{{ article.image9 }}">
         </div>
-        <div class="col">
+        {% endif %}
+        {% if article.paragraphe9 %}
+        <div class="col-md-6">
             <p>{{ article.paragraphe9 }}</p>
         </div>
+        {% endif %}
     </div>
-    {% endif %}
-    {% if article.image10 %}
     <div class="row">
-        <div class="col">
+        {% if article.paragraphe10 %}
+        <div class="col-md-6">
             <p>{{ article.paragraphe10 }}</p>
         </div>
-        <div class="col">
+        {% endif %}
+        {% if article.image10 %}
+        <div class="col-md-6">
             <img src="/uploads/{{ article.image10 }}">
         </div>
+        {% endif %}
     </div>
-    {% endif %}
 </div>
 
 {% endblock %}
