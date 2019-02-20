@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <h1 class="my-3 float-left">Gestion des administrateurs</h1>
 
-        <a href="{{ path('voiture_add') }}"><button type="button" class="btn btn-primary my-3  float-right">Ajouter un administrateur</button></a>
+        <a href="{{ path('admin_register') }}"><button type="button" class="btn btn-primary my-3  float-right">Ajouter un administrateur</button></a>
 
         <table class="table table-hover">
             <thead class="bg-primary ">
@@ -30,33 +30,37 @@
                         <a href="{{editUser}}" class="btn btn-success">
                             <i class="fas fa-edit"></i>
                         </a>
-                        <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#myModal">
+                        <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#myModal{{loop.index0}}">
                                 <i class="fas fa-trash"></i>
                         </button>
                     </td>
                 </tr>
-                <div class="modal fade" id="myModal" role="dialog">
-                    <div class="modal-dialog">
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title">Voulez-vous supprimer cette administrateur ?</h4>
-                            </div>
-                            <div class="modal-body">
-                                <p>
-                                    {{user.firstName}} {{user.lastName}}
-                                </p>
-                                <p>{{user.email}}</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-success" data-dismiss="modal">Annuler</button>
-                                <a href="{{removeUser}}"><button type="button" class="btn btn-danger my-3  float-right">Supprimer l'administrateur</button></a>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
+                {% endfor %}
             </tbody>
         </table>
+        {% for user in users %}
+        {% set editUser = path('admin_account_edit',{'email': user.email}) %}
+        {% set removeUser = path('admin_account_delete',{'id': user.id}) %}
+        <div class="modal fade" id="myModal{{loop.index0}}" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Voulez-vous supprimer cette administrateur ?</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            {{user.firstName}} {{user.lastName}}
+                        </p>
+                        <p>{{user.email}}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Annuler</button>
+                        <a href="{{removeUser}}"><button type="button" class="btn btn-danger my-3  float-right">Supprimer l'administrateur</button></a>
+                    </div>
+                </div>
+            </div>
         </div>
+        {% endfor %}
     </div>
 {% endblock body %}
