@@ -3,18 +3,47 @@
 {% block title %}Hello ArticlesController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
- 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<div class="container">
+    <div class="shadow-lg p-3 mb-5 bg-white rounded">
+        <h1 class="text-center my-5">Le blog</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/joachim/Téléchargements/site_lemusee-stage-Site_WIP_Joachim_v1/src/Controller/ArticlesController.php'|file_link(0) }}">src/Controller/ArticlesController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/joachim/Téléchargements/site_lemusee-stage-Site_WIP_Joachim_v1/templates/articles/index.html.twig'|file_link(0) }}">templates/articles/index.html.twig</a></code></li>
-    </ul>
-</div>
+        <h5 class="text-center my-5 ">
+            Partagez notre passion et retrouvez toute l’actualité du Musée et des articles sur les thèmes qui nous tiennent à cœur.
+            <br><br>
+        </h5>
+    </div>
+    <div class="row">
+        {% for article in articles %}
+        {% set url = path('articles_show',{'slug': article.slug}) %}
+    
+        <div class="col-md-4 my-2">
+            <div class="card border-secondary mb-3">
+                <div class="card-header text-center">
+                    <div class="text-left">
+                        <small><em>Publié le {{ article.createdAt | date('d/m/y') }} à {{ article.createdAt | date('H:i')}}</em></small>
+                    </div>
+                    <br>
+                    <a href="{{ url }}" target="_blank">
+                        <h4 class="card-title">{{ article.titre }}</h4>
+                    </a>
+                </div>
+                <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade" data-interval="3000"
+                    data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <a href="{{ url }}" target="_blank">
+                                <img src="/uploads/{{article.image1}}" class="d-block w-100"
+                                    style="height: 180px; width: auto; display: block" alt="{{ article.slug }}">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ article.introduction }}</p>
+                    <a href="{{ url }}" class="btn btn-primary" target="_blank">Lire la suite !</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 {% endblock %}
