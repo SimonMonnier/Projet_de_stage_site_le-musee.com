@@ -14,6 +14,12 @@ div.voiture-title h1, div.voiture-title p {
     
 }
 
+div.article-title h1, div.article-title p {
+    color: rgb(255, 255, 255);
+    text-shadow: 3px 3px 3px rgb(0, 0, 0);
+    
+}
+
 div.carousel-caption h5, div.carousel-caption p{
     color: rgb(255, 255, 255);
     text-shadow: 3px 3px 3px rgb(0, 0, 0);
