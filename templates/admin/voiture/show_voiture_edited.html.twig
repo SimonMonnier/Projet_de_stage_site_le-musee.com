@@ -20,7 +20,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 mb-3">
-            {{ voiture.content}}
+            {{ voiture.content | raw}}
             <div id="carouselExampleIndicators" class="carousel slide carousel-fade my-3" data-ride="carousel">
                 <ol class="carousel-indicators">
                     {% for image in voiture.images %}
@@ -48,8 +48,14 @@
             </div>
             <div class="fb-like" data-href="http://www.le-musee.fr/voitures/{{ voiture.slug }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
         </div>
-        <div class="col mb-3">
-            <h3 class="text-center  my-1">Prix TTC <span>{{ voiture.prix }}&euro;</span></h3>
+        <div class="col my-1">
+            <div class="card bg-primary mb-3">
+                <div class="card-body">
+                    <h3 class="text-center text-white my-1">Prix TTC: 
+                        <span>{{ voiture.prix }}&euro;</span>
+                    </h3>
+                </div>
+            </div>
             <h5 class="text-center">Caracteristiques :</h5>
             <div class="row mt-3">
                 <table class="table table-sm table-striped table-hover table-dark">
