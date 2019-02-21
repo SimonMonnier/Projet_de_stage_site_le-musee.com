@@ -42,7 +42,7 @@
                         <a href="{{ url }}" target="_blank">
                             <h4 class="card-title">{{ voiture.marque }} {{ voiture.modele }} {% if voiture.type %} {{ voiture.type }} {% endif %}</h4>
                         </a>
-                        <p class="card-text">{{ voiture.Introduction }}</p>
+                        <p class="card-text">{{ voiture.Introduction | raw}}</p>
                         <a href="{{ url }}" class="btn btn-primary" target="_blank">En savoir plus !</a>
                     </div>
                 </div>

@@ -7,7 +7,7 @@
 <div class="voiture-title" style="background-image: url('/uploads/{{ voiture.coverImage }}')">
     <div class="container">
         <h1 class="my-3">{{ voiture.marque }} {{ voiture.modele }} {% if voiture.type %} {{ voiture.type }} {% endif %}</h1>
-        <p>{{ voiture.introduction }}</p>
+        <p>{{ voiture.introduction | raw}}</p>
         <p class="h2">
             <strong>
                 <small>{{ voiture.etat }}</small>
