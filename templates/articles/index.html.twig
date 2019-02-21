@@ -39,7 +39,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <p class="card-text">{{ article.introduction }}</p>
+                    <p class="card-text">{{ article.introduction | raw}}</p>
                     <a href="{{ url }}" class="btn btn-primary" target="_blank">Lire la suite !</a>
                 </div>
             </div>
