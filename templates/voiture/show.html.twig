@@ -1,12 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ voiture.marque }} {{ voiture.modele }}{% if voiture.type %} {{ voiture.type }} {% endif %}{% endblock %}
+{% block title %}{{ voiture.marque }} {{ voiture.modele }}{% if voiture.type %} {{ voiture.type }}
+{% endif %}{% endblock %}
 
 {% block body %}
 
 <div class="voiture-title" style="background-image: url('/uploads/{{ voiture.coverImage }}')">
     <div class="container">
-        <h1 class="my-3">{{ voiture.marque }} {{ voiture.modele }} {% if voiture.type %} {{ voiture.type }} {% endif %}</h1>
+        <h1 class="my-3">{{ voiture.marque }} {{ voiture.modele }} {% if voiture.type %} {{ voiture.type }} {% endif %}
+        </h1>
         <p>{{ voiture.introduction }}</p>
         <p class="h2">
             <strong>
@@ -16,7 +18,7 @@
         <a href="#" class="btn btn-primary">Demandez plus d'info</a>
     </div>
 </div>
- 
+
 <div class="container">
     <div class="row">
         <div class="col-md-8 mb-3">
@@ -24,15 +26,17 @@
             <div id="carouselExampleIndicators" class="carousel slide carousel-fade my-3" data-ride="carousel">
                 <ol class="carousel-indicators">
                     {% for image in voiture.images %}
-                    <li data-target="#carouselExampleIndicators" data-slide-to=" {{loop.index0 }} " class="{% if loop.first %} active {% endif %}"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to=" {{loop.index0 }} "
+                        class="{% if loop.first %} active {% endif %}"></li>
                     {% endfor %}
                 </ol>
                 <div class="carousel-inner">
                     {% for image in voiture.images %}
                     <div class="carousel-item {% if loop.first %} active {% endif %}">
-                        <img src="/uploads/{{image.url}}" class="d-block w-100" alt="{{ voiture.slug }}"> 
+                        <img src="/uploads/{{image.url}}" class="d-block w-100" alt="{{ voiture.slug }}">
                         <div class="carousel-caption d-none d-md-block">
-                            <h5>{{ voiture.marque }} {{ voiture.modele }} {% if voiture.type %} {{ voiture.type }} {% endif %}</h5>
+                            <h5>{{ voiture.marque }} {{ voiture.modele }} {% if voiture.type %} {{ voiture.type }}
+                                {% endif %}</h5>
                         </div>
                     </div>
                     {% endfor %}
@@ -46,8 +50,10 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div>
-    <div class="fb-like" data-href="http://www.le-musee.fr/voitures/{{ voiture.marque }}" data-layout="button_count"
-        data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>      <div class="fb-like" data-href="http://www.le-musee.fr/voitures/{{ voiture.marque }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+            <div class="fb-like" data-href="http://www.le-musee.fr/voitures/{{ voiture.marque }}"
+                data-layout="button_count" data-action="like" data-size="small" data-show-faces="true"
+                data-share="true">
+            </div>
         </div>
         <div class="col mb-3">
             <h3 class="text-center  my-1">Prix TTC <span>{{ voiture.prix }}&euro;</span></h3>
@@ -76,7 +82,7 @@
                         <tr>
                             <td>Annee</td>
                             <td>{{ voiture.annee }}</td>
-                            
+
                         </tr>
                         {% if voiture.numeroSerie %}
                         <tr>

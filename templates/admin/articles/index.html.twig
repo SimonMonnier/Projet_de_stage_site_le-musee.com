@@ -28,7 +28,12 @@
                     <img src="/uploads/{{article.coverImage}}" alt="{{article.slug}}" class="avatar-micro mr-2">
                 </td>
                 <td>{{article.titre}}</td>
-                <td>{{article.introduction}}</td>
+                <td>
+                    {# Afficher le début de l'introduction #}
+                    <span class="d-inline-block text-truncate" style="max-width: 500px;">
+                        {{article.introduction}}
+                    </span>
+                </td>
                 <td>
                     Le {{article.createdAt | date('d/m/y')}} à {{article.createdAt | date('H:i')}}
                 </td>
