@@ -1,45 +1,229 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}{{ voiture.marque }} {{ voiture.modele }}{% if voiture.type %} {{ voiture.type }}
-{% endif %}{% endblock %}
-
+{% block title %}
+    {{ voiture.marque }}
+    {{ voiture.modele }}{% if voiture.type %}
+        {{ voiture.type }}
+    {% endif %}
+{% endblock %}
 {% block body %}
-
-<div class="voiture-title" style="background-image: url('/uploads/{{ voiture.coverImage }}')">
-    <div class="container">
-        <h1 class="my-3">{{ voiture.marque }} {{ voiture.modele }} {% if voiture.type %} {{ voiture.type }} {% endif %}
-        </h1>
-        <p>{{ voiture.introduction }}</p>
-        <p class="h2">
-            <strong>
-                <small>{{ voiture.etat }}</small>
-            </strong>
-        </p>
-        <a href="#" class="btn btn-primary">Demandez plus d'info</a>
+    <div class="voiture-title" style="background-image: url('/uploads/{{ voiture.coverImage }}')">
+        <div class="row">
+            <div class="col-md-9">
+                <h1 class="my-3">
+                    {{ voiture.marque }}
+                    {{ voiture.modele }}
+                    {% if voiture.type %}
+                        {{ voiture.type }}
+                    {% endif %}
+                </h1>
+                <p>
+                    {{ voiture.introduction }}</p>
+                <p class="h2">
+                    <strong>
+                        <small>
+                            {{ voiture.etat }}</small>
+                    </strong>
+                </p>
+            </div>
+            <div class="col-md-3 mt-5">
+                <div class="mt-4">
+                    <a class="btn btn-primary mt-5 p-3" href="#">Demandez plus d'info</a>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 mb-3">
-            {{ voiture.content}}
-            <div id="carouselExampleIndicators" class="carousel slide carousel-fade my-3" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    {% for image in voiture.images %}
-                    <li data-target="#carouselExampleIndicators" data-slide-to=" {{loop.index0 }} "
-                        class="{% if loop.first %} active {% endif %}"></li>
-                    {% endfor %}
-                </ol>
-                <div class="carousel-inner">
-                    {% for image in voiture.images %}
-                    <div class="carousel-item {% if loop.first %} active {% endif %}">
-                        <img src="/uploads/{{image.url}}" class="d-block w-100" alt="{{ voiture.slug }}">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>{{ voiture.marque }} {{ voiture.modele }} {% if voiture.type %} {{ voiture.type }}
-                                {% endif %}</h5>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mb-3">
+                {{ voiture.content}}
+                <div class="carousel slide carousel-fade my-3" data-ride="carousel" id="carouselExampleIndicators">
+                    <ol class="carousel-indicators">
+                        {% for image in voiture.images %}
+                            <li data-target="#carouselExampleIndicators" data-slide-to=" {{loop.index0 }} " class="{% if loop.first %} active {% endif %}"></li>
+                        {% endfor %}
+                    </ol>
+                    <div class="carousel-inner">
+                        {% for image in voiture.images %}
+                            <div class="carousel-item {% if loop.first %} active {% endif %}">
+                                <img src="/uploads/{{image.url}}" class="d-block w-100" alt="{{ voiture.slug }}">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h5>
+                                            {{ voiture.marque }}
+                                            {{ voiture.modele }}
+                                            {% if voiture.type %}
+                                                {{ voiture.type }}
+                                            {% endif %}
+                                        </h5>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <a class="carousel-control-prev" data-slide="prev" href="#carouselIndicators" role="button">
+                            <span aria-hidden="true" class="carousel-control-prev-icon"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" data-slide="next" href="#carouselExampleIndicators" role="button">
+                            <span aria-hidden="true" class="carousel-control-next-icon"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                    <div class="fb-like" data-action="like" data-href="http://www.le-musee.fr/voitures/{{ voiture.marque }}" data-layout="button_count" data-share="true" data-show-faces="true" data-size="small"></div>
+                    <div class="fb-like" data-action="like" data-href="http://www.le-musee.fr/voitures/{{ voiture.marque }}" data-layout="button_count" data-share="true" data-show-faces="true" data-size="small"></div>
+                </div>
+                <div class="col my-1">
+                    <div class="card bg-primary mb-3">
+                        <div class="card-body">
+                            <h3 class="text-center text-white my-1">Prix TTC:
+                                <span>{{ voiture.prix }}&euro;</span>
+                            </h3>
                         </div>
                     </div>
-                    {% endfor %}
+                    <h5 class="text-center">Caractéristiques :</h5>
+                    <div class="row mt-3">
+                        <table class="table table-sm table-striped table-hover table-dark">
+                            <tbody>
+                                <tr>
+                                    <td>Marque</td>
+                                    <td>
+                                        {{ voiture.marque }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Modele</td>
+                                    <td>
+                                        {{ voiture.modele }}</td>
+                                </tr>
+                                {% if voiture.type %}
+                                    <tr>
+                                        <td>Type</td>
+                                        <td>
+                                            {{ voiture.type }}</td>
+                                    </tr>
+                                {% endif %}
+                                <tr>
+                                    <td>Carburant</td>
+                                    <td>
+                                        {{ voiture.carburant }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Annee</td>
+                                    <td>
+                                        {{ voiture.annee }}</td>
+                                </tr>
+                                {% if voiture.numeroSerie %}
+                                    <tr>
+                                        <td>N° de serie</td>
+                                        <td>
+                                            {{ voiture.numeroSerie }}</td>
+                                    </tr>
+                                {% endif %}
+                                {% if voiture.origine %}
+                                    <tr>
+                                        <td>Origine</td>
+                                        <td>
+                                            {{ voiture.origine }}</td>
+                                    </tr>
+                                {% endif %}
+                                {% if voiture.kilometrage %}
+                                    <tr>
+                                        <td>Kilometrage</td>
+                                        <td>
+                                            {{ voiture.kilometrage }}</td>
+                                    </tr>
+                                {% endif %}
+                                {% if voiture.cvFiscaux %}
+                                    <tr>
+                                        <td>CV fiscaux</td>
+                                        <td>
+                                            {{ voiture.cvFiscaux }}</td>
+                                    </tr>
+                                {% endif %}
+                                {% if voiture.moteurEtCylindree %}
+                                    <tr>
+                                        <td>Moteur & Cylindree</td>
+                                        <td>
+                                            {{ voiture.moteurEtCylindree }}</td>
+                                    </tr>
+                                {% endif %}
+                                {% if voiture.puissance %}
+                                    <tr>
+                                        <td>Puissance</td>
+                                        <td>
+                                            {{ voiture.puissance }}</td>
+                                    </tr>
+                                {% endif %}
+                                {% if voiture.boiteDeVitesse %}
+                                    <tr>
+                                        <td>Boite de vitesse</td>
+                                        <td>
+                                            {{ voiture.boiteDeVitesse }}</td>
+                                    </tr>
+                                {% endif %}
+                                {% if voiture.nombreDePlace %}
+                                    <tr>
+                                        <td>Nombre de place</td>
+                                        <td>
+                                            {{ voiture.nombreDePlace }}</td>
+                                    </tr>
+                                {% endif %}
+                                {% if voiture.conduite %}
+                                    <tr>
+                                        <td>Conduite</td>
+                                        <td>
+                                            {{ voiture.conduite }}</td>
+                                    </tr>
+                                {% endif %}
+                                {% if voiture.carrosserie %}
+                                    <tr>
+                                        <td>Carrosserie</td>
+                                        <td>
+                                            {{ voiture.carrosserie }}</td>
+                                    </tr>
+                                {% endif %}
+                                {% if voiture.couleurCarrosserie %}
+                                    <tr>
+                                        <td>Couleur carrosserie</td>
+                                        <td>
+                                            {{ voiture.couleurCarrosserie }}</td>
+                                    </tr>
+                                {% endif %}
+                                {% if voiture.couleurInterieur %}
+                                    <tr>
+                                        <td>Couleur interieur</td>
+                                        <td>
+                                            {{ voiture.couleurInterieur }}</td>
+                                    </tr>
+                                {% endif %}
+                                {% if voiture.longueur %}
+                                    <tr>
+                                        <td>Longueur</td>
+                                        <td>
+                                            {{ voiture.longueur }}</td>
+                                    </tr>
+                                {% endif %}
+                                {% if voiture.largeur %}
+                                    <tr>
+                                        <td>Largeur</td>
+                                        <td>
+                                            {{ voiture.largeur }}</td>
+                                    </tr>
+                                {% endif %}
+                                {% if voiture.hauteur %}
+                                    <tr>
+                                        <td>Hauteur</td>
+                                        <td>
+                                            {{ voiture.hauteur }}</td>
+                                    </tr>
+                                {% endif %}
+                                {% if voiture.poidsAVide %}
+                                    <tr>
+                                        <td>Poids à vide</td>
+                                        <td>
+                                            {{ voiture.poidsAVide }}</td>
+                                    </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
