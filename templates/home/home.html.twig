@@ -47,10 +47,10 @@
                 {% set url = path('voitures_show',{'slug': voiture.slug}) %}
                     <div class="carousel-item {% if loop.first %} active {% endif %}">
                         <a href="{{ url }}" target="_blank">
-                            <img src="/uploads/{{voiture.coverImage}}" class="img-fluid" style="height: 500px; width: 100%; display: block" alt="Responsive image" alt="...">
+                            <img src="/uploads/{{voiture.coverImage}}" class="img-fluid" style="height: 500px; width: 100%; display: block" alt="{{voiture.slug}}">
                         </a>
                         <div class="carousel-caption d-none d-md-block">
-                            <a href="{{ url }}" target="_blank">
+                            <a style="text-decoration: none;" href="{{ url }}" target="_blank">
                                 <h1 class="voiture-title">{{ voiture.marque }} {{ voiture.modele }} {% if voiture.type %} {{ voiture.type }} {% endif %}</h1>
                                 <p>{{ voiture.etat }}</p>
                                 <p>{{ voiture.prix }} prix TTC</p>
