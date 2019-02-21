@@ -8,16 +8,25 @@ div.voiture-title {
     background-position: center center;
 }
 
+div.voiture-title .btn{
+    margin-top: 2em;
+    font-size: 1em;
+    line-height: 1.5em;
+}
+
 div.voiture-title h1, div.voiture-title p {
     color: rgb(255, 255, 255);
     text-shadow: 3px 3px 3px rgb(0, 0, 0);
-    
+}
+
+div.article-title {
+    background-size: cover;
+    background-position: center center;
 }
 
 div.article-title h1, div.article-title p {
     color: rgb(255, 255, 255);
     text-shadow: 3px 3px 3px rgb(0, 0, 0);
-    
 }
 
 div.carousel-caption h5, div.carousel-caption p{
@@ -40,3 +49,4 @@ h1.home-caption {
    max-width: 50px;
    max-height: 50px;
 }
+
