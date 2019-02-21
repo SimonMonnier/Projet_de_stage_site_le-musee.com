@@ -210,6 +210,8 @@ class AdminController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid())
         {
+            $content = nl2br($request->get('voiture')['content']);
+            $voiture->setContent($content);
             $file = $voiture->getCoverImage();
             $filename = md5(uniqid()).'.'.$file->guessExtension();
             $file->move($this->getParameter('upload_directory'), $filename);
@@ -277,7 +279,6 @@ class AdminController extends AbstractController
             $file = $voiture->getCoverImage();
             $filename = md5(uniqid()).'.'.$file->guessExtension();
             $file->move($this->getParameter('upload_directory'), $filename);
-            unlink("uploads/".$voiture->getCoverImage());
             $voiture->setCoverImage($filename);
             $voiture->setCreateAt(new \DateTime());
 
