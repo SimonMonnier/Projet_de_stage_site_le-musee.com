@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vous n'avez pas le droit d'accéder à cette ressource !{% endblock %}
+
+{% block body %}
+<body style="background-image: url('/images_statiques/hack_forbidden.png')">
+    <div class="container">
+        <div class="alert alert-danger">
+            <h1>Alors ?! Vous essayez de Hacker le site ?!</h1>
+            <p>Vous n'avez pas le droit d'accéder à cette ressource !</p>
+        </div>
+
+        <a href="{{ path('homepage') }}" class="btn btn-danger">Retour à l'accueil</a>
+        <a href="{{ path('voitures_index') }}" class="btn btn-danger">Visiter notre parc !</a>
+    </div>
+</body>
+{% endblock %}
