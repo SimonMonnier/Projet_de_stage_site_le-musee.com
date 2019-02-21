@@ -4,135 +4,135 @@
 
 {% block body %}
 
-<div class="article-title" style="background-image: url('/uploads/{{ article.coverImage }}')">
+<div class="article-title p-5" style="background-image: url('/uploads/{{ article.coverImage }}')">
     <div class="container">
-        <h1 class="my-3">{{ article.titre }}</h1>
+        <h1>{{ article.titre }}</h1>
     </div>
 </div>
 
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 mt-4">
             <p>{{ article.introduction }}</p>
         </div>
     </div>
-    <div class="row">
+    <div class="row my-5">
         {% if article.image1 %}
-        <div class="col-md-6">
-            <img src="/uploads/{{ article.image1 }}">
+        <div class="col my-auto">
+            <img class="img-fluid" style="width:550px" src="/uploads/{{ article.image1 }}">
         </div>
         {% endif %}
         {% if article.paragraphe1 %}
-        <div class="col-md-6">
-            <p>{{ article.paragraphe1 }}</p>
+        <div class="col my-auto">
+            <p>{{ article.paragraphe1 | raw }}</p>
         </div>
         {% endif %}
     </div>
-    <div class="row">
+    <div class="row my-5">
         {% if article.paragraphe2 %}
-        <div class="col-md-6">
-            <p>{{ article.paragraphe2 }}</p>
+        <div class="col my-auto">
+            <p>{{ article.paragraphe2 | raw }}</p>
         </div>
         {% endif %}
         {% if article.image2 %}
-        <div class="col-md-6">
-            <img src="/uploads/{{ article.image2 }}">
+        <div class="col my-auto">
+            <img class="img-fluid" style="width:550px" src="/uploads/{{ article.image2 }}">
         </div>
         {% endif %}
     </div>
-    <div class="row">
+    <div class="row my-5">
         {% if article.image3 %}
-        <div class="col-md-6">
-            <img src="/uploads/{{ article.image3 }}">
+        <div class="col my-auto">
+            <img class="img-fluid" style="width:550px" src="/uploads/{{ article.image3 }}">
         </div>
         {% endif %}
         {% if article.paragraphe3 %}
-        <div class="col-md-6">
-            <p>{{ article.paragraphe3 }}</p>
+        <div class="col my-auto">
+            <p>{{ article.paragraphe3 | raw }}</p>
         </div>
         {% endif %}
     </div>
-    <div class="row">
+    <div class="row my-5">
         {% if article.paragraphe4 %}
-        <div class="col-md-6">
-            <p>{{ article.paragraphe4 }}</p>
+        <div class="col my-auto">
+            <p>{{ article.paragraphe4 | raw }}</p>
         </div>
         {% endif %}
         {% if article.image4 %}
-        <div class="col-md-6">
-            <img src="/uploads/{{ article.image4 }}">
+        <div class="col my-auto">
+            <img class="img-fluid" style="width:550px" src="/uploads/{{ article.image4 }}">
         </div>
         {% endif %}
     </div>
-    <div class="row">
+    <div class="row my-5">
         {% if article.image5 %}
-        <div class="col-md-6">
-            <img src="/uploads/{{ article.image5 }}">
+        <div class="col my-auto">
+            <img class="img-fluid" style="width:550px" src="/uploads/{{ article.image5 }}">
         </div>
         {% endif %}
         {% if article.paragraphe5 %}
-        <div class="col-md-6">
-            <p>{{ article.paragraphe5 }}</p>
+        <div class="col my-auto">
+            <p>{{ article.paragraphe5 | raw }}</p>
         </div>
         {% endif %}
     </div>
-    <div class="row">
+    <div class="row my-5">
         {% if article.paragraphe6 %}
-        <div class="col-md-6">
-            <p>{{ article.paragraphe6 }}</p>
+        <div class="col my-auto">
+            <p>{{ article.paragraphe6 | raw }}</p>
         </div>
         {% endif %}
         {% if article.image6 %}
-        <div class="col-md-6">
-            <img src="/uploads/{{ article.image6 }}">
+        <div class="col my-auto">
+            <img class="img-fluid" style="width:550px" src="/uploads/{{ article.image6 }}">
         </div>
         {% endif %}
     </div>
-    <div class="row">
+    <div class="row my-5">
         {% if article.image7 %}
-        <div class="col-md-6">
-            <img src="/uploads/{{ article.image7 }}">
+        <div class="col my-auto">
+            <img class="img-fluid" style="width:550px" src="/uploads/{{ article.image7 }}">
         </div>
         {% endif %}
         {% if article.paragraphe7 %}
-        <div class="col-md-6">
-            <p>{{ article.paragraphe7 }}</p>
+        <div class="col my-auto">
+            <p>{{ article.paragraphe7 | raw }}</p>
         </div>
         {% endif %}
     </div>
-    <div class="row">
+    <div class="row my-5">
         {% if article.paragraphe8 %}
-        <div class="col-md-6">
-            <p>{{ article.paragraphe8 }}</p>
+        <div class="col my-auto">
+            <p>{{ article.paragraphe8 | raw }}</p>
         </div>
         {% endif %}
         {% if article.image8 %}
-        <div class="col-md-6">
-            <img src="/uploads/{{ article.image8 }}">
+        <div class="col my-auto">
+            <img class="img-fluid" style="width:550px" src="/uploads/{{ article.image8 }}">
         </div>
         {% endif %}
     </div>
-    <div class="row">
+    <div class="row my-5">
         {% if article.image9 %}
-        <div class="col-md-6">
-            <img src="/uploads/{{ article.image9 }}">
+        <div class="col my-auto">
+            <img class="img-fluid" style="width:550px" src="/uploads/{{ article.image9 }}">
         </div>
         {% endif %}
         {% if article.paragraphe9 %}
-        <div class="col-md-6">
-            <p>{{ article.paragraphe9 }}</p>
+        <div class="col my-auto">
+            <p>{{ article.paragraphe9 | raw }}</p>
         </div>
         {% endif %}
     </div>
-    <div class="row">
+    <div class="row my-5">
         {% if article.paragraphe10 %}
-        <div class="col-md-6">
-            <p>{{ article.paragraphe10 }}</p>
+        <div class="col my-auto">
+            <p>{{ article.paragraphe10 | raw }}</p>
         </div>
         {% endif %}
         {% if article.image10 %}
-        <div class="col-md-6">
-            <img src="/uploads/{{ article.image10 }}">
+        <div class="col my-auto">
+            <img class="img-fluid" style="width:550px" src="/uploads/{{ article.image10 }}">
         </div>
         {% endif %}
     </div>
