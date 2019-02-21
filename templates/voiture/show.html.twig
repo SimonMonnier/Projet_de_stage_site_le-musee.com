@@ -35,7 +35,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 mb-3">
-                {{ voiture.content}}
+                <p>{{ voiture.content | raw}}</p>
                 <div class="carousel slide carousel-fade my-3" data-ride="carousel" id="carouselExampleIndicators">
                     <ol class="carousel-indicators">
                         {% for image in voiture.images %}
