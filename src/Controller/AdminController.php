@@ -275,10 +275,15 @@ class AdminController extends AbstractController
         }
         if ($form->isSubmitted() && $form->isValid())
         {   
+            $content = nl2br($request->get('voiture')['content']);
+            $voiture->setContent($content);
+
             unlink( "uploads/".$fileinfo );
+
             $file = $voiture->getCoverImage();
             $filename = md5(uniqid()).'.'.$file->guessExtension();
             $file->move($this->getParameter('upload_directory'), $filename);
+
             $voiture->setCoverImage($filename);
             $voiture->setCreateAt(new \DateTime());
 
@@ -409,7 +414,32 @@ class AdminController extends AbstractController
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) 
+        { 
+            $introduction = nl2br($request->get('articles')['introduction']);
+            $paragraphe1 = nl2br($request->get('articles')['paragraphe1']);
+            $paragraphe2 = nl2br($request->get('articles')['paragraphe2']);
+            $paragraphe3 = nl2br($request->get('articles')['paragraphe3']);
+            $paragraphe4 = nl2br($request->get('articles')['paragraphe4']);
+            $paragraphe5 = nl2br($request->get('articles')['paragraphe5']);
+            $paragraphe6 = nl2br($request->get('articles')['paragraphe6']);
+            $paragraphe7 = nl2br($request->get('articles')['paragraphe7']);
+            $paragraphe8 = nl2br($request->get('articles')['paragraphe8']);
+            $paragraphe9 = nl2br($request->get('articles')['paragraphe9']);
+            $paragraphe10 = nl2br($request->get('articles')['paragraphe10']);
+            
+            $article->setIntroduction($introduction)
+                    ->setParagraphe1($paragraphe1)
+                    ->setParagraphe2($paragraphe2)
+                    ->setParagraphe3($paragraphe3)
+                    ->setParagraphe4($paragraphe4)
+                    ->setParagraphe5($paragraphe5)
+                    ->setParagraphe6($paragraphe6)
+                    ->setParagraphe7($paragraphe7)
+                    ->setParagraphe8($paragraphe8)
+                    ->setParagraphe9($paragraphe9)
+                    ->setParagraphe10($paragraphe10);
+
             $file = $article->getCoverImage();
             $filename = md5(uniqid()) . '.' . $file->guessExtension();
             $file->move($this->getParameter('upload_directory'), $filename);
@@ -539,7 +569,32 @@ class AdminController extends AbstractController
                 "/!\ Toutes les photos actuelles de l'article <strong>{$article->getSlug()}</strong> seront effacées et remplacées /!\ "
             );
         }
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
+            $introduction = nl2br($request->get('articles')['introduction']);
+            $paragraphe1 = nl2br($request->get('articles')['paragraphe1']);
+            $paragraphe2 = nl2br($request->get('articles')['paragraphe2']);
+            $paragraphe3 = nl2br($request->get('articles')['paragraphe3']);
+            $paragraphe4 = nl2br($request->get('articles')['paragraphe4']);
+            $paragraphe5 = nl2br($request->get('articles')['paragraphe5']);
+            $paragraphe6 = nl2br($request->get('articles')['paragraphe6']);
+            $paragraphe7 = nl2br($request->get('articles')['paragraphe7']);
+            $paragraphe8 = nl2br($request->get('articles')['paragraphe8']);
+            $paragraphe9 = nl2br($request->get('articles')['paragraphe9']);
+            $paragraphe10 = nl2br($request->get('articles')['paragraphe10']);
+            
+            $article->setIntroduction($introduction)
+                    ->setParagraphe1($paragraphe1)
+                    ->setParagraphe2($paragraphe2)
+                    ->setParagraphe3($paragraphe3)
+                    ->setParagraphe4($paragraphe4)
+                    ->setParagraphe5($paragraphe5)
+                    ->setParagraphe6($paragraphe6)
+                    ->setParagraphe7($paragraphe7)
+                    ->setParagraphe8($paragraphe8)
+                    ->setParagraphe9($paragraphe9)
+                    ->setParagraphe10($paragraphe10);
+                    
             $file = $article->getCoverImage();
             unlink("uploads/".$fileinfo);
             $filename = md5(uniqid()) . '.' . $file->guessExtension();
