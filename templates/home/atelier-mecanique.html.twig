@@ -6,30 +6,52 @@
 <div class="container mt-3 shadow-lg p-0 mb-5 bg-white rounded">
     <div class="container">
         <h1 class="text-center my-5"><br>Atelier Mecanique du Musée</h1>
-        <p class="text-primary">
+        <p class="text-primary ml-5 my-5">
             Nos locaux sont aussi équipés d’un atelier Mécanique où nos experts proposent l’entretien ou la remise en
             état de la mécanique de votre véhicule.<br>L’atelier est compose de plusieurs aires avec un pont élévateur
             special pour véhicules de prestige et motos.
         </p>
-        <p class="text-primary">Specialiste :</p>
-        <ul>
-            {#le style permet d'implementer des paramètres de css#}
-            <div class="col-md-2">
-            <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-dark ">
-                    Porsche
-                </a>
-                <a href="#" class="list-group-item list-group-item-dark">Muscle Car
-                </a>
-                <a z class="list-group-item list-group-item-dark">Anglaises
-                </a>
+        <p class="text-primary ml-5 mb-5">Specialiste :</p>
+        {#le style permet d'implementer des paramètres de css#}
+        <div class="row">
+            <div class="col ml-3">
+                <table class="table table-sm">
+                    <tbody>
+                        <tr class="table-active">
+                            <td scope="row">
+                                {#Avatar méchanique crée dans App.css#}
+                                <p class="text-primary">Porshe <img class="avatar-mechanique"
+                                        src="/images_statiques/Porsche-993-de-1993-31-480x400.jpg" alt="">
+                                </p>
+                            </td>
+                            <td scope="row">
+                                <p class="text-primary">Muscle Car <img class="avatar-mechanique"
+                                        src="/images_statiques/IMG_5515-480x400.jpg" alt=""></p>
+                            </td>
+                            <td scope="row">
+                                <p class="text-primary"> Anglaises <img class="avatar-mechanique"
+                                        src="/images_statiques/BENTLEY-2-480x400.png" alt="">
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-        </ul>
-        <p class="text-primary">
-            Toute fois, nous pouvons réaliser tout type de mécanique. N’hesitez pas à nous rendre visite afin
-            d’effectuer un check up de votre véhicule.
-        </p>
-        <img src="/images_statiques/montagemoteurmécanique.png" alt="" class="rounded mx-auto d-block"><br><br><br>
+            <div class="col ml-3 my-5">
+                <p class="text-primary my-3">Toute fois, nous pouvons réaliser tout type de mécanique. </p>
+            </div>
+            <div class="row">
+                <div class="col  ml-5 my-3"><img src="/images_statiques/montagemoteurmécanique.png" alt=""
+                        class="avatar-mechaniques">
+                </div>
+                <div class="col my-5">
+                    <p class="text-primary my-5">N’hesitez pas à nous rendre visite afin d’effectuer un check up de
+                        votre
+                        véhicule.</p>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 </div>
 {% endblock %}
