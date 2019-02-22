@@ -7,15 +7,11 @@
 <div class="article-title p-5" style="background-image: url('/uploads/{{ article.coverImage }}')">
     <div class="container">
         <h1>{{ article.titre }}</h1>
+        <h5>{{ article.introduction | raw }}</h5>
     </div>
 </div>
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-12 mt-4">
-            <p>{{ article.introduction }}</p>
-        </div>
-    </div>
     <div class="row my-5">
         {% if article.image1 %}
         <div class="col my-auto">
