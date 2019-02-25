@@ -220,7 +220,7 @@ class AdminController extends AbstractController
 
             $manager->persist($voiture);
             $manager->flush();
-            $files = $request->files->get('Voiture')['files'];
+            $files = $request->files->get('voiture')['files'];
             
             foreach ($files as $file)
             {
@@ -416,17 +416,17 @@ class AdminController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) 
         { 
-            $introduction = nl2br($request->get('Articles')['introduction']);
-            $paragraphe1 = nl2br($request->get('Articles')['paragraphe1']);
-            $paragraphe2 = nl2br($request->get('Articles')['paragraphe2']);
-            $paragraphe3 = nl2br($request->get('Articles')['paragraphe3']);
-            $paragraphe4 = nl2br($request->get('Articles')['paragraphe4']);
-            $paragraphe5 = nl2br($request->get('Articles')['paragraphe5']);
-            $paragraphe6 = nl2br($request->get('Articles')['paragraphe6']);
-            $paragraphe7 = nl2br($request->get('Articles')['paragraphe7']);
-            $paragraphe8 = nl2br($request->get('Articles')['paragraphe8']);
-            $paragraphe9 = nl2br($request->get('Articles')['paragraphe9']);
-            $paragraphe10 = nl2br($request->get('Articles')['paragraphe10']);
+            $introduction = nl2br($request->get('articles')['introduction']);
+            $paragraphe1 = nl2br($request->get('articles')['paragraphe1']);
+            $paragraphe2 = nl2br($request->get('articles')['paragraphe2']);
+            $paragraphe3 = nl2br($request->get('articles')['paragraphe3']);
+            $paragraphe4 = nl2br($request->get('articles')['paragraphe4']);
+            $paragraphe5 = nl2br($request->get('articles')['paragraphe5']);
+            $paragraphe6 = nl2br($request->get('articles')['paragraphe6']);
+            $paragraphe7 = nl2br($request->get('articles')['paragraphe7']);
+            $paragraphe8 = nl2br($request->get('articles')['paragraphe8']);
+            $paragraphe9 = nl2br($request->get('articles')['paragraphe9']);
+            $paragraphe10 = nl2br($request->get('articles')['paragraphe10']);
             
             $article->setIntroduction($introduction)
                     ->setParagraphe1($paragraphe1)
@@ -520,7 +520,6 @@ class AdminController extends AbstractController
             $article->setCreatedAt(new \DateTime());
             
             $manager->persist($article);
-            dump($article->getSlug());
             $manager->flush();
             
             $this->addFlash(
@@ -570,20 +569,20 @@ class AdminController extends AbstractController
                 "/!\ Toutes les photos actuelles de l'article <strong>{$article->getSlug()}</strong> seront effacées et remplacées /!\ "
             );
         }
-        if ($form->isSubmitted() && $form->isValid()) 
+        if ($form->isSubmitted() && $form->isValid())
         {
-            $introduction = nl2br($request->get('Articles')['introduction']);
-            $paragraphe1 = nl2br($request->get('Articles')['paragraphe1']);
-            $paragraphe2 = nl2br($request->get('Articles')['paragraphe2']);
-            $paragraphe3 = nl2br($request->get('Articles')['paragraphe3']);
-            $paragraphe4 = nl2br($request->get('Articles')['paragraphe4']);
-            $paragraphe5 = nl2br($request->get('Articles')['paragraphe5']);
-            $paragraphe6 = nl2br($request->get('Articles')['paragraphe6']);
-            $paragraphe7 = nl2br($request->get('Articles')['paragraphe7']);
-            $paragraphe8 = nl2br($request->get('Articles')['paragraphe8']);
-            $paragraphe9 = nl2br($request->get('Articles')['paragraphe9']);
-            $paragraphe10 = nl2br($request->get('Articles')['paragraphe10']);
-            
+            $introduction = nl2br($request->get('articles')['introduction']);
+            $paragraphe1 = nl2br($request->get('articles')['paragraphe1']);
+            $paragraphe2 = nl2br($request->get('articles')['paragraphe2']);
+            $paragraphe3 = nl2br($request->get('articles')['paragraphe3']);
+            $paragraphe4 = nl2br($request->get('articles')['paragraphe4']);
+            $paragraphe5 = nl2br($request->get('articles')['paragraphe5']);
+            $paragraphe6 = nl2br($request->get('articles')['paragraphe6']);
+            $paragraphe7 = nl2br($request->get('articles')['paragraphe7']);
+            $paragraphe8 = nl2br($request->get('articles')['paragraphe8']);
+            $paragraphe9 = nl2br($request->get('articles')['paragraphe9']);
+            $paragraphe10 = nl2br($request->get('articles')['paragraphe10']);
+
             $article->setIntroduction($introduction)
                     ->setParagraphe1($paragraphe1)
                     ->setParagraphe2($paragraphe2)
