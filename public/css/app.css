@@ -65,7 +65,11 @@ h1.home-caption {
     max-height: 250px;
  }
  .avatar-expertise {
-    max-width: 480jgupx;
+    max-width: 480px;
+    max-height: 333px;
+ }
+ .avatar-conciergerie {
+    max-width: 480px;
     max-height: 333px;
  }
  
