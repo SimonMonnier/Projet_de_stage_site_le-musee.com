@@ -151,7 +151,7 @@ class AdminController extends AbstractController
      * @Security("is_granted('ROLE_ADMIN')")
      * @return Response
      */
-    public function delete_user(User $user, ObjectManager $manager, UserRepository $repoUser)
+    public function delete_admin(User $user, ObjectManager $manager, UserRepository $repoUser)
     {
         $manager->remove($user);
         $manager->flush();
@@ -200,7 +200,7 @@ class AdminController extends AbstractController
      * @Security("is_granted('ROLE_ADMIN')")
      * @return Response
      */
-    public function add_voiture(Request $request, ObjectManager $manager)
+    public function add_voiture(VoitureRepository $repoVoiture, Request $request, ObjectManager $manager)
     {
         $voiture = new Voiture();
 
@@ -220,7 +220,7 @@ class AdminController extends AbstractController
 
             $manager->persist($voiture);
             $manager->flush();
-            $files = $request->files->get('Voiture')['files'];
+            $files = $request->files->get('voiture')['files'];
             
             foreach ($files as $file)
             {
@@ -241,8 +241,8 @@ class AdminController extends AbstractController
                 "La voiture <strong>{$voiture->getSlug()}</strong> a bien été enregistrée !"
             );
 
-            return $this->redirectToRoute('voiture_edited_show', [
-                'slug' => $voiture->getSlug()
+            return $this->render('admin/voiture/index.html.twig', [
+                'voitures' => $repoVoiture->findAll()
             ]);
         }
         return $this->render('admin/voiture/add_voiture.html.twig', [
@@ -258,7 +258,7 @@ class AdminController extends AbstractController
      * @Security("is_granted('ROLE_ADMIN')")
      * @return Response
      */
-    public function edit_voiture(Voiture $voiture, Request $request, ObjectManager $manager)
+    public function edit_voiture( VoitureRepository $repoVoiture, Voiture $voiture, Request $request, ObjectManager $manager)
     {   
         $fileinfo = $voiture->getCoverImage();
 
@@ -300,8 +300,8 @@ class AdminController extends AbstractController
             $manager->persist($voiture);
             $manager->flush();
 
-            $files = $request->files->get('Voiture')['files'];
-
+            $files = $request->files->get('voiture')['files'];
+            
             foreach ($files as $file)
             {
                 $images = new Image();
@@ -321,8 +321,8 @@ class AdminController extends AbstractController
                 "Les modifications de la voiture <strong>{$voiture->getSlug()}</strong> ont bien été enregistrées !"
             );
 
-            return $this->redirectToRoute('voiture_edited_show', [
-                'slug' => $voiture->getSlug()
+            return $this->render('admin/voiture/index.html.twig', [
+                'voitures' => $repoVoiture->findAll()
             ]);
         }
 
@@ -410,23 +410,23 @@ class AdminController extends AbstractController
     {
         $article = new Articles();
 
-        $form = $this->createForm(ArticlesType::class, $article, ['attr' => ['target' => '_blank']]);
+        $form = $this->createForm(ArticlesType::class, $article);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) 
         { 
-            $introduction = nl2br($request->get('Articles')['introduction']);
-            $paragraphe1 = nl2br($request->get('Articles')['paragraphe1']);
-            $paragraphe2 = nl2br($request->get('Articles')['paragraphe2']);
-            $paragraphe3 = nl2br($request->get('Articles')['paragraphe3']);
-            $paragraphe4 = nl2br($request->get('Articles')['paragraphe4']);
-            $paragraphe5 = nl2br($request->get('Articles')['paragraphe5']);
-            $paragraphe6 = nl2br($request->get('Articles')['paragraphe6']);
-            $paragraphe7 = nl2br($request->get('Articles')['paragraphe7']);
-            $paragraphe8 = nl2br($request->get('Articles')['paragraphe8']);
-            $paragraphe9 = nl2br($request->get('Articles')['paragraphe9']);
-            $paragraphe10 = nl2br($request->get('Articles')['paragraphe10']);
+            $introduction = nl2br($request->get('articles')['introduction']);
+            $paragraphe1 = nl2br($request->get('articles')['paragraphe1']);
+            $paragraphe2 = nl2br($request->get('articles')['paragraphe2']);
+            $paragraphe3 = nl2br($request->get('articles')['paragraphe3']);
+            $paragraphe4 = nl2br($request->get('articles')['paragraphe4']);
+            $paragraphe5 = nl2br($request->get('articles')['paragraphe5']);
+            $paragraphe6 = nl2br($request->get('articles')['paragraphe6']);
+            $paragraphe7 = nl2br($request->get('articles')['paragraphe7']);
+            $paragraphe8 = nl2br($request->get('articles')['paragraphe8']);
+            $paragraphe9 = nl2br($request->get('articles')['paragraphe9']);
+            $paragraphe10 = nl2br($request->get('articles')['paragraphe10']);
             
             $article->setIntroduction($introduction)
                     ->setParagraphe1($paragraphe1)
@@ -520,7 +520,6 @@ class AdminController extends AbstractController
             $article->setCreatedAt(new \DateTime());
             
             $manager->persist($article);
-            dump($article->getSlug());
             $manager->flush();
             
             $this->addFlash(
@@ -528,8 +527,8 @@ class AdminController extends AbstractController
                 "L'article <strong>{$article->getSlug()}</strong> a bien été enregistrée !"
             );
            
-            return $this->redirectToRoute('article_edited_show', [
-                'slug' => $article->getSlug()
+            return $this->render('admin/articles/index.html.twig', [
+                'articles' => $repoArticles->findAll()
             ]);
 
         }
@@ -546,7 +545,7 @@ class AdminController extends AbstractController
      * @Security("is_granted('ROLE_ADMIN')")
      * @return Response
      */
-    public function edit_article(Articles $article, Request $request, ObjectManager $manager)
+    public function edit_article(ArticlesRepository $repoArticles, Articles $article, Request $request, ObjectManager $manager)
     {
         $form = $this->createForm(ArticlesType::class, $article);
 
@@ -570,20 +569,20 @@ class AdminController extends AbstractController
                 "/!\ Toutes les photos actuelles de l'article <strong>{$article->getSlug()}</strong> seront effacées et remplacées /!\ "
             );
         }
-        if ($form->isSubmitted() && $form->isValid()) 
+        if ($form->isSubmitted() && $form->isValid())
         {
-            $introduction = nl2br($request->get('Articles')['introduction']);
-            $paragraphe1 = nl2br($request->get('Articles')['paragraphe1']);
-            $paragraphe2 = nl2br($request->get('Articles')['paragraphe2']);
-            $paragraphe3 = nl2br($request->get('Articles')['paragraphe3']);
-            $paragraphe4 = nl2br($request->get('Articles')['paragraphe4']);
-            $paragraphe5 = nl2br($request->get('Articles')['paragraphe5']);
-            $paragraphe6 = nl2br($request->get('Articles')['paragraphe6']);
-            $paragraphe7 = nl2br($request->get('Articles')['paragraphe7']);
-            $paragraphe8 = nl2br($request->get('Articles')['paragraphe8']);
-            $paragraphe9 = nl2br($request->get('Articles')['paragraphe9']);
-            $paragraphe10 = nl2br($request->get('Articles')['paragraphe10']);
-            
+            $introduction = nl2br($request->get('articles')['introduction']);
+            $paragraphe1 = nl2br($request->get('articles')['paragraphe1']);
+            $paragraphe2 = nl2br($request->get('articles')['paragraphe2']);
+            $paragraphe3 = nl2br($request->get('articles')['paragraphe3']);
+            $paragraphe4 = nl2br($request->get('articles')['paragraphe4']);
+            $paragraphe5 = nl2br($request->get('articles')['paragraphe5']);
+            $paragraphe6 = nl2br($request->get('articles')['paragraphe6']);
+            $paragraphe7 = nl2br($request->get('articles')['paragraphe7']);
+            $paragraphe8 = nl2br($request->get('articles')['paragraphe8']);
+            $paragraphe9 = nl2br($request->get('articles')['paragraphe9']);
+            $paragraphe10 = nl2br($request->get('articles')['paragraphe10']);
+
             $article->setIntroduction($introduction)
                     ->setParagraphe1($paragraphe1)
                     ->setParagraphe2($paragraphe2)
@@ -713,8 +712,8 @@ class AdminController extends AbstractController
                 "Les modifications de l'article <strong>{$article->getSlug()}</strong> ont bien été enregistrées !"
             );
 
-            return $this->redirectToRoute('article_edited_show', [
-                'slug' => $article->getSlug()
+            return $this->render('admin/articles/index.html.twig', [
+                'articles' => $repoArticles->findAll()
             ]);
         }
 
@@ -812,4 +811,74 @@ class AdminController extends AbstractController
             'article' => $article
         ]);
     }
+
+    /**
+     * afffiche la totalité des campagnes newsletter
+     *@Route("/admin/newsletters", name="admin_newsletter_index")
+     *@Security("is_granted('ROLE_ADMIN')")
+     * @param UserRepository $repoUser
+     * @return Response
+     */
+    public function index_newsletter(NewsletterRepository $repoNewsletter)
+    {
+        return $this->render('admin/newsletter/index.html.twig', [
+            'newsletters' => $repoNewsletter->findAll()
+        ]);
+    }
+
+    /**
+     * Permet de créer une newsletter
+     * @Route("/admin/newsletter/new", name="newsletters_add")
+     * @Security("is_granted('ROLE_ADMIN')")
+     * @return Response
+     */
+    // public function add_newsletter(NewsletterRepository $repoNewsletter, Request $request, ObjectManager $manager)
+    // {
+    //     $newsletter = new Newsletter();
+
+    //     $form = $this->createForm(NewsletterType::class, $newsletter);
+
+    //     $form->handleRequest($request);
+
+    //     if ($form->isSubmitted() && $form->isValid())
+    //     {
+    //         $content = nl2br($request->get('newsletter')['content']);
+    //         $newsletter->setContent($content);
+    //         $file = $voiture->getCoverImage();
+    //         $filename = md5(uniqid()).'.'.$file->guessExtension();
+    //         $file->move($this->getParameter('upload_directory'), $filename);
+    //         $voiture->setCoverImage($filename);
+    //         $voiture->setCreateAt(new \DateTime());
+
+    //         $manager->persist($voiture);
+    //         $manager->flush();
+    //         $files = $request->files->get('voiture')['files'];
+            
+    //         foreach ($files as $file)
+    //         {
+    //             $images = new Image();
+
+    //             $filename = md5(uniqid()).'.'.$file->guessExtension();
+    //             $file->move($this->getParameter('upload_directory'), $filename);
+    //             $images->setUrl($filename);
+    //             $images->setCaption($voiture->getSlug());
+    //             $images->setVoiture($voiture);
+
+    //             $manager->persist($images);
+    //             $manager->flush();
+    //         }
+
+    //         $this->addFlash(
+    //             'success',
+    //             "La voiture <strong>{$voiture->getSlug()}</strong> a bien été enregistrée !"
+    //         );
+
+    //         return $this->render('admin/voiture/index.html.twig', [
+    //             'voitures' => $repoVoiture->findAll()
+    //         ]);
+    //     }
+    //     return $this->render('admin/voiture/add_voiture.html.twig', [
+    //         'form' => $form->createView()
+    //     ]);
+    // }
 }

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Campagne de Newsletter{% endblock %}
+
+{% block body %}
+<div class="container mt-3 shadow-lg p-0 mb-5 bg-white rounded">
+    <div class="container">
+        <h1 class="text-center my-5"><br>Créer un nouvelle campagne de newsletter</h1>
+        <h4 class="my-3">
+            Afin de recevoir les dernieres actualites du Musee,<br>inscrivez vous à notre Newsletter
+        </h4>
+        {{ form_start(form) }}
+
+        {{ form_widget(form) }}
+
+        {{ form_end(form) }}
+        <br>
+    </div>
+</div>
+{% endblock %}
