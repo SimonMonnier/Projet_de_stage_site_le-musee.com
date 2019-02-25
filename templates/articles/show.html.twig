@@ -143,13 +143,20 @@
     
     {{ form_end(form) }}
 
+    <br><br>
+
     {% if article.commentaires | length > 0 %}
         <h2 class="mb-3">Commentaires de nos visiteurs :</h2>
+        <p class="mb-3">Votre adresse email ne sera pas publiée.</p>
         {% for commentaire in article.commentaires %}
             <div class="bg-light rounded mb-3 py-3 px-3">
-                <strong>{{ commentaire.nom }}</strong> a dit <em>le {{ commentaire.createdAt }}</em> :
+                <span style="font-weight: bold">
+                <strong>{{ commentaire.nom }}</strong> a dit <em>le {{ commentaire.createdAt | date('d/m/y') }} à
+                        {{ commentaire.createdAt | date('H:i') }}</em> :
+                </span>
+                <br><br>
                 <blockquote>
-                    {{ commentaire.contenu }}
+                    {{ commentaire.contenu | raw }}
                 </blockquote>
             </div>
         {% endfor %}
