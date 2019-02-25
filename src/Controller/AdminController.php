@@ -151,7 +151,7 @@ class AdminController extends AbstractController
      * @Security("is_granted('ROLE_ADMIN')")
      * @return Response
      */
-    public function delete_user(User $user, ObjectManager $manager, UserRepository $repoUser)
+    public function delete_admin(User $user, ObjectManager $manager, UserRepository $repoUser)
     {
         $manager->remove($user);
         $manager->flush();
@@ -811,4 +811,74 @@ class AdminController extends AbstractController
             'article' => $article
         ]);
     }
+
+    /**
+     * afffiche la totalité des campagnes newsletter
+     *@Route("/admin/newsletters", name="admin_newsletter_index")
+     *@Security("is_granted('ROLE_ADMIN')")
+     * @param UserRepository $repoUser
+     * @return Response
+     */
+    public function index_newsletter(NewsletterRepository $repoNewsletter)
+    {
+        return $this->render('admin/newsletter/index.html.twig', [
+            'newsletters' => $repoNewsletter->findAll()
+        ]);
+    }
+
+    /**
+     * Permet de créer une newsletter
+     * @Route("/admin/newsletter/new", name="newsletters_add")
+     * @Security("is_granted('ROLE_ADMIN')")
+     * @return Response
+     */
+    // public function add_newsletter(NewsletterRepository $repoNewsletter, Request $request, ObjectManager $manager)
+    // {
+    //     $newsletter = new Newsletter();
+
+    //     $form = $this->createForm(NewsletterType::class, $newsletter);
+
+    //     $form->handleRequest($request);
+
+    //     if ($form->isSubmitted() && $form->isValid())
+    //     {
+    //         $content = nl2br($request->get('newsletter')['content']);
+    //         $newsletter->setContent($content);
+    //         $file = $voiture->getCoverImage();
+    //         $filename = md5(uniqid()).'.'.$file->guessExtension();
+    //         $file->move($this->getParameter('upload_directory'), $filename);
+    //         $voiture->setCoverImage($filename);
+    //         $voiture->setCreateAt(new \DateTime());
+
+    //         $manager->persist($voiture);
+    //         $manager->flush();
+    //         $files = $request->files->get('voiture')['files'];
+            
+    //         foreach ($files as $file)
+    //         {
+    //             $images = new Image();
+
+    //             $filename = md5(uniqid()).'.'.$file->guessExtension();
+    //             $file->move($this->getParameter('upload_directory'), $filename);
+    //             $images->setUrl($filename);
+    //             $images->setCaption($voiture->getSlug());
+    //             $images->setVoiture($voiture);
+
+    //             $manager->persist($images);
+    //             $manager->flush();
+    //         }
+
+    //         $this->addFlash(
+    //             'success',
+    //             "La voiture <strong>{$voiture->getSlug()}</strong> a bien été enregistrée !"
+    //         );
+
+    //         return $this->render('admin/voiture/index.html.twig', [
+    //             'voitures' => $repoVoiture->findAll()
+    //         ]);
+    //     }
+    //     return $this->render('admin/voiture/add_voiture.html.twig', [
+    //         'form' => $form->createView()
+    //     ]);
+    // }
 }
