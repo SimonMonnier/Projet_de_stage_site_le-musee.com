@@ -132,6 +132,31 @@
         </div>
         {% endif %}
     </div>
+
+    <hr>
+
+    <h1>Laisser un commentaire</h1>
+    
+    {{ form_start(form) }}
+    
+    {{ form_widget(form) }}
+    
+    {{ form_end(form) }}
+
+    {% if article.commentaires | length > 0 %}
+        <h2 class="mb-3">Commentaires de nos visiteurs :</h2>
+        {% for commentaire in article.commentaires %}
+            <div class="bg-light rounded mb-3 py-3 px-3">
+                <strong>{{ commentaire.nom }}</strong> a dit <em>le {{ commentaire.createdAt }}</em> :
+                <blockquote>
+                    {{ commentaire.contenu }}
+                </blockquote>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h2 class="mb-3">Cet article n'a pas encore reçu de commentaires</h2>
+    {% endif %}
+
 </div>
 
 {% endblock %}
