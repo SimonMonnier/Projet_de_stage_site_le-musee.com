@@ -2,7 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Subscriber;
+use App\Form\SubscriberType;
 use App\Repository\VoitureRepository;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -21,6 +25,34 @@ class HomeController extends AbstractController
     }
 
     /**
+     * @Route("/newsletter", name="newsletter")
+     */
+    public function newsletter(Request $request, ObjectManager $manager)
+    {
+        $subscriber = new Subscriber();
+
+        $form = $this->createForm(SubscriberType::class, $subscriber);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
+            $manager->persist($subscriber);
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                "L'abonné {$subscriber->getEmail()} a bien été enregistrée !"
+            );
+
+            return $this->redirectToRoute('newsletter');
+        }
+        return $this->render('newsletter/newsletter.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
      * @Route("/a_propos", name="a_propos")
      */
     public function apropos()
@@ -28,6 +60,7 @@ class HomeController extends AbstractController
 
         return $this->render('home/a-propos.html.twig');
     }
+
 
     /**
      * @Route("/expertise", name="expertise")
