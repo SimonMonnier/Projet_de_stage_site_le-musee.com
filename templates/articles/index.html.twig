@@ -39,7 +39,9 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <p class="card-text">{{ article.introduction | raw}}</p>
+                    <div class="row-1 text-truncate">
+                        {{ article.introduction | raw}}
+                    </div>
                     <a href="{{ url }}" class="btn btn-primary" target="_blank">Lire la suite !</a>
                 </div>
             </div>
