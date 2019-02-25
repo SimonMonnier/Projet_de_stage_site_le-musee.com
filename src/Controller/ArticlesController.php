@@ -33,7 +33,7 @@ class ArticlesController extends AbstractController
      * 
      * @return Response
      */
-    public function show(Request $request, Articles $article, Commentaires $commentaire, ObjectManager $manager)
+    public function show(Request $request, Articles $article, ObjectManager $manager)
     {
         $commentaire = new Commentaires();
 
@@ -42,9 +42,11 @@ class ArticlesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
-            $commentaire->setCreatedAt(new \DateTime());
 
+            $contenu = nl2br($request->get('commentaires')['contenu']);
+            $commentaire->setCreatedAt(new \DateTime());
+            $commentaire->setContenu($contenu);
+            $commentaire-> setArticle($article);
             $manager->persist($commentaire);
 
             $manager->flush();
@@ -52,8 +54,8 @@ class ArticlesController extends AbstractController
         }
 
         return $this->render('articles/show.html.twig', [
-            'article' => $article,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'article' => $article
         ]);
     }
 }
