@@ -200,7 +200,7 @@ class AdminController extends AbstractController
      * @Security("is_granted('ROLE_ADMIN')")
      * @return Response
      */
-    public function add_voiture(Request $request, ObjectManager $manager)
+    public function add_voiture(VoitureRepository $repoVoiture, Request $request, ObjectManager $manager)
     {
         $voiture = new Voiture();
 
@@ -241,8 +241,8 @@ class AdminController extends AbstractController
                 "La voiture <strong>{$voiture->getSlug()}</strong> a bien été enregistrée !"
             );
 
-            return $this->redirectToRoute('voiture_edited_show', [
-                'slug' => $voiture->getSlug()
+            return $this->render('admin/voiture/index.html.twig', [
+                'voitures' => $repoVoiture->findAll()
             ]);
         }
         return $this->render('admin/voiture/add_voiture.html.twig', [
@@ -258,7 +258,7 @@ class AdminController extends AbstractController
      * @Security("is_granted('ROLE_ADMIN')")
      * @return Response
      */
-    public function edit_voiture(Voiture $voiture, Request $request, ObjectManager $manager)
+    public function edit_voiture( VoitureRepository $repoVoiture, Voiture $voiture, Request $request, ObjectManager $manager)
     {   
         $fileinfo = $voiture->getCoverImage();
 
@@ -300,8 +300,8 @@ class AdminController extends AbstractController
             $manager->persist($voiture);
             $manager->flush();
 
-            $files = $request->files->get('Voiture')['files'];
-
+            $files = $request->files->get('voiture')['files'];
+            
             foreach ($files as $file)
             {
                 $images = new Image();
@@ -321,8 +321,8 @@ class AdminController extends AbstractController
                 "Les modifications de la voiture <strong>{$voiture->getSlug()}</strong> ont bien été enregistrées !"
             );
 
-            return $this->redirectToRoute('voiture_edited_show', [
-                'slug' => $voiture->getSlug()
+            return $this->render('admin/voiture/index.html.twig', [
+                'voitures' => $repoVoiture->findAll()
             ]);
         }
 
@@ -410,7 +410,7 @@ class AdminController extends AbstractController
     {
         $article = new Articles();
 
-        $form = $this->createForm(ArticlesType::class, $article, ['attr' => ['target' => '_blank']]);
+        $form = $this->createForm(ArticlesType::class, $article);
 
         $form->handleRequest($request);
 
@@ -528,8 +528,8 @@ class AdminController extends AbstractController
                 "L'article <strong>{$article->getSlug()}</strong> a bien été enregistrée !"
             );
            
-            return $this->redirectToRoute('article_edited_show', [
-                'slug' => $article->getSlug()
+            return $this->render('admin/articles/index.html.twig', [
+                'articles' => $repoArticles->findAll()
             ]);
 
         }
@@ -546,7 +546,7 @@ class AdminController extends AbstractController
      * @Security("is_granted('ROLE_ADMIN')")
      * @return Response
      */
-    public function edit_article(Articles $article, Request $request, ObjectManager $manager)
+    public function edit_article(ArticlesRepository $repoArticles, Articles $article, Request $request, ObjectManager $manager)
     {
         $form = $this->createForm(ArticlesType::class, $article);
 
@@ -713,8 +713,8 @@ class AdminController extends AbstractController
                 "Les modifications de l'article <strong>{$article->getSlug()}</strong> ont bien été enregistrées !"
             );
 
-            return $this->redirectToRoute('article_edited_show', [
-                'slug' => $article->getSlug()
+            return $this->render('admin/articles/index.html.twig', [
+                'articles' => $repoArticles->findAll()
             ]);
         }
 

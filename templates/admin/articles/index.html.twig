@@ -21,6 +21,7 @@
  
         <tbody>
             {% for article in articles %}
+            {% set showArticle = path('article_edited_show',{'slug': article.slug}) %}
             {% set editArticle = path('article_edit',{'slug': article.slug}) %}
             {% set removeArticle = path('article_delete',{'slug': article.slug}) %}
             <tr>
@@ -30,14 +31,17 @@
                 <td>{{article.titre}}</td>
                 <td>
                     {# Afficher le début de l'introduction #}
-                    <span class="d-inline-block text-truncate" style="max-width: 500px;">
-                        {{article.introduction}}
+                    <span class="d-inline-block text-truncate" style="max-width: 300px;">
+                        {{article.introduction | raw}}
                     </span>
                 </td>
                 <td>
                     Le {{article.createdAt | date('d/m/y')}} à {{article.createdAt | date('H:i')}}
                 </td>
-                <td>
+                <td style="max-width: 300px;">
+                    <a href="{{showArticle}}" class="btn btn-info">
+                        <i class="fas fa-eye"></i>
+                    </a>
                     <a href="{{editArticle}}" class="btn btn-success">
                         <i class="fas fa-edit"></i>
                     </a>

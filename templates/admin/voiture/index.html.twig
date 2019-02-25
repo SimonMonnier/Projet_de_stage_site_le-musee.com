@@ -24,6 +24,7 @@
 
             <tbody>
                 {% for voiture in voitures %}
+                {% set showVoiture = path('voiture_edited_show',{'slug': voiture.slug}) %}
                 {% set editVoiture = path('voiture_edit',{'slug': voiture.slug}) %}
                 {% set removeVoiture = path('voiture_delete',{'slug': voiture.slug}) %}
                 <tr>
@@ -38,7 +39,10 @@
                     <td>
                         Le {{voiture.createAt | date('d/m/y')}} à {{voiture.createAt | date('H:i')}}
                     </td>
-                    <td>
+                    <td style="max-width: 300px;">
+                        <a href="{{showVoiture}}" class="btn btn-info">
+                            <i class="fas fa-eye"></i>
+                        </a>
                         <a href="{{editVoiture}}" class="btn btn-success">
                             <i class="fas fa-edit"></i>
                         </a>
