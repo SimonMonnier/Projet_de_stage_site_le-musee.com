@@ -1,0 +1,16 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block body %}
+
+    <div class="bg-light rounded mb-3 py-3 px-3">
+        <span style="font-weight: bold">
+            <strong>{{ commentaire.nom }}</strong> a dit <em>le {{ commentaire.createdAt | date('d/m/y') }} à
+                {{ commentaire.createdAt | date('H:i') }}</em> :
+        </span>
+        <br><br>
+        <blockquote>
+            {{ commentaire.contenu | raw }}
+        </blockquote>
+    </div>
+    
+{% endblock %}
