@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CommentairesRepository")
@@ -29,6 +32,11 @@ class Commentaires
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Email(
+     *     message = "L'email '{{ value }}' n'est pas un email valide.",
+     *     checkMX = true
+     * )
      */
     private $email;
 
