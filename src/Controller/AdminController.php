@@ -8,12 +8,13 @@ use App\Entity\Image;
 use App\Entity\Voiture;
 use App\Entity\Articles;
 use App\Form\VoitureType;
+use App\Form\ArticlesType;
 use App\Form\RegistrationType;
 use App\Repository\UserRepository;
-use App\Form\ArticlesType;
 use App\Repository\ImageRepository;
 use App\Repository\VoitureRepository;
 use App\Repository\ArticlesRepository;
+use App\Repository\CommentairesRepository;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -823,4 +824,20 @@ class AdminController extends AbstractController
     {
         return $this->render('admin/newsletter/create_newsletter.html.twig');
     }
+
+    /**
+     * affiche la totalité des commentaires
+     *@Route("/admin/commentaires", name="admin_commentaires_index")
+     * @param CommentairesRepository $repoCommentaires
+     * @return Response
+     */
+    public function index_commentaires(CommentairesRepository $repoCommentaires)
+    {
+        return $this->render('admin/commentaires/index.html.twig', [
+            'commentaires' => $repoCommentaires->findAll()
+        ]);
+    }
+
+
+
 }
