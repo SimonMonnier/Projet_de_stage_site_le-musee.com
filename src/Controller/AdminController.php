@@ -828,6 +828,7 @@ class AdminController extends AbstractController
     /**
      * affiche la totalité des commentaires
      *@Route("/admin/commentaires", name="admin_commentaires_index")
+     *@Security("is_granted('ROLE_ADMIN')")
      * @param CommentairesRepository $repoCommentaires
      * @return Response
      */
