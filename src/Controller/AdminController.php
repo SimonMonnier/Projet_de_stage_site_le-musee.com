@@ -819,12 +819,12 @@ class AdminController extends AbstractController
      * @param UserRepository $repoUser
      * @return Response
      */
-    public function index_newsletter(NewsletterRepository $repoNewsletter)
-    {
-        return $this->render('admin/newsletter/index.html.twig', [
-            'newsletters' => $repoNewsletter->findAll()
-        ]);
-    }
+    // public function index_newsletter(NewsletterRepository $repoNewsletter)
+    // {
+    //     return $this->render('admin/newsletter/index.html.twig', [
+    //         'newsletters' => $repoNewsletter->findAll()
+    //     ]);
+    // }
 
     /**
      * Permet de créer une newsletter
