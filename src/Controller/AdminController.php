@@ -811,4 +811,19 @@ class AdminController extends AbstractController
             'article' => $article
         ]);
     }
+<<<<<<< HEAD
+=======
+
+    /**
+     * Permet de créer une campagne de newsletter
+     *
+     * @Route("/admin/newsletter/new", name="newsletter_new")
+     * @Security("is_granted('ROLE_ADMIN')")
+     * @return Response
+     */
+    public function create_newsletter()
+    {
+        return $this->render('admin/newsletter/create_newsletter.html.twig');
+    }
+>>>>>>> c9b83c1cdf9f2c044dbc748dc2ea3b3f4d105da2
 }
