@@ -55,12 +55,4 @@ class ContactController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
-    /**
-     * @Route("/prendre-rendez-vous", name="rendez_vous")
-     */
-    public function newsletter()
-    {
-        return $this->render('contact/rendez-vous.html.twig');
-    }
 }
