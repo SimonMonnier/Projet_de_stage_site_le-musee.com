@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Repository\ArticlesRepository;
 use App\Repository\VoitureRepository;
+use App\Entity\Articles;
 
 class SearchController extends AbstractController
 {
@@ -14,7 +16,11 @@ class SearchController extends AbstractController
      */
     public function search(ArticlesRepository $articlesRepository, VoitureRepository $voitureRepository)
     {
-        $allarticles = $articlesRepository->findall();
+       
+        $allarticles = $articlesRepository->findAll(Articles);
+        $allvoitures = $voitureRepository->findAll(Voitures);
+
+        
         
 
 
