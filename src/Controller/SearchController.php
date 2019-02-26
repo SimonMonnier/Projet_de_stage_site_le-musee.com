@@ -17,10 +17,10 @@ class SearchController extends AbstractController
     public function search(ArticlesRepository $articlesRepository, VoitureRepository $voitureRepository)
     {
        
-        $allarticles = $articlesRepository->findAll(Articles);
-        $allvoitures = $voitureRepository->findAll(Voitures);
-
-        
+        $allarticles = $articlesRepository->findAll();
+        $allvoitures = $voitureRepository->findAll();
+        dump($allarticles);
+        dump($allvoitures);
         
 
 
