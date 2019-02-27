@@ -2,6 +2,22 @@
 
 {% block title %}Contact{% endblock %}
 
+{% block stylesheets %}
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/social_button.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style type="text/css">
+    p {
+        font-size: 1.3em !important;
+    }
+    i{
+        color:red
+    }
+</style>
+{% endblock %}
+
+
 {% block body %}
 <div class="container mt-3 shadow-lg p-0 mb-5 bg-white rounded">
     <div class="container">
@@ -9,44 +25,44 @@
     </div>
     
     <div class="row">
-        <div class="col-4 mx-4">
-                {# <h4><i class="fa fa-clock-o"></i>Horaires</h4>
-                <p class="text-primary" style="text-align: center;">
-                    Du lundi au vendredi :
+        <div class="col-4 mx-4" style="background-color:#151515">
+                <h4 style="color: white;" class="mt-4"><i class="fa fa-clock-o"></i>&nbsp;Horaires</h4>
+                <p style="color: white; text-align: center;" class="mt-3">
+                    <small>Du lundi au vendredi :</small>
                 </p>
-                <p style="text-align: center;">
-                    8h à 12h 
+                <p style="text-align: center; color: white;">
+                    <small>8h à 12h </small>
                 </p>
-                <p style="text-align: center;">
-                    14h à 18h 
+                <p style="text-align: center; color: white;">
+                    <small>14h à 18h</small>
                 </p>
-                <p style="text-align: center;">
-                    ou sur rendez-vous
+                <p style="text-align: center; color: white;">
+                    <small>ou sur rendez-vous</small>
                 </p>
-                <p class="text-primary" style="text-align: center;">
-                    Le samedi : 
+                <p style="text-align: center; color: white;">
+                    <small>Le samedi :</small>
                 </p>
-                <p style="text-align: center;">
-                    sur rendez-vous
+                <p style="text-align: center; color: white;">
+                    <small>sur rendez-vous uniquement</small>
                 </p>
-                <h4><i class="fa fa-phone"></i>02.49.09.43.93</h4>
-                <h4><i class="fa fa-envelope"></i>contact@le-musee.fr</h4>
-                <h4><i class="fa fa-map-marker"></i>Allée des Vinaigriers</h4>
-                <h4 style="text-align: center;">44000 Nantes</h4> #}
-                <table class="table table-sm table-striped table-hover table-dark">
+                <h4 style="color: white;" class="mt-4"><i class="fa fa-phone"></i>&nbsp;02.49.09.43.93</h4>
+                <h4 style="color: white;" class="mt-4"><i class="fa fa-envelope"></i>&nbsp;contact@le-musee.fr</h4>
+                <h4 style="color: white;" class="mt-4"><i class="fa fa-map-marker"></i>&nbsp;Allée des Vinaigriers</h4>
+                <h4 style="color: white; text-align:center">44000 Nantes</h4>
+                {# <table class="table table-sm table-striped table-dark" style="background-color:#2A0A0A">
                     <tbody>
                         <tr>
                             <td>
-                                <p class="mr-5" style="text-align: center;"><i class="fa fa-phone"></i>02.49.09.43.93</p>
+                                <p class="mr-5" style="text-align: center;"><i class="fa fa-phone"></i>&nbsp;02.49.09.43.93</p>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <p style="text-align: center;"><i class="fa fa-envelope"></i>contact@le-musee.fr</p>
+                                <p style="text-align: center;"><i class="fa fa-envelope"></i>&nbsp;contact@le-musee.fr</p>
                             </td>
                         </tr>
                         <tr><td>
-                            <p class="mr-5" style="text-align: center;"><i class="fa fa-clock-o"></i>Horaires</p>
+                            <p class="mr-5" style="text-align: center;"><i class="fa fa-clock-o"></i>&nbsp;Horaires</p>
                             
                                 <small><p style="text-align: center;">
                                     Du lundi au vendredi :
@@ -67,9 +83,9 @@
                                     sur rendez-vous
                                 </p></small>
                         </td></tr>
-                        <tr><td><p style="text-align: center;"><i class="fa fa-map-marker"></i>Allée des Vinaigriers</p><p style="text-align: center;">44000 Nantes</p></td></tr>
+                        <tr><td><p style="text-align: center;"><i class="fa fa-map-marker"></i>&nbsp;Allée des Vinaigriers</p><p style="text-align: center;">44000 Nantes</p></td></tr>
                     </tbody>
-                </table>
+                </table> #}
         </div>
         <div class="col-7">
             <h4>Vous souhaitez nous faire part d'une remarque ou prendre contact ?</h4>
