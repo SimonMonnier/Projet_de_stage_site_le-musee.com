@@ -1,10 +1,46 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Recherche{% endblock %}
+{% block title %}Notre Parc{% endblock %}
 
 {% block body %}
+<div class="container">
+    <div class="shadow-lg p-3 mb-5 bg-white rounded">
+        {% if tabsArticle == null and tabsVoiture == null %}
+        <h3 class="text-center my-5">Aucun résultat pour la recherche : "{{search}}"</h3>
+        {% else %}
+        <h3 class="text-center my-5">Résultat pour la recherche : "{{search}}"</h3>
+        {% endif %}
+    </div>
+    {# <div class="row">
+        {% for tab in tabs %}
+            {% set urlArticle = path('tabs_show',{'slug': tab.slug}) %}
 
-
-
-
+            <div class="col-md-4 my-2">
+                <div class="card border-secondary mb-3">
+                    <div class="card-header text-center">
+                        Prix <span>{{ tab.prix }}&euro;</span>/TTC<br><small>En {{ tab.etat }}</small>
+                    </div>
+                    <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade" data-interval="3000" data-ride="carousel">
+                        <div class="carousel-inner">
+                            {% for image in tab.images %}
+                                <div class="carousel-item {% if loop.first %} active {% endif %}">
+                                    <a href="{{ url }}" target="_blank">
+                                        <img src="/uploads/{{image.url}}" style="height: 240px; width: 100%; display: block" class="d-block w-100" style="height: 180px; width: auto; display: block" alt="{{ tab.slug }}">
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <a href="{{ url }}" target="_blank">
+                            <h4 class="card-title">{{ tab.marque }} {{ tab.modele }} {% if tab.type %} {{ tab.type }} {% endif %}</h4>
+                        </a>
+                        <p class="card-text">{{ tab.Introduction | raw}}</p>
+                        <a href="{{ url }}" class="btn btn-primary" target="_blank">En savoir plus !</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div> #}
+</div>
 {% endblock %}
