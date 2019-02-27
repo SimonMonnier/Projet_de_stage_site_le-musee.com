@@ -35,6 +35,16 @@
                 <h4 style="text-align: center;">44000 Nantes</h4> #}
                 <table class="table table-sm table-striped table-hover table-dark">
                     <tbody>
+                        <tr>
+                            <td>
+                                <p class="mr-5" style="text-align: center;"><i class="fa fa-phone"></i>02.49.09.43.93</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p style="text-align: center;"><i class="fa fa-envelope"></i>contact@le-musee.fr</p>
+                            </td>
+                        </tr>
                         <tr><td>
                             <p class="mr-5" style="text-align: center;"><i class="fa fa-clock-o"></i>Horaires</p>
                             
@@ -57,8 +67,6 @@
                                     sur rendez-vous
                                 </p></small>
                         </td></tr>
-                        <tr><td><p class="mr-5" style="text-align: center;"><i class="fa fa-phone"></i>02.49.09.43.93</p></td></tr>
-                        <tr><td><p style="text-align: center;"><i class="fa fa-envelope"></i>contact@le-musee.fr</p></td></tr>
                         <tr><td><p style="text-align: center;"><i class="fa fa-map-marker"></i>Allée des Vinaigriers</p><p style="text-align: center;">44000 Nantes</p></td></tr>
                     </tbody>
                 </table>
@@ -84,6 +92,26 @@
             
             {{ form_start(form) }}
             
+            {{ form_label(form, 'Nom :', {'label_attr': {'class': 'text-primary'}}) }}
+            
+            {{ form_widget(form.nom)}}
+
+            {{ form_label(form, 'Courriel :', {'label_attr': {'class': 'text-primary'}}) }}
+            
+            {{ form_widget(form.courriel)}}
+
+            {{ form_label(form, 'Téléphone :', {'label_attr': {'class': 'text-primary'}}) }}
+            
+            {{ form_widget(form.telephone)}}
+
+            {{ form_label(form, 'Objet du message :', {'label_attr': {'class': 'text-primary'}}) }}
+            
+            {{ form_widget(form.objet)}}
+
+            {{ form_label(form, 'Message :', {'label_attr': {'class': 'text-primary'}}) }}
+            
+            {{ form_widget(form.message)}}
+
             {{ form_widget(form) }}
             
             {{ form_end(form) }}

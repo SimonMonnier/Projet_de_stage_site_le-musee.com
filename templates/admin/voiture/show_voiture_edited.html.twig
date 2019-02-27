@@ -9,9 +9,7 @@
         <h1 class="my-3">{{ voiture.marque }} {{ voiture.modele }} {% if voiture.type %} {{ voiture.type }} {% endif %}</h1>
         <p>{{ voiture.introduction | raw}}</p>
         <p class="h2">
-            <strong>
-                <small>{{ voiture.etat }}</small>
-            </strong>
+            <small>{{ voiture.etat }}</small>
         </p>
         <a href="#" class="btn btn-primary">Demandez plus d'info</a>
     </div>
@@ -20,7 +18,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 mb-3">
-            {{ voiture.content | raw}}
+            <p class="text-center">{{voiture.content | raw}}</p> 
             <div id="carouselExampleIndicators" class="carousel slide carousel-fade my-3" data-ride="carousel">
                 <ol class="carousel-indicators">
                     {% for image in voiture.images %}

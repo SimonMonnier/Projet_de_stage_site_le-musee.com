@@ -11,6 +11,18 @@
         </h4>
         {{ form_start(form) }}
 
+        {{ form_label(form, 'Email :', {'label_attr': {'class': 'text-primary'}}) }}
+        
+        {{ form_widget(form.email)}}
+
+        {{ form_label(form, 'Nom :', {'label_attr': {'class': 'text-primary'}}) }}
+        
+        {{ form_widget(form.nom)}}
+
+        {{ form_label(form, 'Prénom :', {'label_attr': {'class': 'text-primary'}}) }}
+        
+        {{ form_widget(form.prenom)}}
+
         {{ form_widget(form) }}
 
         {{ form_end(form) }}
