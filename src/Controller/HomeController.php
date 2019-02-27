@@ -27,7 +27,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/newsletter", name="newsletter")
      */
-    public function newsletter(Request $request, ObjectManager $manager)
+    public function newsletter(Request $request, ObjectManager $manager, \Swift_Mailer $mailer)
     {
         $subscriber = new Subscriber();
 
@@ -44,6 +44,16 @@ class HomeController extends AbstractController
                 'success',
                 "L'abonné {$subscriber->getEmail()} a bien été enregistrée !"
             );
+            
+            $message = ( new \Swift_Message ( 'Demande d\'inscription à la newsletter' ))
+                        -> setFrom ( 's.monnier44440@gmail.com' )
+                        -> setTo ( 's.monnier44440@gmail.com' )
+                        -> setBody ($this -> renderView ('newsletter/email.html.twig', [
+                            'subscriber' => $subscriber                      
+                            ]),'text/html'
+                        );
+
+            $mailer -> send ( $message );
 
             return $this->redirectToRoute('newsletter');
         }
@@ -105,5 +115,14 @@ class HomeController extends AbstractController
     {
 
         return $this->render('home/atelier-carrosserie-peinture.html.twig');
+    }
+
+    /**
+     * @Route("/nos-partenaires", name="partenaires")
+     */
+    public function partenaires()
+    {
+
+        return $this->render('home/partenaires.html.twig');
     }
 }

@@ -35,16 +35,6 @@
                 <h4 style="text-align: center;">44000 Nantes</h4> #}
                 <table class="table table-sm table-striped table-hover table-dark">
                     <tbody>
-                        <tr>
-                            <td>
-                                <p class="mr-5" style="text-align: center;"><i class="fa fa-phone"></i>02.49.09.43.93</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p style="text-align: center;"><i class="fa fa-envelope"></i>contact@le-musee.fr</p>
-                            </td>
-                        </tr>
                         <tr><td>
                             <p class="mr-5" style="text-align: center;"><i class="fa fa-clock-o"></i>Horaires</p>
                             
@@ -67,6 +57,8 @@
                                     sur rendez-vous
                                 </p></small>
                         </td></tr>
+                        <tr><td><p class="mr-5" style="text-align: center;"><i class="fa fa-phone"></i>02.49.09.43.93</p></td></tr>
+                        <tr><td><p style="text-align: center;"><i class="fa fa-envelope"></i>contact@le-musee.fr</p></td></tr>
                         <tr><td><p style="text-align: center;"><i class="fa fa-map-marker"></i>Allée des Vinaigriers</p><p style="text-align: center;">44000 Nantes</p></td></tr>
                     </tbody>
                 </table>
@@ -89,30 +81,19 @@
             <p class="my-4 text-primary">
                 Nous vous remercions de l’intérêt que vous nous portez.
             </p>
-            
+
             {{ form_start(form) }}
             
-            {{ form_label(form, 'Nom :', {'label_attr': {'class': 'text-primary'}}) }}
-            
-            {{ form_widget(form.nom)}}
+            {{ form_row(form.nom, {'label' : 'Nom: '}) }}
 
-            {{ form_label(form, 'Courriel :', {'label_attr': {'class': 'text-primary'}}) }}
-            
-            {{ form_widget(form.courriel)}}
+            {{ form_row(form.courriel, {'label' : 'Courriel: '}) }}
 
-            {{ form_label(form, 'Téléphone :', {'label_attr': {'class': 'text-primary'}}) }}
-            
-            {{ form_widget(form.telephone)}}
+            {{ form_row(form.telephone, {'label' : 'Téléphone: '}) }}
 
-            {{ form_label(form, 'Objet du message :', {'label_attr': {'class': 'text-primary'}}) }}
-            
-            {{ form_widget(form.objet)}}
+            {{ form_row(form.objet, {value : objet, 'label' : 'Objet du message: ', disabled: true }) }}
 
-            {{ form_label(form, 'Message :', {'label_attr': {'class': 'text-primary'}}) }}
-            
-            {{ form_widget(form.message)}}
+            {{ form_row(form.message, {'label' : 'Message: '}) }}
 
-            {{ form_widget(form) }}
             
             {{ form_end(form) }}
         </div>

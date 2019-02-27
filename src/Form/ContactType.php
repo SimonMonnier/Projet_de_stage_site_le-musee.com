@@ -2,15 +2,16 @@
 
 namespace App\Form;
 
-use App\Entity\Subscriber;
+use App\Entity\Contact;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
-class SubscriberType extends AbstractType
+class ContactType extends AbstractType
 {
     /**
      * Permet d'avoir la configuration de base d'un champ
@@ -33,10 +34,12 @@ class SubscriberType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', EmailType::class, $this->getConfiguration("Email", ""))
-            ->add('nom', TextType::class, $this->getConfiguration("Nom", ""))
-            ->add('prenom', TextType::class, $this->getConfiguration("Prenom", ""))
-            ->add('Enregistrer', SubmitType::class,[
+            ->add('nom', TextType::class, $this->getConfiguration("Nom: ", ""))
+            ->add('courriel', EmailType::class, $this->getConfiguration("Courriel: ", ""))
+            ->add('telephone', TextType::class, $this->getConfiguration("Téléphone: ", ""))
+            ->add('objet', TextType::class, $this->getConfiguration("Objet du message: ", ""))
+            ->add('message', TextareaType::class, $this->getConfiguration("Message: ", ""))
+            ->add('Enregistrer', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-success']
             ])
         ;
@@ -45,7 +48,7 @@ class SubscriberType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Subscriber::class,
+            'data_class' => Contact::class,
         ]);
     }
 }

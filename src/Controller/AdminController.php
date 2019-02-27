@@ -9,6 +9,7 @@ use App\Entity\Voiture;
 use App\Entity\Articles;
 use App\Form\VoitureType;
 use App\Form\ArticlesType;
+use App\Entity\Commentaires;
 use App\Form\RegistrationType;
 use App\Repository\UserRepository;
 use App\Repository\ImageRepository;
@@ -828,16 +829,43 @@ class AdminController extends AbstractController
     /**
      * affiche la totalité des commentaires
      *@Route("/admin/commentaires", name="admin_commentaires_index")
+     *@Security("is_granted('ROLE_ADMIN')")
      * @param CommentairesRepository $repoCommentaires
+     * @param ArticlesRepository $repoArticles
      * @return Response
      */
-    public function index_commentaires(CommentairesRepository $repoCommentaires)
+    public function index_commentaires( ArticlesRepository $repoArticles)
     {
         return $this->render('admin/commentaires/index.html.twig', [
-            'commentaires' => $repoCommentaires->findAll()
+            'articles' => $repoArticles->findAll()
         ]);
     }
 
+    /**
+     * Permet d'effacer un commentaire
+     *
+     * @Route("/admin/commentaire/delete/{id}", name="commentaire_delete")
+     * @Security("is_granted('ROLE_ADMIN')")
+     * @return Response
+     */
+    public function delete_commentaire(Commentaires $commentaire, ObjectManager $manager, ArticlesRepository $repoArticles)
+    {
+        $info = $commentaire->getId();
+
+        //ici on efface le commentaire
+        //dans la base de donnée
+        $manager->remove($commentaire);
+        $manager->flush();
+
+        $this->addFlash(
+            'success',
+            "Le commentaire' <strong>$info</strong> a bien été supprimé !"
+        );
+
+        return $this->render('admin/commentaires/index.html.twig', [
+            'articles' => $repoArticles->findAll()
+        ]);
+    }
 
 
 }

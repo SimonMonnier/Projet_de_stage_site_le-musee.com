@@ -19,15 +19,12 @@
                 <p>
                     {{ voiture.introduction }}</p>
                 <p class="h2">
-                    <strong>
-                        <small>
-                            {{ voiture.etat }}</small>
-                    </strong>
+                    <small>{{ voiture.etat }}</small>
                 </p>
             </div>
             <div class="col-md-3 mt-5">
                 <div class="mt-4">
-                    <a class="btn btn-primary mt-5 p-3" href="#">Demandez plus d'info</a>
+                    <a class="btn btn-primary mt-5 p-3" href="{{ path('contact_voiture', {'slug': voiture.slug}) }}">Demandez plus d'info</a>
                 </div>
             </div>
         </div>
@@ -35,7 +32,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 mb-3">
-                <p>{{ voiture.content | raw}}</p>
+                <p class="text-primary">{{ voiture.content | raw}}</p>
                 <div class="carousel slide carousel-fade my-3" data-ride="carousel" id="carouselExampleIndicators">
                     <ol class="carousel-indicators">
                         {% for image in voiture.images %}
