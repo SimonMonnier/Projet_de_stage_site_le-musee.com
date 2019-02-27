@@ -4,14 +4,16 @@
 
 {% block body %}
 
-<div class="article-title p-5" style="background-image: url('/uploads/{{ article.coverImage }}')">
+<div class="article-title p-5 text-center" style="background-image: url('/uploads/{{ article.coverImage }}')">
     <div class="container">
         <h1>{{ article.titre }}</h1>
-        <h5>{{ article.introduction | raw }}</h5>
     </div>
 </div>
 
 <div class="container">
+    <div class="row-5 my-5">
+        <p class="text-primary">{{ article.introduction | raw }}</p>
+    </div>
     <div class="row my-5">
         {% if article.image1 %}
         <div class="col my-auto">
@@ -20,14 +22,14 @@
         {% endif %}
         {% if article.paragraphe1 %}
         <div class="col my-auto">
-            <p>{{ article.paragraphe1 | raw }}</p>
+            <p class="text-primary">{{ article.paragraphe1 | raw }}</p>
         </div>
         {% endif %}
     </div>
     <div class="row my-5">
         {% if article.paragraphe2 %}
         <div class="col my-auto">
-            <p>{{ article.paragraphe2 | raw }}</p>
+            <p class="text-primary">{{ article.paragraphe2 | raw }}</p>
         </div>
         {% endif %}
         {% if article.image2 %}
@@ -44,14 +46,14 @@
         {% endif %}
         {% if article.paragraphe3 %}
         <div class="col my-auto">
-            <p>{{ article.paragraphe3 | raw }}</p>
+            <p class="text-primary">{{ article.paragraphe3 | raw }}</p>
         </div>
         {% endif %}
     </div>
     <div class="row my-5">
         {% if article.paragraphe4 %}
         <div class="col my-auto">
-            <p>{{ article.paragraphe4 | raw }}</p>
+            <p class="text-primary">{{ article.paragraphe4 | raw }}</p>
         </div>
         {% endif %}
         {% if article.image4 %}
@@ -68,14 +70,14 @@
         {% endif %}
         {% if article.paragraphe5 %}
         <div class="col my-auto">
-            <p>{{ article.paragraphe5 | raw }}</p>
+            <p class="text-primary">{{ article.paragraphe5 | raw }}</p>
         </div>
         {% endif %}
     </div>
     <div class="row my-5">
         {% if article.paragraphe6 %}
         <div class="col my-auto">
-            <p>{{ article.paragraphe6 | raw }}</p>
+            <p class="text-primary">{{ article.paragraphe6 | raw }}</p>
         </div>
         {% endif %}
         {% if article.image6 %}
@@ -92,14 +94,14 @@
         {% endif %}
         {% if article.paragraphe7 %}
         <div class="col my-auto">
-            <p>{{ article.paragraphe7 | raw }}</p>
+            <p class="text-primary">{{ article.paragraphe7 | raw }}</p>
         </div>
         {% endif %}
     </div>
     <div class="row my-5">
         {% if article.paragraphe8 %}
         <div class="col my-auto">
-            <p>{{ article.paragraphe8 | raw }}</p>
+            <p class="text-primary">{{ article.paragraphe8 | raw }}</p>
         </div>
         {% endif %}
         {% if article.image8 %}
@@ -116,14 +118,14 @@
         {% endif %}
         {% if article.paragraphe9 %}
         <div class="col my-auto">
-            <p>{{ article.paragraphe9 | raw }}</p>
+            <p class="text-primary">{{ article.paragraphe9 | raw }}</p>
         </div>
         {% endif %}
     </div>
     <div class="row my-5">
         {% if article.paragraphe10 %}
         <div class="col my-auto">
-            <p>{{ article.paragraphe10 | raw }}</p>
+            <p class="text-primary">{{ article.paragraphe10 | raw }}</p>
         </div>
         {% endif %}
         {% if article.image10 %}
@@ -135,10 +137,22 @@
 
     <hr>
 
-    <h1>Laisser un commentaire</h1>
+    <h1 class="mb-4">Laisser un commentaire</h1>
     
     {{ form_start(form) }}
     
+    {{ form_label(form, 'Votre commentaire :', {'label_attr': {'class': 'text-primary'}}) }}
+    
+    {{ form_widget(form.contenu)}}
+
+    {{ form_label(form, 'Nom :', {'label_attr': {'class': 'text-primary'}}) }}
+    
+    {{ form_widget(form.nom)}}
+
+    {{ form_label(form, 'Email :', {'label_attr': {'class': 'text-primary'}}) }}
+
+    {{ form_widget(form.email)}}
+
     {{ form_widget(form) }}
     
     {{ form_end(form) }}
@@ -161,7 +175,7 @@
             </div>
         {% endfor %}
     {% else %}
-        <h2 class="mb-3">Cet article n'a pas encore reçu de commentaires</h2>
+        <h4 class="mb-3">Cet article n'a pas encore reçu de commentaires</h4>
     {% endif %}
 
 </div>
