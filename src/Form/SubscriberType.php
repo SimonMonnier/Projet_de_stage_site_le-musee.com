@@ -33,9 +33,9 @@ class SubscriberType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', EmailType::class, $this->getConfiguration("Email", "Entrez votre adresse email ..."))
-            ->add('nom', TextType::class, $this->getConfiguration("Nom", "Entrez votre Nom ..."))
-            ->add('prenom', TextType::class, $this->getConfiguration("Nom", "Entrez votre Prénom ..."))
+            ->add('email', EmailType::class, $this->getConfiguration("Email", ""))
+            ->add('nom', TextType::class, $this->getConfiguration("Nom", ""))
+            ->add('prenom', TextType::class, $this->getConfiguration("Prenom", ""))
             ->add('Enregistrer', SubmitType::class,[
                 'attr' => ['class' => 'btn btn-success']
             ])
