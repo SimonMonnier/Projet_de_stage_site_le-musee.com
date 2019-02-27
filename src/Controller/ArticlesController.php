@@ -33,7 +33,7 @@ class ArticlesController extends AbstractController
      * 
      * @return Response
      */
-    public function show(Request $request, Articles $article, ObjectManager $manager)
+    public function show(Request $request, Articles $article, ObjectManager $manager, \Swift_Mailer $mailer)
     {
         $commentaire = new Commentaires();
 
@@ -50,6 +50,16 @@ class ArticlesController extends AbstractController
             $manager->persist($commentaire);
 
             $manager->flush();
+
+            $message = ( new \Swift_Message ( 'Nouveau commentaire' ))
+                        -> setFrom ( 's.monnier44440@gmail.com' )
+                        -> setTo ( 's.monnier44440@gmail.com' )
+                        -> setBody ($this -> renderView ('home/email_commentaire.html.twig', [
+                            'commentaire' => $commentaire                      
+                            ]),'text/html'
+                        );
+
+            $mailer -> send ( $message );
 
         }
 
