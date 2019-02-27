@@ -1,0 +1,103 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+<div class="container mt-3 shadow-lg p-0 mb-5 bg-white rounded">
+    <div class="container">
+        <h1 class="text-center my-5"><br>Nous contacter</h1>
+    </div>
+    
+    <div class="row">
+        <div class="col-4 mx-4">
+                {# <h4><i class="fa fa-clock-o"></i>Horaires</h4>
+                <p class="text-primary" style="text-align: center;">
+                    Du lundi au vendredi :
+                </p>
+                <p style="text-align: center;">
+                    8h à 12h 
+                </p>
+                <p style="text-align: center;">
+                    14h à 18h 
+                </p>
+                <p style="text-align: center;">
+                    ou sur rendez-vous
+                </p>
+                <p class="text-primary" style="text-align: center;">
+                    Le samedi : 
+                </p>
+                <p style="text-align: center;">
+                    sur rendez-vous
+                </p>
+                <h4><i class="fa fa-phone"></i>02.49.09.43.93</h4>
+                <h4><i class="fa fa-envelope"></i>contact@le-musee.fr</h4>
+                <h4><i class="fa fa-map-marker"></i>Allée des Vinaigriers</h4>
+                <h4 style="text-align: center;">44000 Nantes</h4> #}
+                <table class="table table-sm table-striped table-hover table-dark">
+                    <tbody>
+                        <tr><td>
+                            <p class="mr-5" style="text-align: center;"><i class="fa fa-clock-o"></i>Horaires</p>
+                            
+                                <small><p style="text-align: center;">
+                                    Du lundi au vendredi :
+                                </p>
+                                <p style="text-align: center;">
+                                    8h à 12h
+                                </p>
+                                <p style="text-align: center;">
+                                    14h à 18h
+                                </p>
+                                <p style="text-align: center;">
+                                    ou sur rendez-vous
+                                </p>
+                                <p style="text-align: center;">
+                                    Le samedi :
+                                </p>
+                                <p style="text-align: center;">
+                                    sur rendez-vous
+                                </p></small>
+                        </td></tr>
+                        <tr><td><p class="mr-5" style="text-align: center;"><i class="fa fa-phone"></i>02.49.09.43.93</p></td></tr>
+                        <tr><td><p style="text-align: center;"><i class="fa fa-envelope"></i>contact@le-musee.fr</p></td></tr>
+                        <tr><td><p style="text-align: center;"><i class="fa fa-map-marker"></i>Allée des Vinaigriers</p><p style="text-align: center;">44000 Nantes</p></td></tr>
+                    </tbody>
+                </table>
+        </div>
+        <div class="col-7">
+            <h4>Vous souhaitez nous faire part d'une remarque ou prendre contact ?</h4>
+            
+            <br>
+            
+            <h5>
+                Une question ? Une demande particulière ? Un complément d’information sur l’un de nos véhicules, ou la restauration
+                de
+                votre véhicule ?
+            </h5>
+            
+            <p class="my-4 text-primary">
+                N’hésitez pas à nous contacter via le formulaire ci-dessous, nous vous répondrons dans les plus brefs délais.
+            </p>
+            
+            <p class="my-4 text-primary">
+                Nous vous remercions de l’intérêt que vous nous portez.
+            </p>
+
+            {{ form_start(form) }}
+            
+            {{ form_row(form.nom, {'label' : 'Nom: '}) }}
+
+            {{ form_row(form.courriel, {'label' : 'Courriel: '}) }}
+
+            {{ form_row(form.telephone, {'label' : 'Téléphone: '}) }}
+
+            {{ form_row(form.objet, {value : objet, 'label' : 'Objet du message: ', disabled: true }) }}
+
+            {{ form_row(form.message, {'label' : 'Message: '}) }}
+
+            
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+</div>
+{% endblock %}
