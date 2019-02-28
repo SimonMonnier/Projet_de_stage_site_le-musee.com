@@ -26,7 +26,7 @@ class Contact
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
      * @Assert\Email(
-     *      message = "Veuillez rentrez une adresse email valide !",
+     *      message = "Veuillez entrez une adresse email valide !",
      *      checkMX = true
      * )
      */

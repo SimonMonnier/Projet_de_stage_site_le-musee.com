@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
@@ -35,7 +36,7 @@ class CommentairesType extends AbstractType
         $builder
             ->add('contenu', TextareaType::class, $this->getConfiguration("Votre commentaire", ""))
             ->add('nom', TextType::class, $this->getConfiguration("Nom :", ""))
-            ->add('email', TextType::class, $this->getConfiguration("Email :", ""))
+            ->add('email', EmailType::class, $this->getConfiguration("Email :", ""))
             ->add('Laisser un commentaire', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-success']
             ]);
