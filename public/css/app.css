@@ -77,3 +77,4 @@ h1.home-caption {
     max-height: 130px;
  }
 
+ @media screen and (max-width: 995px) { .hide-carroussel { visibility: hidden; clear: both; display: none;} }

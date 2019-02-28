@@ -20,9 +20,15 @@ class ArticlesController extends AbstractController
     public function index(ArticlesRepository $repoArticles)
     {
         $articles = $repoArticles->findAll();
+        
+        foreach ($articles as $article) 
+        {
+            $ids[] = $article->getId();
+        }
+        array_multisort($ids, SORT_DESC, $articles);
 
         return $this->render('articles/index.html.twig', [
-            'articles' => $articles,
+            'articles' => $articles
         ]);
     }
 
