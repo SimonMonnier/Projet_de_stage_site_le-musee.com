@@ -78,3 +78,11 @@ h1.home-caption {
  }
 
  @media screen and (max-width: 995px) { .hide-carroussel { visibility: hidden; clear: both; display: none;} }
+
+ @media screen and (min-width: 1200px) { .phone { visibility: hidden; clear: both; display: none; } }
+
+ @media screen and (max-width: 1200px) { .desktop { visibility: hidden; clear: both; display: none;} }
+
+ @media screen and (max-width: 600px) { .desktop-conciergerie { visibility: hidden; clear: both; display: none;} }
+
+ @media screen and (min-width: 600px) { .phone-conciergerie { visibility: hidden; clear: both; display: none;} }
