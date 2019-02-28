@@ -8,10 +8,10 @@
     
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="{{ path('voitures_index') }}">Nos Véhicules<span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown active">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Nos Services
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -23,26 +23,21 @@
                     <a class="dropdown-item" href="{{ path('expertise') }}">Expertise</a>
                 </div>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="{{ path('articles') }}">Actualités</a>
             </li>
-            <li class="nav-item">
-                    <a class="nav-link" href="{{ path('newsletter') }}">Newsletter</a>
-                </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ path('a_propos') }}">À Propos</a>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ path('newsletter') }}">Newsletter</a>
             </li>
-            <li class="nav-item">
-<<<<<<< HEAD
-                <a class="nav-link" href="{{ path('contact') }}">Contact</a>
-=======
+            <li class="nav-item active">
                 <a class="nav-link" href="{{ path('contact') }}">Nous contacter</a>
->>>>>>> d6ddb528823a8813bb4404dfb6c0af02c95b71c3
             </li>
         </ul>
-        <form action="{{ path('search') }}" method="POST">
-            <input class="form-control mr-sm-2" type="text" name="_search" placeholder="Recherche..">
-            <button class="btn btn-primary" type="submit">Recherche</button>
+        <form action="{{ path('search') }}" class="form-inline my-2 my-lg-0" method="POST">
+            <input class="form-control mr-sm-2" style="width: 180px; height: 32px" type="text" name="_search" placeholder="Recherche ...">
+            <button type="submit" class="btn btn-primary pt-1 pb-1 pr-1 pl-1 mr-1 ml-1">
+                <i class="fa fa-search pt-0 pb-0 pr-0 pl-0 mr-0 ml-0" aria-hidden="true"></i>
+              </button>
         </form>
     </div>
 </nav>
