@@ -19,6 +19,13 @@ class HomeController extends AbstractController
     {
         $voitures = $repoVoiture->findAll();
 
+        foreach ($voitures as $voiture) 
+        {
+            $ids[] = $voiture->getId();
+        }
+        array_multisort($ids, SORT_DESC, $voitures);
+
+
         return $this->render('home/home.html.twig', [
             'voitures' => $voitures
         ]);

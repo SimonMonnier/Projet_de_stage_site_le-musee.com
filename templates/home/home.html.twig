@@ -40,10 +40,9 @@
     </div>
 </div>
 
-<div class="container mt-3 shadow-lg p-0 mb-5 bg-primary rounded">
-    <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade" data-interval="3000" data-pause="false"
-        data-ride="carousel">
-        <div class="carousel-inner">
+<div class="container mt-3 shadow-lg p-0 mb-5 bg-primary rounded hide-carroussel">
+        <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade" data-interval="3000" data-pause="false" data-ride="carousel">
+            <div class="carousel-inner">
             {% for voiture in voitures %}
             {% set url = path('voitures_show',{'slug': voiture.slug}) %}
             <div class="carousel-item {% if loop.first %} active {% endif %}">

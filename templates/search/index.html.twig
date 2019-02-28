@@ -1,46 +1,97 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Notre Parc{% endblock %}
+{% block title %}Résultat recherche{% endblock %}
 
 {% block body %}
 <div class="container">
-    <div class="shadow-lg p-3 mb-5 bg-white rounded">
+    <div class="shadow-lg p-3 mb-3 bg-white rounded">
         {% if tabsArticle == null and tabsVoiture == null %}
         <h3 class="text-center my-5">Aucun résultat pour la recherche : "{{search}}"</h3>
+        <div class="container">
+            <h1>Oups ! Ce que vous recherchez n'existe pas !</h1>
+            <p>On a surement du mal vous renseigner ! Aucun soucis, vous pouvez retourner à l'accueil ou visiter notre parc !</p>
+        
+            <a href="{{ path('homepage') }}" class="btn btn-primary">Retour à l'accueil</a>
+            <a href="{{ path('voitures_index') }}" class="btn btn-primary">Visiter notre parc !</a>
+        </div>
         {% else %}
-        <h3 class="text-center my-5">Résultat pour la recherche : "{{search}}"</h3>
+        <h3 class="text-center my-5">Recherche : "{{search}}"</h3>
         {% endif %}
     </div>
-    {# <div class="row">
-        {% for tab in tabs %}
-            {% set urlArticle = path('tabs_show',{'slug': tab.slug}) %}
-
+    <div class="shadow-lg p-3 mb-5 bg-white rounded">
+        {% if tabsVoiture != null %}
+        <h3 class="text-center my-5">Résultat pour la catégorie voiture :</h3>
+        <div class="row">
+        {% for voiture in tabsVoiture %}
+            {% set urlvoiture = path('voitures_show',{'slug': voiture.slug}) %}
             <div class="col-md-4 my-2">
                 <div class="card border-secondary mb-3">
                     <div class="card-header text-center">
-                        Prix <span>{{ tab.prix }}&euro;</span>/TTC<br><small>En {{ tab.etat }}</small>
+                        Prix <span>{{ voiture.prix }}&euro;</span>/TTC<br><small>En {{ voiture.etat }}</small>
                     </div>
                     <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade" data-interval="3000" data-ride="carousel">
                         <div class="carousel-inner">
-                            {% for image in tab.images %}
+                            {% for image in voiture.images %}
                                 <div class="carousel-item {% if loop.first %} active {% endif %}">
-                                    <a href="{{ url }}" target="_blank">
-                                        <img src="/uploads/{{image.url}}" style="height: 240px; width: 100%; display: block" class="d-block w-100" style="height: 180px; width: auto; display: block" alt="{{ tab.slug }}">
+                                    <a href="{{ urlvoiture }}" target="_blank">
+                                        <img src="/uploads/{{image.url}}" style="height: 240px; width: 100%; display: block" class="d-block w-100" style="height: 180px; width: auto; display: block" alt="{{ voiture.slug }}">
                                     </a>
                                 </div>
                             {% endfor %}
                         </div>
                     </div>
                     <div class="card-body">
-                        <a href="{{ url }}" target="_blank">
-                            <h4 class="card-title">{{ tab.marque }} {{ tab.modele }} {% if tab.type %} {{ tab.type }} {% endif %}</h4>
+                        <a href="{{ urlvoiture }}" target="_blank">
+                            <h4 class="card-title">{{ voiture.marque }} {{ voiture.modele }} {% if voiture.type %} {{ voiture.type }} {% endif %}</h4>
                         </a>
-                        <p class="card-text">{{ tab.Introduction | raw}}</p>
-                        <a href="{{ url }}" class="btn btn-primary" target="_blank">En savoir plus !</a>
+                        <p class="card-text">{{ voiture.Introduction | raw}}</p>
+                        <a href="{{ urlvoiture }}" class="btn btn-primary" target="_blank">En savoir plus !</a>
                     </div>
                 </div>
             </div>
-        {% endfor %}
-    </div> #}
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% if tabsArticle != null %}
+        <h3 class="text-center my-5">Résultat pour la catégorie article :</h3>
+        <div class="row">
+                {% for article in tabsArticle %}
+                {% set urlarticle = path('articles_show',{'slug': article.slug}) %}
+            
+                <div class="col-md-4 my-2">
+                    <div class="card border-secondary mb-3">
+                        <div class="card-header text-center">
+                            <div class="text-left">
+                                <small><em>Publié le {{ article.createdAt | date('d/m/y') }} à {{ article.createdAt | date('H:i')}}</em></small>
+                            </div>
+                            <br>
+                            <a href="{{ urlarticle }}" target="_blank">
+                                <h4 class="card-title">{{ article.titre }}</h4>
+                            </a>
+                        </div>
+                        <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade" data-interval="3000"
+                            data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <a href="{{ urlarticle }}" target="_blank">
+                                        <img src="/uploads/{{article.image1}}" class="d-block w-100"
+                                            style="height: 180px; width: auto; display: block" alt="{{ article.slug }}">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <span class="d-inline-block text-truncate" style="max-width: 300px;">
+                                {{ article.introduction | raw}}
+                            </span>
+                            <a href="{{ urlarticle }}" class="btn btn-primary" target="_blank">Lire la suite !</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
 </div>
-{% endblock %}
+{% endblock body %}

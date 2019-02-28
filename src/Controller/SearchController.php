@@ -7,9 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Repository\ArticlesRepository;
 use App\Repository\VoitureRepository;
-use App\Entity\Articles;
 use phpDocumentor\Reflection\Types\Null_;
-use App\Entity\Voiture;
 
 class SearchController extends AbstractController
 {
@@ -21,9 +19,9 @@ class SearchController extends AbstractController
     $tabsArticle = Null;
     $tabsVoiture = Null;
 
-    $search = explode(" ", $request->get('_search'));
-
-    if($request->get('_search') != null)
+    $search = explode(" ", trim($request->get('_search')));
+    
+    if($request->get('_search') != null && $search[0] != "")
     {
       $allarticles = $articlesRepository->findAll();
       $allvoitures = $voitureRepository->findAll();
@@ -32,7 +30,14 @@ class SearchController extends AbstractController
 
       foreach($allarticles as $Article)
       {
-        $introduction = $Article->getIntroduction()." ".$Article->getParagraphe1()." ".$Article->getParagraphe2()." ".$Article->getParagraphe3()." ".$Article->getParagraphe4()." ".$Article->getParagraphe5()." ".$Article->getParagraphe6()." ".$Article->getParagraphe7()." ".$Article->getParagraphe8()." ".$Article->getParagraphe9()." ".$Article->getParagraphe10();
+        $introduction = $Article->getTitre()." ".$Article->getIntroduction()." ".$Article->getParagraphe1()." ".$Article->getParagraphe2()." ".$Article->getParagraphe3()." ".$Article->getParagraphe4()." ".$Article->getParagraphe5()." ".$Article->getParagraphe6()." ".$Article->getParagraphe7()." ".$Article->getParagraphe8()." ".$Article->getParagraphe9()." ".$Article->getParagraphe10();
+        
+        $order = array("\n\r","\r\n","\n","\r", "\t","<",">","br","\\","/");
+        $replace = ' ';
+
+        $introduction = str_replace($order, $replace, $introduction);
+        $introduction = str_replace($order, $replace, $introduction);
+        $introduction = rtrim($introduction);
         
         $introduction = explode(" ",$introduction);
         $sizeintroduction =  count($introduction);
@@ -98,6 +103,27 @@ class SearchController extends AbstractController
           }
         }
       }
+      if($tabsVoiture != null)
+      {
+        $tabsVoiture = array_unique($tabsVoiture, SORT_REGULAR);
+
+        foreach ($tabsVoiture as $voiture) 
+        {
+            $idVoitures[] = $voiture->getId();
+        }
+        array_multisort($idVoitures, SORT_DESC, $tabsVoiture);
+      }
+      if($tabsArticle != null)
+      {
+        foreach ($tabsArticle as $article) 
+        {
+            $idArticles[] = $article->getId();
+        }
+        array_multisort($idArticles, SORT_DESC, $tabsArticle);
+        $tabsArticle = array_unique($tabsArticle, SORT_REGULAR);
+      }
+      
+
     }
   return $this->render('search/index.html.twig', [
     'tabsArticle' => $tabsArticle,

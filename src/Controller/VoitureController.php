@@ -19,6 +19,12 @@ class VoitureController extends AbstractController
     {
         $voitures = $repoVoiture->findAll(); 
 
+        foreach ($voitures as $voiture) 
+        {
+            $ids[] = $voiture->getId();
+        }
+        array_multisort($ids, SORT_DESC, $voitures);
+        
         return $this->render('voiture/index.html.twig', [
             'voitures' => $voitures
         ]);
