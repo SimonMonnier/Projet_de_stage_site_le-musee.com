@@ -41,25 +41,29 @@
 </div>
 
 <div class="container mt-3 shadow-lg p-0 mb-5 bg-primary rounded">
-        <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade" data-interval="3000" data-pause="false" data-ride="carousel">
-            <div class="carousel-inner">
+    <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade" data-interval="3000" data-pause="false"
+        data-ride="carousel">
+        <div class="carousel-inner">
             {% for voiture in voitures %}
-                {% set url = path('voitures_show',{'slug': voiture.slug}) %}
-                    <div class="carousel-item {% if loop.first %} active {% endif %}">
-                        <a href="{{ url }}" target="_blank">
-                            <img src="/uploads/{{voiture.coverImage}}" class="img-fluid" style="height: 500px; width: 100%; display: block" alt="{{voiture.slug}}">
-                        </a>
-                        <div class="carousel-caption d-none d-md-block">
-                            <a style="text-decoration: none;" href="{{ url }}" target="_blank">
-                                <h1 class="voiture-title">{{ voiture.marque }} {{ voiture.modele }} {% if voiture.type %} {{ voiture.type }} {% endif %}</h1>
-                                <p>{{ voiture.etat }}</p>
-                                <p>{{ voiture.prix }} prix TTC</p>
-                            </a>
-                        </div>
-                    </div>
-                {% endfor %}
+            {% set url = path('voitures_show',{'slug': voiture.slug}) %}
+            <div class="carousel-item {% if loop.first %} active {% endif %}">
+                <a href="{{ url }}" target="_blank">
+                    <img src="/uploads/{{voiture.coverImage}}" class="img-fluid"
+                        style="height: 500px; width: 100%; display: block" alt="{{voiture.slug}}">
+                </a>
+                <div class="carousel-caption d-none d-md-block">
+                    <a style="text-decoration: none;" href="{{ url }}" target="_blank">
+                        <h1 class="voiture-title">{{ voiture.marque }} {{ voiture.modele }} {% if voiture.type %}
+                            {{ voiture.type }} {% endif %}</h1>
+                        <p>{{ voiture.etat }}</p>
+                        <p>{{ voiture.prix }} prix TTC</p>
+                    </a>
+                </div>
             </div>
+            {% endfor %}
         </div>
     </div>
+</div>
+
 
 {% endblock %}
