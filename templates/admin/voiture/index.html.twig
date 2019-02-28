@@ -23,7 +23,7 @@
             </thead>
 
             <tbody>
-                {% for voiture in voitures %}
+                {% for voiture in pagination.data %}
                 {% set showVoiture = path('voiture_edited_show',{'slug': voiture.slug}) %}
                 {% set editVoiture = path('voiture_edit',{'slug': voiture.slug}) %}
                 {% set removeVoiture = path('voiture_delete',{'slug': voiture.slug}) %}
@@ -54,7 +54,7 @@
                 {% endfor %}
             </tbody>
         </table>
-        {% for voiture in voitures %}
+        {% for voiture in pagination.data %}
         {% set editVoiture = path('voiture_edit',{'slug': voiture.slug}) %}
         {% set removeVoiture = path('voiture_delete',{'slug': voiture.slug}) %}
         <div class="modal fade" id="mymodal{{loop.index0}}" role="dialog">
@@ -77,6 +77,7 @@
             </div>
         </div>
         {% endfor %}
+        {% include 'admin/shared/pagination.html.twig' with {'route': 'admin_voitures_index'} %}
     </div>
     
 {% endblock body %}

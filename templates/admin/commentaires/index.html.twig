@@ -15,7 +15,7 @@
             <th>Actions</th>
         </thead>
         <tbody>
-            {% for article in articles %}
+            {% for article in pagination.data %}
             {% set showCommentaire = path('article_edited_show',{'slug': article.slug}) %}
                 {% for commentaire in article.commentaires %}
                 <tr>
@@ -36,7 +36,7 @@
             {% endfor %}
         </tbody>
     </table>
-    {% for article in articles %}
+    {% for article in pagination.data %}
     {% for commentaire in article.commentaires %}
     {% set removeCommentaire = path('commentaire_delete',{'id': commentaire.id}) %}
     <div class="modal fade" id="myModal{{loop.index0}}" role="dialog">
@@ -59,7 +59,7 @@
     </div>
     {% endfor %}
     {% endfor %}
-
+    {% include 'admin/shared/pagination.html.twig' with {'route': 'admin_commentaires_index'} %}
 </div>
 
 {% endblock %}

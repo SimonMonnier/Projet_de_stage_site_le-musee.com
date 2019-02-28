@@ -29,6 +29,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface ;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use App\Service\Pagination;
 
 class AdminController extends AbstractController
 {
@@ -182,19 +183,23 @@ class AdminController extends AbstractController
 
     /**
      * affiche la totalité des voitures
-     *@Route("/admin/voitures", name="admin_voitures_index")
+     *@Route("/admin/voitures/{page<\d+>?1}", name="admin_voitures_index")
      *@Security("is_granted('ROLE_ADMIN')")
      * @param VoitureRepository $repoVoiture
      * @return Response
      */
-    public function index(VoitureRepository $repoVoiture)
+    public function index(VoitureRepository $repoVoiture, $page, Pagination $pagination)
     {
         $this->addFlash(
             'danger',
             "/!\Lorsque vous modifiez une voiture, vous avez l'obligation de re-télécharger ses photos.Pensez à conserver les photos (Ex: clé usb, disque dur)/!\ "
         );
+
+        $pagination->setEntityClass(Voiture::class)
+            ->setPage($page);
+
         return $this->render('admin/voiture/index.html.twig', [
-            'voitures' => $repoVoiture->findAll()
+            'pagination' => $pagination
         ]);
     }
 
@@ -397,18 +402,22 @@ class AdminController extends AbstractController
 
     /**
      * affiche la totalité des articles
-     *@Route("/admin/articles", name="admin_articles_index")
+     *@Route("/admin/articles/{page<\d+>?1}", name="admin_articles_index")
      * @param ArticlesRepository $repoArticles
      * @return Response
      */
-    public function index_articles(ArticlesRepository $repoArticles) 
+    public function index_articles(ArticlesRepository $repoArticles, $page, Pagination $pagination) 
     {
         $this->addFlash(
             'danger',
             "/!\Lorsque vous modifiez un article, vous avez l'obligation de re-télécharger ses photos.Pensez à conserver les photos (Ex: clé usb, disque dur)/!\ "
         );
+
+        $pagination->setEntityClass(Articles::class)
+                    ->setPage($page);
+
         return $this->render('admin/articles/index.html.twig', [
-            'articles' => $repoArticles->findAll()
+            'pagination' => $pagination
         ]);
     }
 
@@ -847,16 +856,19 @@ class AdminController extends AbstractController
 
     /**
      * affiche la totalité des commentaires
-     *@Route("/admin/commentaires", name="admin_commentaires_index")
+     *@Route("/admin/commentaires/{page<\d+>?1}", name="admin_commentaires_index")
      *@Security("is_granted('ROLE_ADMIN')")
      * @param CommentairesRepository $repoCommentaires
      * @param ArticlesRepository $repoArticles
      * @return Response
      */
-    public function index_commentaires( ArticlesRepository $repoArticles)
+    public function index_commentaires( ArticlesRepository $repoArticles, $page, Pagination $pagination)
     {
+        $pagination->setEntityClass(Articles::class)
+            ->setPage($page);
+
         return $this->render('admin/commentaires/index.html.twig', [
-            'articles' => $repoArticles->findAll()
+            'pagination' => $pagination
         ]);
     }
 
