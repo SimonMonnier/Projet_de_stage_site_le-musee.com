@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use Intervention\Image\ImageManagerStatic as ImageResize;
+
 use App\Entity\Role;
 use App\Entity\User;
 use App\Entity\Image;
@@ -212,13 +214,17 @@ class AdminController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid())
         {
-            $content = nl2br($request->get('Voiture')['content']);
+            $content = nl2br($request->get('voiture')['content']);
             $voiture->setContent($content);
             $file = $voiture->getCoverImage();
             $filename = md5(uniqid()).'.'.$file->guessExtension();
             $file->move($this->getParameter('upload_directory'), $filename);
             $voiture->setCoverImage($filename);
             $voiture->setCreateAt(new \DateTime());
+
+            $img = ImageResize::make('uploads/'.$voiture->getCoverImage());
+            $img->resizeCanvas(700, 310);
+            $img->save('uploads/'.$voiture->getCoverImage());
 
             $manager->persist($voiture);
             $manager->flush();
@@ -260,11 +266,11 @@ class AdminController extends AbstractController
      * @Security("is_granted('ROLE_ADMIN')")
      * @return Response
      */
-    public function edit_voiture( VoitureRepository $repoVoiture, Voiture $voiture, Request $request, ObjectManager $manager)
+    public function edit_voiture( VoitureRepository $repoVoiture, Voiture $Voiture, Request $request, ObjectManager $manager)
     {   
-        $fileinfo = $voiture->getCoverImage();
+        $fileinfo = $Voiture->getCoverImage();
 
-        $form = $this->createForm(VoitureType::class, $voiture);
+        $form = $this->createForm(VoitureType::class, $Voiture);
 
         $form->handleRequest($request);
 
@@ -272,34 +278,38 @@ class AdminController extends AbstractController
         {
             $this->addFlash(
                 'danger',
-                "/!\ Toutes les photos actuelles de la voiture <strong>{$voiture->getSlug()}</strong> seront effacées et remplacées /!\ "
+                "/!\ Toutes les photos actuelles de la voiture <strong>{$Voiture->getSlug()}</strong> seront effacées et remplacées /!\ "
             );
         }
         if ($form->isSubmitted() && $form->isValid())
         {   
-            $content = nl2br($request->get('Voiture')['content']);
-            $voiture->setContent($content);
+            $content = nl2br($request->get('voiture')['content']);
+            $Voiture->setContent($content);
 
             unlink( "uploads/".$fileinfo );
 
-            $file = $voiture->getCoverImage();
+            $file = $Voiture->getCoverImage();
             $filename = md5(uniqid()).'.'.$file->guessExtension();
             $file->move($this->getParameter('upload_directory'), $filename);
 
-            $voiture->setCoverImage($filename);
-            $voiture->setCreateAt(new \DateTime());
+            $Voiture->setCoverImage($filename);
+            $Voiture->setCreateAt(new \DateTime());
+
+            $img = ImageResize::make('uploads/'.$Voiture->getCoverImage());
+            $img->resizeCanvas(700, 310);
+            $img->save('uploads/'.$Voiture->getCoverImage());
 
             //ici on efface toutes les anciennes images de la voiture 
             //dans la base de donnée et dans le dossier upload
-            $images = $voiture->getImages();
+            $images = $Voiture->getImages();
             foreach ($images as $image)
             {
                 //unlink sert à effacer le fichier dans uploads
                 unlink( "uploads/".$image->getUrl() );
-                $voiture->removeImage($image);
+                $Voiture->removeImage($image);
             }
 
-            $manager->persist($voiture);
+            $manager->persist($Voiture);
             $manager->flush();
 
             $files = $request->files->get('voiture')['files'];
@@ -311,8 +321,8 @@ class AdminController extends AbstractController
                 $filename = md5(uniqid()).'.'.$file->guessExtension();
                 $file->move($this->getParameter('upload_directory'), $filename);
                 $images->setUrl($filename);
-                $images->setCaption($voiture->getSlug());
-                $images->setVoiture($voiture);
+                $images->setCaption($Voiture->getSlug());
+                $images->setVoiture($Voiture);
 
                 $manager->persist($images);
                 $manager->flush();
@@ -320,7 +330,7 @@ class AdminController extends AbstractController
 
             $this->addFlash(
                 'success',
-                "Les modifications de la voiture <strong>{$voiture->getSlug()}</strong> ont bien été enregistrées !"
+                "Les modifications de la voiture <strong>{$Voiture->getSlug()}</strong> ont bien été enregistrées !"
             );
 
             return $this->render('admin/voiture/index.html.twig', [
@@ -330,7 +340,7 @@ class AdminController extends AbstractController
 
         return $this->render('admin/voiture/edit_voiture.html.twig', [
             'form' => $form->createView(),
-            'voiture' => $voiture
+            'voiture' => $Voiture
         ]);
     }
 
@@ -446,6 +456,11 @@ class AdminController extends AbstractController
             $filename = md5(uniqid()) . '.' . $file->guessExtension();
             $file->move($this->getParameter('upload_directory'), $filename);
             $article->setCoverImage($filename);
+            $article->setCreatedAt(new \DateTime());
+
+            $img = ImageResize::make('uploads/'.$article->getCoverImage());
+            $img->resizeCanvas(700, 310);
+            $img->save('uploads/'.$article->getCoverImage());
 
             $file = $article->getImage1();
             if($file != NULL)
@@ -603,6 +618,10 @@ class AdminController extends AbstractController
             $file->move($this->getParameter('upload_directory'), $filename);
             $article->setCoverImage($filename);
             $article->setCreatedAt(new \DateTime());
+
+            $img = ImageResize::make('uploads/'.$article->getCoverImage());
+            $img->resizeCanvas(700, 310);
+            $img->save('uploads/'.$article->getCoverImage());
 
             if($fileinfo1 != NULL)
             {
