@@ -188,7 +188,7 @@ class AdminController extends AbstractController
      * @param VoitureRepository $repoVoiture
      * @return Response
      */
-    public function index(VoitureRepository $repoVoiture, $page, Pagination $pagination)
+    public function index($page, Pagination $pagination)
     {
         $this->addFlash(
             'danger',
@@ -209,7 +209,7 @@ class AdminController extends AbstractController
      * @Security("is_granted('ROLE_ADMIN')")
      * @return Response
      */
-    public function add_voiture(VoitureRepository $repoVoiture, Request $request, ObjectManager $manager)
+    public function add_voiture(Pagination $pagination, Request $request, ObjectManager $manager)
     {
         $voiture = new Voiture();
 
@@ -254,8 +254,11 @@ class AdminController extends AbstractController
                 "La voiture <strong>{$voiture->getSlug()}</strong> a bien été enregistrée !"
             );
 
+            $pagination->setEntityClass(Voiture::class)
+            ->setPage(1);
+
             return $this->render('admin/voiture/index.html.twig', [
-                'voitures' => $repoVoiture->findAll()
+                'pagination' => $pagination
             ]);
         }
         return $this->render('admin/voiture/add_voiture.html.twig', [
@@ -271,7 +274,7 @@ class AdminController extends AbstractController
      * @Security("is_granted('ROLE_ADMIN')")
      * @return Response
      */
-    public function edit_voiture( VoitureRepository $repoVoiture, Voiture $Voiture, Request $request, ObjectManager $manager)
+    public function edit_voiture( Pagination $pagination, Voiture $Voiture, Request $request, ObjectManager $manager)
     {   
         $fileinfo = $Voiture->getCoverImage();
 
@@ -338,8 +341,11 @@ class AdminController extends AbstractController
                 "Les modifications de la voiture <strong>{$Voiture->getSlug()}</strong> ont bien été enregistrées !"
             );
 
+            $pagination->setEntityClass(Voiture::class)
+            ->setPage(1);
+
             return $this->render('admin/voiture/index.html.twig', [
-                'voitures' => $repoVoiture->findAll()
+                'pagination' => $pagination
             ]);
         }
 
@@ -356,7 +362,7 @@ class AdminController extends AbstractController
      * @Security("is_granted('ROLE_ADMIN')")
      * @return Response
      */
-    public function delete_voiture(Voiture $voiture, ObjectManager $manager, VoitureRepository $repoVoiture)
+    public function delete_voiture(Pagination $pagination,Voiture $voiture, ObjectManager $manager)
     {
         $fileinfo = $voiture->getCoverImage();
         $info = $voiture->getSlug();
@@ -381,8 +387,11 @@ class AdminController extends AbstractController
             "La voiture <strong>$info</strong> a bien été supprimée !"
         );
 
+        $pagination->setEntityClass(Voiture::class)
+            ->setPage(1);
+
         return $this->render('admin/voiture/index.html.twig', [
-            'voitures' => $repoVoiture->findAll()
+            'pagination' => $pagination
         ]);
     }
 
@@ -402,11 +411,11 @@ class AdminController extends AbstractController
 
     /**
      * affiche la totalité des articles
-     *@Route("/admin/articles/{page<\d+>?1}", name="admin_articles_index")
-     * @param ArticlesRepository $repoArticles
+     * @Route("/admin/articles/{page<\d+>?1}", name="admin_articles_index")
+     * @Security("is_granted('ROLE_ADMIN')")
      * @return Response
      */
-    public function index_articles(ArticlesRepository $repoArticles, $page, Pagination $pagination) 
+    public function index_articles($page, Pagination $pagination) 
     {
         $this->addFlash(
             'danger',
@@ -427,7 +436,7 @@ class AdminController extends AbstractController
      * @Security("is_granted('ROLE_ADMIN')")
      * @return Response
      */
-    public function add_article(Request $request, ObjectManager $manager, ArticlesRepository $repoArticles)
+    public function add_article(Pagination $pagination, Request $request, ObjectManager $manager)
     {
         $article = new Articles();
 
@@ -553,8 +562,11 @@ class AdminController extends AbstractController
                 "L'article <strong>{$article->getSlug()}</strong> a bien été enregistrée !"
             );
            
+            $pagination->setEntityClass(Articles::class)
+                    ->setPage(1);
+
             return $this->render('admin/articles/index.html.twig', [
-                'articles' => $repoArticles->findAll()
+                'pagination' => $pagination
             ]);
 
         }
@@ -571,7 +583,7 @@ class AdminController extends AbstractController
      * @Security("is_granted('ROLE_ADMIN')")
      * @return Response
      */
-    public function edit_article(ArticlesRepository $repoArticles, Articles $article, Request $request, ObjectManager $manager)
+    public function edit_article(Pagination $pagination, Articles $article, Request $request, ObjectManager $manager)
     {
         $form = $this->createForm(ArticlesType::class, $article);
 
@@ -742,11 +754,13 @@ class AdminController extends AbstractController
                 "Les modifications de l'article <strong>{$article->getSlug()}</strong> ont bien été enregistrées !"
             );
 
+            $pagination->setEntityClass(Articles::class)
+                    ->setPage(1);
+
             return $this->render('admin/articles/index.html.twig', [
-                'articles' => $repoArticles->findAll()
+                'pagination' => $pagination
             ]);
         }
-
         return $this->render('admin/articles/edit_article.html.twig', [
             'form' => $form->createView(),
             'article' => $article
@@ -760,7 +774,7 @@ class AdminController extends AbstractController
      * @Security("is_granted('ROLE_ADMIN')")
      * @return Response
      */
-    public function delete_article(Articles $article, ObjectManager $manager, ArticlesRepository $repoArticle)
+    public function delete_article(Articles $article, ObjectManager $manager,Pagination $pagination)
     {
         $info = $article->getSlug();
 
@@ -823,8 +837,11 @@ class AdminController extends AbstractController
             "L'article' <strong>$info</strong> a bien été supprimé !"
         );
 
+        $pagination->setEntityClass(Articles::class)
+                    ->setPage(1);
+
         return $this->render('admin/articles/index.html.twig', [
-            'articles' => $repoArticle->findAll()
+            'pagination' => $pagination
         ]);
     }
 
@@ -862,13 +879,10 @@ class AdminController extends AbstractController
      * @param ArticlesRepository $repoArticles
      * @return Response
      */
-    public function index_commentaires( ArticlesRepository $repoArticles, $page, Pagination $pagination)
+    public function index_commentaires( ArticlesRepository $repoArticles)
     {
-        $pagination->setEntityClass(Articles::class)
-            ->setPage($page);
-
         return $this->render('admin/commentaires/index.html.twig', [
-            'pagination' => $pagination
+            'articles' => $repoArticles->findAll()
         ]);
     }
 

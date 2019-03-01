@@ -4,11 +4,8 @@ namespace App\DataFixtures;
 
 use App\Entity\Role;
 use App\Entity\User;
-use App\Entity\Image;
-use App\Entity\Voiture;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
@@ -25,38 +22,17 @@ class AppFixtures extends Fixture
         $manager->persist($adminRole);
 
         
-       $simon = new User();
-       $john = new User();
-       $joachim = new User();
-        
-       $hashsimon = $this->encoder->encodePassword($simon, 'password');
-       $hashjohn = $this->encoder->encodePassword($john, 'password');
-       $hashjoachim = $this->encoder->encodePassword($joachim, 'password');
+       $admin = new User();
+       
+       $hash = $this->encoder->encodePassword($admin, '44leMuseeAuto!');
 
-       $simon->setFirstName("simon")
-             ->setLastName("monnier")
-             ->setHash($hashsimon)
-             ->setEmail("smonnier@lemusee.fr")
-             ->addUserRole($adminRole);
-
-
-       $john->setFirstName("john")
-            ->setLastName("guerard")
-            ->setHash($hashjohn)
-            ->setEmail("jguerard@lemusee.fr")
-            ->addUserRole($adminRole);
-
-
-       $joachim->setFirstName("joachim")
-                ->setLastName("sall")
-                ->setHash($hashjoachim)
-                ->setEmail("jsall@lemusee.fr")
+       $admin->setFirstName("Magalie")
+                ->setLastName("Simon")
+                ->setHash($hash)
+                ->setEmail("smagadom@yahoo.com")
                 ->addUserRole($adminRole);
 
-
-        $manager->persist($simon);
-        $manager->persist($john);
-        $manager->persist($joachim);
+        $manager->persist($admin);
 
         $manager->flush();
     }
