@@ -8,20 +8,14 @@
         
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('admin_voitures_index') }}">Gestion des voitures<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('admin_articles_index') }}">Gestion des articles<span
-                            class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('admin_commentaires_index') }}">Gestion des commentaires<span
-                            class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('admin_admins_index') }}">Gestion des administrateurs<span
-                            class="sr-only">(current)</span></a>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administration du site</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ path('admin_voitures_index') }}">Gestion des voitures<span class="sr-only">(current)</span></a>
+                        <a class="dropdown-item" href="{{ path('admin_articles_index') }}">Gestion des articles<span class="sr-only">(current)</span></a>
+                        <a class="dropdown-item" href="{{ path('admin_commentaires_index') }}">Gestion des commentaires<span class="sr-only">(current)</span></a>
+                        <a class="dropdown-item" href="{{ path('admin_admins_index') }}">Gestion des administrateurs<span class="sr-only">(current)</span></a>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('admin_logout') }}">Déconnexion<span class="sr-only">(current)</span></a>

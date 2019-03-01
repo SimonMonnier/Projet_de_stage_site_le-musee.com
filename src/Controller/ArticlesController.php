@@ -6,7 +6,6 @@ use App\Entity\Articles;
 use App\Entity\Commentaires;
 use App\Form\CommentairesType;
 use App\Repository\ArticlesRepository;
-use App\Repository\CommentairesRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
@@ -58,8 +57,8 @@ class ArticlesController extends AbstractController
             $manager->flush();
 
             $message = ( new \Swift_Message ( 'Nouveau commentaire' ))
-                        -> setFrom ( 's.monnier44440@gmail.com' )
-                        -> setTo ( 's.monnier44440@gmail.com' )
+                        -> setFrom ( 'contact@le-musee.fr' )
+                        -> setTo ( 'contact@le-musee.fr' )
                         -> setBody ($this -> renderView ('home/email_commentaire.html.twig', [
                             'commentaire' => $commentaire                      
                             ]),'text/html'

@@ -97,6 +97,26 @@ class SearchController extends AbstractController
             $tabsVoiture[] = $Voiture;
             $i++;
           }
+          elseif (strtolower($Voiture->getCouleurCarrosserie()) === strtolower($search[$i]))
+          {
+            $tabsVoiture[] = $Voiture;
+            $i++;
+          }
+          elseif (strtolower($Voiture->getCouleurInterieur()) === strtolower($search[$i]))
+          {
+            $tabsVoiture[] = $Voiture;
+            $i++;
+          }
+          elseif (strtolower($Voiture->getOrigine()) === strtolower($search[$i]))
+          {
+            $tabsVoiture[] = $Voiture;
+            $i++;
+          }
+          elseif (strtolower($Voiture->getBoiteDeVitesse()) === strtolower($search[$i]))
+          {
+            $tabsVoiture[] = $Voiture;
+            $i++;
+          }
           else
           {
             $i++;
