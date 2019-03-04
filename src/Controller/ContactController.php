@@ -40,8 +40,8 @@ class ContactController extends AbstractController
             );
 
             $message = ( new \Swift_Message ('Demande d\'information'))
-                        ->setFrom('contact@le-musee.fr')
-                        ->setTo( 'contact@le-musee.fr')
+                        -> setFrom ( 'info.lemusee@gmail.com' )
+                        -> setTo ( 'contact@le-musee.fr' )
                         ->setBody($this->renderView('contact/email.html.twig', [
                             'contact' => $contact                      
                             ]), 'text/html'
@@ -85,8 +85,8 @@ class ContactController extends AbstractController
             );
 
             $message = ( new \Swift_Message ('Demande d\'information'))
-                        ->setFrom('contact@le-musee.fr')
-                        ->setTo( 'contact@le-musee.fr')
+                        -> setFrom ( 'info.lemusee@gmail.com' )
+                        -> setTo ( 'contact@le-musee.fr' )
                         ->setBody($this->renderView('contact/email.html.twig', [
                             'contact' => $contact                      
                             ]), 'text/html'

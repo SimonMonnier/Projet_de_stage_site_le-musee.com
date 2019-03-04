@@ -57,7 +57,7 @@ class ArticlesController extends AbstractController
             $manager->flush();
 
             $message = ( new \Swift_Message ( 'Nouveau commentaire' ))
-                        -> setFrom ( 'contact@le-musee.fr' )
+                        -> setFrom ( 'info.lemusee@gmail.com' )
                         -> setTo ( 'contact@le-musee.fr' )
                         -> setBody ($this -> renderView ('home/email_commentaire.html.twig', [
                             'commentaire' => $commentaire                      

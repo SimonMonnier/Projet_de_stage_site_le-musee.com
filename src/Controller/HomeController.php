@@ -53,7 +53,7 @@ class HomeController extends AbstractController
             );
             
             $message = ( new \Swift_Message ( 'Demande d\'inscription à la newsletter' ))
-                        -> setFrom ( 'contact@le-musee.fr' )
+                        -> setFrom ( 'info.lemusee@gmail.com' )
                         -> setTo ( 'contact@le-musee.fr' )
                         -> setBody ($this -> renderView ('newsletter/email.html.twig', [
                             'subscriber' => $subscriber                      
